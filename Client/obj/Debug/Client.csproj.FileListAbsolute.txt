@@ -1,0 +1,10 @@
+C:\Users\Letru\Desktop\Lap-trinh-window 18K1\LT\DA_CK\DoAnCuoiKi_LapTrinhWin_GameConfetti\Client\bin\Debug\Client.exe.config
+C:\Users\Letru\Desktop\Lap-trinh-window 18K1\LT\DA_CK\DoAnCuoiKi_LapTrinhWin_GameConfetti\Client\bin\Debug\Client.exe
+C:\Users\Letru\Desktop\Lap-trinh-window 18K1\LT\DA_CK\DoAnCuoiKi_LapTrinhWin_GameConfetti\Client\bin\Debug\Client.pdb
+C:\Users\Letru\Desktop\Lap-trinh-window 18K1\LT\DA_CK\DoAnCuoiKi_LapTrinhWin_GameConfetti\Client\obj\Debug\Client.csprojAssemblyReference.cache
+C:\Users\Letru\Desktop\Lap-trinh-window 18K1\LT\DA_CK\DoAnCuoiKi_LapTrinhWin_GameConfetti\Client\obj\Debug\Client.Form1.resources
+C:\Users\Letru\Desktop\Lap-trinh-window 18K1\LT\DA_CK\DoAnCuoiKi_LapTrinhWin_GameConfetti\Client\obj\Debug\Client.Properties.Resources.resources
+C:\Users\Letru\Desktop\Lap-trinh-window 18K1\LT\DA_CK\DoAnCuoiKi_LapTrinhWin_GameConfetti\Client\obj\Debug\Client.csproj.GenerateResource.cache
+C:\Users\Letru\Desktop\Lap-trinh-window 18K1\LT\DA_CK\DoAnCuoiKi_LapTrinhWin_GameConfetti\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
+C:\Users\Letru\Desktop\Lap-trinh-window 18K1\LT\DA_CK\DoAnCuoiKi_LapTrinhWin_GameConfetti\Client\obj\Debug\Client.exe
+C:\Users\Letru\Desktop\Lap-trinh-window 18K1\LT\DA_CK\DoAnCuoiKi_LapTrinhWin_GameConfetti\Client\obj\Debug\Client.pdb

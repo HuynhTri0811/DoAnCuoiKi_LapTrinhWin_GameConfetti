@@ -46,14 +46,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="ClientCode.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ClientCode.Designer.cs">
+      <DependentUpon>ClientCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientMain.Designer.cs">
+      <DependentUpon>ClientMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientName.Designer.cs">
+      <DependentUpon>ClientName.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ClientCode.resx">
+      <DependentUpon>ClientCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientMain.resx">
+      <DependentUpon>ClientMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientName.resx">
+      <DependentUpon>ClientName.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
