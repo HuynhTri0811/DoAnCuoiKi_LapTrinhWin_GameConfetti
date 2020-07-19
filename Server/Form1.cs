@@ -1,4 +1,5 @@
 ﻿using Server.Model;
+using Server.ReadFile;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,11 +16,8 @@ namespace Server
     {
 
         #region Variable
-        List<Player> ListPlayersConnecting = new List<Player>()
-        {
-            new Player(0,"abc","abc"),
-            new Player(0,"abc","abc")
-        };
+        
+        List<Player> ListPlayersConnecting = new List<Player>();
         #endregion
 
 
@@ -31,9 +29,10 @@ namespace Server
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
             LoadListPlayerConnect();
             lbCountListPlayerChange();
-            
+           
         }
 
         private void LoadListPlayerConnect()
@@ -44,10 +43,16 @@ namespace Server
                 return;
             }
 
-            for(int i = 0; i < ListPlayersConnecting.Count; i++)
+            listviewPlayerConnected.Columns.Add("Họ tên người chơi",100);
+            listviewPlayerConnected.Columns.Add("Số câu đúng",70);
+            
+            for (int i = 0; i < ListPlayersConnecting.Count; i++)
             {
-                string[] row = { ListPlayersConnecting.ElementAt(0).NamePlayer, "0" };
+
+                string[] row = { ListPlayersConnecting.ElementAt(0)._namePlayer, "/"+"10" };
+                
                 var listViewItem = new ListViewItem(row);
+                
                 listviewPlayerConnected.Items.Add(listViewItem);
             }
 
@@ -68,10 +73,11 @@ namespace Server
 
         private void button1_Click(object sender, EventArgs e)
         {
+            listviewPlayerConnected.Clear();
             ListPlayersConnecting.Add(new Player(0, "abc", "acb"));
             LoadListPlayerConnect();
             lbCountListPlayerChange();
-            
         }
+        
     }
 }

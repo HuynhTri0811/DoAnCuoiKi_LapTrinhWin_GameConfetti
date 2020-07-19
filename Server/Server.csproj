@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MetroFramework, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\packages\MetroFramework.RunTime.1.2.0.3\lib\net40-Client\MetroFramework.dll</HintPath>
@@ -62,11 +65,28 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_Event\Form_ManHinhChonCauHoi\AddOneQuestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Event\Form_ManHinhChonCauHoi\AddOneQuestion.Designer.cs">
+      <DependentUpon>AddOneQuestion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadFile\ReadFile.cs" />
+    <Compile Include="ReadFile\WriteFile.cs" />
+    <Compile Include="ServerStartAndChoiceQuestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServerStartAndChoiceQuestion.Designer.cs">
+      <DependentUpon>ServerStartAndChoiceQuestion.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Event\Form_ManHinhChonCauHoi\AddOneQuestion.resx">
+      <DependentUpon>AddOneQuestion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -77,6 +97,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ServerStartAndChoiceQuestion.resx">
+      <DependentUpon>ServerStartAndChoiceQuestion.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -92,7 +115,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ReadFile\QuestionData.xml" />
     <Content Include="MetroFramework.txt" />
+    <Content Include="README.txt" />
+    <Content Include="Reference links.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{bb704448-8c6a-4eec-bd09-50a6ce87e2b4}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -11,3 +11,7 @@ C:\Users\Admin\Desktop\DoAnCuoiKi_LapTrinhWin_GameConfetti\Server\obj\Debug\Serv
 C:\Users\Admin\Desktop\DoAnCuoiKi_LapTrinhWin_GameConfetti\Server\obj\Debug\Server.exe
 C:\Users\Admin\Desktop\DoAnCuoiKi_LapTrinhWin_GameConfetti\Server\obj\Debug\Server.pdb
 C:\Users\Admin\Desktop\DoAnCuoiKi_LapTrinhWin_GameConfetti\Server\obj\Debug\Server.serverConfetti.resources
+C:\Users\Admin\Desktop\DoAnCuoiKi_LapTrinhWin_GameConfetti\Server\obj\Debug\Server.ServerStartAndChoiceQuestion.resources
+C:\Users\Admin\Desktop\DoAnCuoiKi_LapTrinhWin_GameConfetti\Server\obj\Debug\Server.Form_Event.Form_ManHinhChonCauHoi.AddOneQuestion.resources
+C:\Users\Admin\Desktop\DoAnCuoiKi_LapTrinhWin_GameConfetti\Server\bin\Debug\Model.dll
+C:\Users\Admin\Desktop\DoAnCuoiKi_LapTrinhWin_GameConfetti\Server\bin\Debug\Model.pdb
