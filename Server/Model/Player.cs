@@ -8,15 +8,33 @@ namespace Server.Model
 {
     public class Player
     {
-        public int IDPlayer { get; set; }
-        public string CodePlayer { get; set; }
-        public string NamePlayer { get; set; }
-        
+
+        private int _countTrueQuestion;
+        public int _iDPlayer { get; set; }
+        public string _codePlayer { get; set; }
+        public string _namePlayer { get; set; }
+
+        public int CountTrueQuestion 
+        {
+            get { return _countTrueQuestion; }
+            set
+            {
+                if( value < 0 || value > 10)
+                {
+                    _countTrueQuestion = 0; 
+                }
+                else
+                {
+                    _countTrueQuestion = value;
+                }
+            }
+        }
+
         public Player(int IDPlayler , string CodePlayer,string NamePlayer)
         {
-            this.CodePlayer = CodePlayer;
-            this.NamePlayer = NamePlayer;
-            this.IDPlayer = IDPlayer;
+            this._codePlayer = CodePlayer;
+            this._namePlayer = NamePlayer;
+            this._iDPlayer = IDPlayler;
         }
     
     }

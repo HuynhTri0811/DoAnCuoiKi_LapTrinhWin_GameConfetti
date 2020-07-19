@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Questions>
+  <Question ID="1">
+    <_contentQuestion>1 + 1 = </_contentQuestion>
+    <_a_Answer>2</_a_Answer>
+    <_b_Answer>3</_b_Answer>
+    <_c_Answer>4</_c_Answer>
+    <_d_Answer>5</_d_Answer>
+    <RightAnswer>A</RightAnswer>
+  </Question>
+  <Question ID="2">
+    <_contentQuestion>Ngày Quốc khánh của nước Cộng hòa Xã hội Chủ nghĩa Việt Nam</_contentQuestion>
+    <_a_Answer>30 / 4</_a_Answer>
+    <_b_Answer>5 / 9</_b_Answer>
+    <_c_Answer>2 / 9</_c_Answer>
+    <_d_Answer>10 / 3</_d_Answer>
+    <RightAnswer>C</RightAnswer>
+  </Question>
+  <Question ID="3">
+    <_contentQuestion>Diện tích của nước Cộng hòa Xã hội Chủ nghĩa Việt Nam (theo wikipedia ) : </_contentQuestion>
+    <_a_Answer>391.212 km2</_a_Answer>
+    <_b_Answer>361.212 km2</_b_Answer>
+    <_c_Answer>331.212 km2</_c_Answer>
+    <_d_Answer>301.212 km2</_d_Answer>
+    <RightAnswer>C</RightAnswer>
+  </Question>
+  <Question ID="4">
+    <_contentQuestion>Nước Việt Nam có bao nhiêu dân tộc (theo wikipedia) :</_contentQuestion>
+    <_a_Answer>53 dân dộc</_a_Answer>
+    <_b_Answer>54 dân tộc</_b_Answer>
+    <_c_Answer>55 dân tộc</_c_Answer>
+    <_d_Answer>56 dân tộc</_d_Answer>
+    <RightAnswer>B</RightAnswer>
+  </Question>
+  <Question ID="5">
+    <_contentQuestion>Hiện tại , ai là người giàu nhất thế giới (theo wikipedia):</_contentQuestion>
+    <_a_Answer>Bernard Arnault</_a_Answer>
+    <_b_Answer>Mark Zuckerberg</_b_Answer>
+    <_c_Answer>Bill Gates</_c_Answer>
+    <_d_Answer>Jeff Bezos</_d_Answer>
+    <RightAnswer>D</RightAnswer>
+  </Question>
+  <Question ID="6">
+    <_contentQuestion>Hai trái bom nguyên tử của nước Mỹ thả xuống nước Nhật mang tên gì :</_contentQuestion>
+    <_a_Answer>Little Boy và Fat Man</_a_Answer>
+    <_b_Answer>Hiroshima và Nagasaki</_b_Answer>
+    <_c_Answer>Little Man và Fat Boy</_c_Answer>
+    <_d_Answer>Little và Fat</_d_Answer>
+    <RightAnswer>A</RightAnswer>
+  </Question>
+  <Question ID="7">
+    <_contentQuestion>Hai thành phố mà bị bom nguyên tử của nước Mỹ thả xuống nước Nhật mang tên gì :</_contentQuestion>
+    <_a_Answer>Tokyo và Kyoto</_a_Answer>
+    <_b_Answer>Hiroshima và Nagasaki</_b_Answer>
+    <_c_Answer>Kyoto và Nagasaki</_c_Answer>
+    <_d_Answer>Tokyo và Hiroshima</_d_Answer>
+    <RightAnswer>A</RightAnswer>
+  </Question>
+  <Question ID="8">
+    <_contentQuestion>Một nhiệm kì của Tổng Bí thư Đảng Cộng sản Việt Nam là bao nhiêu năm : </_contentQuestion>
+    <_a_Answer>3</_a_Answer>
+    <_b_Answer>4</_b_Answer>
+    <_c_Answer>5</_c_Answer>
+    <_d_Answer>6</_d_Answer>
+    <RightAnswer>C</RightAnswer>
+  </Question>
+  <Question ID="9">
+    <_contentQuestion>Một nhiệm kì của Chủ tịch nước Cộng hòa xã hội chủ nghĩa Việt Nam là bao nhiêu năm :  </_contentQuestion>
+    <_a_Answer>3</_a_Answer>
+    <_b_Answer>4</_b_Answer>
+    <_c_Answer>5</_c_Answer>
+    <_d_Answer>6</_d_Answer>
+    <RightAnswer>C</RightAnswer>
+  </Question>
+  <Question ID="10">
+    <_contentQuestion>Ai hiện đang là Chủ tịch nước Cộng hòa xã hội chủ nghĩa Việt Nam :  </_contentQuestion>
+    <_a_Answer>Nguyễn Phú Trọng</_a_Answer>
+    <_b_Answer>Đặng Thị Ngọc Thịnh</_b_Answer>
+    <_c_Answer>Trần Đại Quang</_c_Answer>
+    <_d_Answer>Trương Tấn Sang</_d_Answer>
+    <RightAnswer>A</RightAnswer>
+  </Question>
+  <Question ID="11">
+    <_contentQuestion>Ai hiện đang là Tổng Bí thư nước Cộng hòa xã hội chủ nghĩa Việt Nam :  </_contentQuestion>
+    <_a_Answer>Nguyễn Phú Trọng</_a_Answer>
+    <_b_Answer>Đặng Thị Ngọc Thịnh</_b_Answer>
+    <_c_Answer>Trần Đại Quang</_c_Answer>
+    <_d_Answer>Trương Tấn Sang</_d_Answer>
+    <RightAnswer>A</RightAnswer>
+  </Question>
+  <Question ID="12">
+    <_contentQuestion>"What is your name ?" . Nghĩa là gì :</_contentQuestion>
+    <_a_Answer>Tên của cha bạn là gì ?</_a_Answer>
+    <_b_Answer>Tên của mẹ ban là gì ?</_b_Answer>
+    <_c_Answer>Tên của bạn là gì ?</_c_Answer>
+    <_d_Answer>Tên của thành phố đang sống là gì ?</_d_Answer>
+    <RightAnswer>B</RightAnswer>
+  </Question>
+  <Question ID="13">
+    <_contentQuestion>Huỳnh Hữu Trí là ai ?</_contentQuestion>
+    <_a_Answer>Hello 1 + 1</_a_Answer>
+    <_b_Answer>Hello 2 + 2 </_b_Answer>
+    <_c_Answer>Hello 3 + 3 </_c_Answer>
+    <_d_Answer>Hello 4 + 4</_d_Answer>
+    <RightAnswer>A</RightAnswer>
+  </Question>
+  <Question ID="14">
+    <_contentQuestion>ABC</_contentQuestion>
+    <_a_Answer>ABC</_a_Answer>
+    <_b_Answer>ABC</_b_Answer>
+    <_c_Answer>ABC</_c_Answer>
+    <_d_Answer>ABC</_d_Answer>
+    <RightAnswer>A</RightAnswer>
+  </Question>
+  <Question ID="15">
+    <_contentQuestion>AVC</_contentQuestion>
+    <_a_Answer>AVCA</_a_Answer>
+    <_b_Answer>ÁCCAC</_b_Answer>
+    <_c_Answer>ASCAC</_c_Answer>
+    <_d_Answer>ÁCCac</_d_Answer>
+    <RightAnswer>A</RightAnswer>
+  </Question>
+</Questions>

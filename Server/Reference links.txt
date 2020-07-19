@@ -1,0 +1,3 @@
+﻿LINK THAM KHẢO :
+XML : https://tuandc.com/lap-trinh/doc-ghi-du-lieu-xml-trong-c.html
+MessageBoxButtons Enum : https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.messageboxbuttons?view=netcore-3.1
