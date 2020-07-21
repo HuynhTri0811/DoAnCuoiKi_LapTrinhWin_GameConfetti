@@ -86,7 +86,7 @@ namespace Server
         
         private void LoadQuestion()
         {
-
+            Hello
         }
     }
 }
