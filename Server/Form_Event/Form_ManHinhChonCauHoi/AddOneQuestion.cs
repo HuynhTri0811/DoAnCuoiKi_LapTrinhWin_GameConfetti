@@ -70,7 +70,7 @@ namespace Server.Form_Event.Form_ManHinhChonCauHoi
             {
                 
                 Question question = new Question(
-                    ReadFile.ReadFile.LoadQuestionData(path).Count + 1,
+                    ReadFile.ReadFile.GetQuestionLast(path).ID + 1, // Get ID last question
                     txtContentQuestion.Text,
                     txtAnswerA.Text,
                     txtAnswerB.Text,

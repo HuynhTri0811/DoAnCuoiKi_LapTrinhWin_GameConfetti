@@ -84,7 +84,7 @@
             this.btnStartServer.Name = "btnStartServer";
             this.btnStartServer.Size = new System.Drawing.Size(165, 93);
             this.btnStartServer.TabIndex = 4;
-            this.btnStartServer.Text = "Bất đầu game";
+            this.btnStartServer.Text = "Bất đầu ";
             this.btnStartServer.UseVisualStyleBackColor = true;
             this.btnStartServer.Click += new System.EventHandler(this.btnStartServer_Click);
             // 

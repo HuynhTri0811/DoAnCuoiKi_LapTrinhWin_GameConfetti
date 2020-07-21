@@ -47,5 +47,14 @@ namespace Server.ReadFile
                 return null;
             }
         }
+
+        public static Question GetQuestionLast(string path)
+        {
+            List<Question> listQuestion =  LoadQuestionData(path);
+
+            Question question = listQuestion.ElementAt(listQuestion.Count - 1);
+
+            return question;
+        }
     }
 }
