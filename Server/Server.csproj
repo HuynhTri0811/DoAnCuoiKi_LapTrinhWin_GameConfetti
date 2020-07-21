@@ -59,11 +59,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="GameShow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="GameShow.Designer.cs">
+      <DependentUpon>GameShow.cs</DependentUpon>
     </Compile>
     <Compile Include="Form_Event\Form_ManHinhChonCauHoi\AddOneQuestion.cs">
       <SubType>Form</SubType>
@@ -82,8 +82,8 @@
     <Compile Include="ServerStartAndChoiceQuestion.Designer.cs">
       <DependentUpon>ServerStartAndChoiceQuestion.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="GameShow.resx">
+      <DependentUpon>GameShow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Event\Form_ManHinhChonCauHoi\AddOneQuestion.resx">
       <DependentUpon>AddOneQuestion.cs</DependentUpon>

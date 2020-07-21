@@ -10,7 +10,6 @@ namespace Server.ReadFile
 {
     public class WriteFile
     {
-
         public static bool AddQuestion(string path,Question question)
         {
             try
@@ -35,5 +34,27 @@ namespace Server.ReadFile
                 return false;
             }
         }
+
+        public static bool DeleteQuestion(string path,Question questionDelete)
+        {
+            try
+            {
+                XDocument getXML = XDocument.Load(path);
+                
+                XElement getQuestion = getXML.Descendants("Question").Where(question
+                                                                           => question.Attribute("ID").Value.Equals(questionDelete.ID.ToString())
+                                                                            ).FirstOrDefault();
+                
+                getQuestion.Remove();
+                getXML.Save(path);
+                
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 }

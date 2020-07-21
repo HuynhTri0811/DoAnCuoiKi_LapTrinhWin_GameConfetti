@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Server.ReadFile;
 
 namespace Server
 {
@@ -62,6 +63,7 @@ namespace Server
                 listviewQuestionData.Items[INDEX].SubItems.Add(questionIndex._c_Answer);
                 listviewQuestionData.Items[INDEX].SubItems.Add(questionIndex._d_Answer);
                 listviewQuestionData.Items[INDEX].SubItems.Add(questionIndex.RightAnswer);
+            
             }
         }
         #endregion
@@ -69,7 +71,46 @@ namespace Server
         #region Event
         private void btnStartServer_Click(object sender, EventArgs e)
         {
+            DialogResult dialogResult;
+            Question question = new Question();
+            List<Question> listQuestionChoice = new List<Question>();
 
+            dialogResult =  MessageBox.Show("Bạn có chắc chọn những câu hỏi này để bất đầu chơi game ?",
+                                            "Thông báo",
+                                            MessageBoxButtons.YesNo,
+                                            MessageBoxIcon.Question);
+            if(dialogResult == DialogResult.No)
+            {
+                return;
+            }
+
+            
+            if(listviewQuestionData.CheckedIndices.Count != 10)
+            {
+                MessageBox.Show("Bạn phải chọn đủ 10 câu hỏi . Hiện tại bạn đã chọn dư hoặc thiếu ",
+                                "Thông báo",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                return;
+            }
+
+            for (int i = 0; i < listviewQuestionData.CheckedIndices.Count; i++)
+            {
+                question = ListQuestionData.ElementAt(listviewQuestionData.CheckedIndices[i]);
+                listQuestionChoice.Add(question);
+            }
+
+            serverConfetti serverConfetti = new serverConfetti(listQuestionChoice);
+            serverConfetti.Show();
+            
+            this.Hide();
+            
+            serverConfetti.FormClosed += ServerConfetti_FormClosed; // When serverConfetii close . SerberStartAndChoiceQuestion is close
+        }
+
+        private void ServerConfetti_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Close();
         }
 
         private void btnAddQuestion_Click(object sender, EventArgs e)
@@ -82,7 +123,64 @@ namespace Server
 
         private void btnDeleteQuestion_Click(object sender, EventArgs e)
         {
+            bool CheckDelete = true;
+            DialogResult dialogResult;
+            Question question = new Question();
+
+
+            dialogResult = MessageBox.Show("Bạn có chắc muốn xóa những câu hỏi này ?",
+                                           "Thông báo",
+                                           MessageBoxButtons.YesNo,
+                                           MessageBoxIcon.Warning);
             
+            if(dialogResult == DialogResult.No)
+            {
+                return;
+            }
+
+            if(listviewQuestionData.CheckedIndices.Count == 0)
+            {
+                MessageBox.Show("Bạn chưa chọn câu hỏi để xóa",
+                                "Thông báo",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+
+            }
+
+            for (int i=0; i < listviewQuestionData.CheckedIndices.Count; i++)
+            {
+                question = ListQuestionData.ElementAt(listviewQuestionData.CheckedIndices[i]);
+
+                if(!WriteFile.DeleteQuestion(path,question))
+                {
+
+                    MessageBox.Show("Xóa câu hỏi có ID la "+ listviewQuestionData.CheckedIndices[i].ToString()+"KHÔNG THÀNH CÔNG",
+                                    "Thành công",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                    
+                    CheckDelete = false;
+                }    
+                
+            }
+            if(CheckDelete == true)
+            {
+
+                MessageBox.Show("Đã xóa toàn bộ câu hỏi mà bạn đã chọn",
+                                "Thành công",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+
+            }
+            else
+            {
+                MessageBox.Show("Đã Xóa Những Câu Hỏi Không Bị Lỗi Mà Bạn Đã Chọn",
+                                "Thông báo",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+            }
+
+            LoadListQuestionData();
         }
         #endregion
     }

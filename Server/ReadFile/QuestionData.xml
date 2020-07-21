@@ -96,28 +96,4 @@
     <_d_Answer>Tên của thành phố đang sống là gì ?</_d_Answer>
     <RightAnswer>B</RightAnswer>
   </Question>
-  <Question ID="13">
-    <_contentQuestion>Huỳnh Hữu Trí là ai ?</_contentQuestion>
-    <_a_Answer>Hello 1 + 1</_a_Answer>
-    <_b_Answer>Hello 2 + 2 </_b_Answer>
-    <_c_Answer>Hello 3 + 3 </_c_Answer>
-    <_d_Answer>Hello 4 + 4</_d_Answer>
-    <RightAnswer>A</RightAnswer>
-  </Question>
-  <Question ID="14">
-    <_contentQuestion>ABC</_contentQuestion>
-    <_a_Answer>ABC</_a_Answer>
-    <_b_Answer>ABC</_b_Answer>
-    <_c_Answer>ABC</_c_Answer>
-    <_d_Answer>ABC</_d_Answer>
-    <RightAnswer>A</RightAnswer>
-  </Question>
-  <Question ID="15">
-    <_contentQuestion>AVC</_contentQuestion>
-    <_a_Answer>AVCA</_a_Answer>
-    <_b_Answer>ÁCCAC</_b_Answer>
-    <_c_Answer>ASCAC</_c_Answer>
-    <_d_Answer>ÁCCac</_d_Answer>
-    <RightAnswer>A</RightAnswer>
-  </Question>
 </Questions>

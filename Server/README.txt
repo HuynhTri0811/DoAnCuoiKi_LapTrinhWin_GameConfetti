@@ -1,2 +1,2 @@
-﻿LINK THAM KHẢM :
-XML : https://tuandc.com/lap-trinh/doc-ghi-du-lieu-xml-trong-c.html
+﻿HƯỚNG DẪN SỬ DỤNG :
+Chọn câu hỏi ( chọn đúng 10 câu hỏi ) . Sau đó bấm bắt đầu trò chơi

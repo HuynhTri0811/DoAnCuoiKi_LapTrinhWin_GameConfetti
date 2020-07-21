@@ -1,4 +1,5 @@
-﻿using Server.Model;
+﻿using Model;
+using Server.Model;
 using Server.ReadFile;
 using System;
 using System.Collections.Generic;
@@ -18,13 +19,15 @@ namespace Server
         #region Variable
         
         List<Player> ListPlayersConnecting = new List<Player>();
+        List<Question> questionsData = new List<Question>();
         #endregion
 
 
-        public serverConfetti()
+        public serverConfetti(List<Question> questions)
         {
             InitializeComponent();
-            
+            this.questionsData = questions;
+            LoadIDQuestion();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -71,13 +74,19 @@ namespace Server
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        private void LoadIDQuestion()
         {
-            listviewPlayerConnected.Clear();
-            ListPlayersConnecting.Add(new Player(0, "abc", "acb"));
-            LoadListPlayerConnect();
-            lbCountListPlayerChange();
+            foreach(Question question in questionsData)
+            {
+                comboxLoadIDCauHoi.Items.Add(question.ID.ToString());
+            }
+            comboxLoadIDCauHoi.SelectedIndex = 0;
         }
         
+        private void LoadQuestion()
+        {
+
+        }
     }
 }
