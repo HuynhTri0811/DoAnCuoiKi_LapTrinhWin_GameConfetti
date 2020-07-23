@@ -1,4 +1,5 @@
 ﻿using Model;
+using Server.Form_Event.Form_ManHinhChonCauHoi;
 using Server.Model;
 using Server.ReadFile;
 using System;
@@ -7,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,17 +19,17 @@ namespace Server
     {
 
         #region Variable
-        
+        private string path = @"..\..\ReadFile\QuestionData.xml";
         List<Player> ListPlayersConnecting = new List<Player>();
         List<Question> questionsData = new List<Question>();
+        List<Question> ListQuestionData = new List<Question>();
         #endregion
 
 
-        public serverConfetti(List<Question> questions)
+        public serverConfetti()
         {
             InitializeComponent();
-            this.questionsData = questions;
-            LoadIDQuestion();
+            LoadListQuestionData();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -75,18 +77,119 @@ namespace Server
         }
 
 
-        private void LoadIDQuestion()
-        {
-            foreach(Question question in questionsData)
-            {
-                comboxLoadIDCauHoi.Items.Add(question.ID.ToString());
-            }
-            comboxLoadIDCauHoi.SelectedIndex = 0;
-        }
         
         private void LoadQuestion()
         {
-            Hello
+            
+        }
+
+        private void LoadListQuestionData()
+        {
+            /*
+             * Hiển thị danh sách các câu hỏi có trong file
+             */
+            listviewQuestionData.Clear();
+
+            listviewQuestionData.Columns.Add("ID", 50);
+            listviewQuestionData.Columns.Add("Nội dung câu hỏi", 400);
+            listviewQuestionData.Columns.Add("Câu A", 150);
+            listviewQuestionData.Columns.Add("Câu B", 150);
+            listviewQuestionData.Columns.Add("Câu C", 150);
+            listviewQuestionData.Columns.Add("Câu đúng", 70);
+
+            ListQuestionData = ReadFile.ReadFile.LoadQuestionData(path);
+
+            if (ListQuestionData == null)
+            {
+                return;
+            }
+
+            for (int INDEX = 0; INDEX < ListQuestionData.Count; INDEX++)
+            {
+
+                Question questionIndex = ListQuestionData.ElementAt(INDEX);
+
+                listviewQuestionData.Items.Add(questionIndex.ID.ToString());
+                listviewQuestionData.Items[INDEX].SubItems.Add(questionIndex._contentQuestion);
+                listviewQuestionData.Items[INDEX].SubItems.Add(questionIndex._a_Answer);
+                listviewQuestionData.Items[INDEX].SubItems.Add(questionIndex._b_Answer);
+                listviewQuestionData.Items[INDEX].SubItems.Add(questionIndex._c_Answer);
+                listviewQuestionData.Items[INDEX].SubItems.Add(questionIndex.RightAnswer);
+
+            }
+        }
+
+        private void listviewQuestionData_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Question question = null;
+            int IDquestion = -1;
+            
+            ListView.SelectedListViewItemCollection selectItem =this.listviewQuestionData.SelectedItems;
+
+            if(selectItem.Count == 0)
+            {
+                return;
+            }
+
+            foreach (ListViewItem item in selectItem)
+            {
+                if (!int.TryParse(item.SubItems[0].Text,out IDquestion))
+                {
+
+                    MessageBox.Show("Định dạng bị sai . Xin kiểm tra câu hỏi lại",
+                                    "Thông báo",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                    
+                    return;
+                }
+
+                question = Question.FindQuestion(ListQuestionData, IDquestion);
+
+                if(question == null)
+                {
+
+                    MessageBox.Show("Không thể tìm thấy câu hỏi",
+                                    "Thông báo",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                    
+                    return;
+                }
+            }
+
+            txtIDQuestion.Text = question.ID.ToString();
+            txtContentQuesttion.Text = question._contentQuestion;
+            txtAnswerA.Text = question._a_Answer;
+            txtAnswerB.Text = question._b_Answer;
+            txtAnswerC.Text = question._c_Answer;
+            txtRightQuestion.Text = question.RightAnswer;
+        }
+
+        private void listviewQuestionData_MouseClick(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void listviewQuestionData_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            
+        }
+
+        private void btnAddQuestion_Click(object sender, EventArgs e)
+        {
+            AddOneQuestion addOneQuestion = new AddOneQuestion();
+            addOneQuestion.ShowDialog();
+            
+            LoadListQuestionData();
+        }
+        
+        private void btnDeleteQuestion_Click(object sender, EventArgs e)
+        {
+            DeleteMutiQuestion deleteMutiQuestion = new DeleteMutiQuestion();
+            deleteMutiQuestion.ShowDialog();
+
+            LoadListQuestionData();
         }
     }
 }

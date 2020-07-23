@@ -22,18 +22,26 @@ namespace Server.Form_Event.Form_ManHinhChonCauHoi
         public AddOneQuestion()
         {
             InitializeComponent();
+            
             LoadComboBoxAnswerRightAnswer();
+            
+            MessageBox.Show("Danh sách câu hỏi sẽ không thể cập nhật cho đến khi bạn đã tạo xong câu hỏi và thoát mình hình thêm câu hỏi",
+                            "Thông báo",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
         }
         #endregion
 
         #region Function
         private void LoadComboBoxAnswerRightAnswer()
         {
-            string[] listAnswer = {"A", "B", "C", "D"};
+            string[] listAnswer = {"A", "B", "C"};
 
             comboBoxRightAnswer.Items.AddRange(listAnswer);
             
             comboBoxRightAnswer.SelectedIndex = 0;
+
+            
         }
         #endregion
 
@@ -66,7 +74,7 @@ namespace Server.Form_Event.Form_ManHinhChonCauHoi
                 }
             }
 
-            if(comboBoxRightAnswer.Text == "A" || comboBoxRightAnswer.Text =="B" || comboBoxRightAnswer.Text =="C" || comboBoxRightAnswer.Text == "D") 
+            if(comboBoxRightAnswer.Text == "A" || comboBoxRightAnswer.Text =="B" || comboBoxRightAnswer.Text =="C") 
             {
                 
                 Question question = new Question(
@@ -75,24 +83,28 @@ namespace Server.Form_Event.Form_ManHinhChonCauHoi
                     txtAnswerA.Text,
                     txtAnswerB.Text,
                     txtAnswerC.Text,
-                    txtAnswerD.Text,
                     comboBoxRightAnswer.Text    );
 
                 if (WriteFile.AddQuestion(path, question))
                 {
-                    MessageBox.Show("THÀNH CÔNG", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("THẤT BẠI", "THÔNG BÁO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Thất baị", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
             {
-                MessageBox.Show("BẠN ĐÃ CHỌN CÂU TRẢ LỜI KHÔNG ĐƯỢC KHÁC 'A' hoặc 'B' hoặc 'C' hoặc 'D' ","LỖI",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("BẠN ĐÃ CHỌN CÂU TRẢ LỜI KHÔNG ĐƯỢC KHÁC 'A' hoặc 'B' hoặc 'C'",
+                                "Lỗi",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
             }
         }
 
         #endregion
+
+        
     }
 }

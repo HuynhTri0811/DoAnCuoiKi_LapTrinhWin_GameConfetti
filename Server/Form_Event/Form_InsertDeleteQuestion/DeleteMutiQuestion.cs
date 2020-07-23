@@ -13,7 +13,7 @@ using Server.ReadFile;
 
 namespace Server
 {
-    public partial class ServerStartAndChoiceQuestion : Form
+    public partial class DeleteMutiQuestion : Form
     {
         #region Variable
         private string path = @"..\..\ReadFile\QuestionData.xml";
@@ -21,10 +21,15 @@ namespace Server
         #endregion
 
         #region InitializeComponent
-        public ServerStartAndChoiceQuestion()
+        public DeleteMutiQuestion()
         {
             InitializeComponent();
             LoadListQuestionData();
+
+            MessageBox.Show("Danh sách câu hỏi sẽ không thể cập nhật cho đến khi bạn xóa xong câu hỏi và thoát mình hình thêm xóa câu hỏi",
+                            "Thông báo",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
         }
         #endregion
 
@@ -41,7 +46,6 @@ namespace Server
             listviewQuestionData.Columns.Add("Câu A", 150);
             listviewQuestionData.Columns.Add("Câu B", 150);
             listviewQuestionData.Columns.Add("Câu C", 150);
-            listviewQuestionData.Columns.Add("Câu D", 150);
             listviewQuestionData.Columns.Add("Câu đúng", 70);
             
             ListQuestionData = ReadFile.ReadFile.LoadQuestionData(path);
@@ -61,7 +65,6 @@ namespace Server
                 listviewQuestionData.Items[INDEX].SubItems.Add(questionIndex._a_Answer);
                 listviewQuestionData.Items[INDEX].SubItems.Add(questionIndex._b_Answer);
                 listviewQuestionData.Items[INDEX].SubItems.Add(questionIndex._c_Answer);
-                listviewQuestionData.Items[INDEX].SubItems.Add(questionIndex._d_Answer);
                 listviewQuestionData.Items[INDEX].SubItems.Add(questionIndex.RightAnswer);
             
             }
@@ -69,58 +72,6 @@ namespace Server
         #endregion
 
         #region Event
-        private void btnStartServer_Click(object sender, EventArgs e)
-        {
-            DialogResult dialogResult;
-            Question question = new Question();
-            List<Question> listQuestionChoice = new List<Question>();
-
-            dialogResult =  MessageBox.Show("Bạn có chắc chọn những câu hỏi này để bất đầu chơi game ?",
-                                            "Thông báo",
-                                            MessageBoxButtons.YesNo,
-                                            MessageBoxIcon.Question);
-            if(dialogResult == DialogResult.No)
-            {
-                return;
-            }
-
-            
-            if(listviewQuestionData.CheckedIndices.Count != 10)
-            {
-                MessageBox.Show("Bạn phải chọn đủ 10 câu hỏi . Hiện tại bạn đã chọn dư hoặc thiếu ",
-                                "Thông báo",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-                return;
-            }
-
-            for (int i = 0; i < listviewQuestionData.CheckedIndices.Count; i++)
-            {
-                question = ListQuestionData.ElementAt(listviewQuestionData.CheckedIndices[i]);
-                listQuestionChoice.Add(question);
-            }
-
-            serverConfetti serverConfetti = new serverConfetti(listQuestionChoice);
-            serverConfetti.Show();
-            
-            this.Hide();
-            
-            serverConfetti.FormClosed += ServerConfetti_FormClosed; // When serverConfetii close . SerberStartAndChoiceQuestion is close
-        }
-
-        private void ServerConfetti_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnAddQuestion_Click(object sender, EventArgs e)
-        {
-            AddOneQuestion addOneQuestion = new AddOneQuestion();
-            addOneQuestion.ShowDialog();
-            
-            LoadListQuestionData();
-        }
-
         private void btnDeleteQuestion_Click(object sender, EventArgs e)
         {
             bool CheckDelete = true;
@@ -183,5 +134,7 @@ namespace Server
             LoadListQuestionData();
         }
         #endregion
+
+        
     }
 }

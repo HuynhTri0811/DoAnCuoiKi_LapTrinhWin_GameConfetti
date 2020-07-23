@@ -65,10 +65,10 @@
     <Compile Include="GameShow.Designer.cs">
       <DependentUpon>GameShow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form_Event\Form_ManHinhChonCauHoi\AddOneQuestion.cs">
+    <Compile Include="Form_Event\Form_InsertDeleteQuestion\AddOneQuestion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form_Event\Form_ManHinhChonCauHoi\AddOneQuestion.Designer.cs">
+    <Compile Include="Form_Event\Form_InsertDeleteQuestion\AddOneQuestion.Designer.cs">
       <DependentUpon>AddOneQuestion.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Player.cs" />
@@ -76,16 +76,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadFile\ReadFile.cs" />
     <Compile Include="ReadFile\WriteFile.cs" />
-    <Compile Include="ServerStartAndChoiceQuestion.cs">
+    <Compile Include="Form_Event\Form_InsertDeleteQuestion\DeleteMutiQuestion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ServerStartAndChoiceQuestion.Designer.cs">
-      <DependentUpon>ServerStartAndChoiceQuestion.cs</DependentUpon>
+    <Compile Include="Form_Event\Form_InsertDeleteQuestion\DeleteMutiQuestion.Designer.cs">
+      <DependentUpon>DeleteMutiQuestion.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="GameShow.resx">
       <DependentUpon>GameShow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form_Event\Form_ManHinhChonCauHoi\AddOneQuestion.resx">
+    <EmbeddedResource Include="Form_Event\Form_InsertDeleteQuestion\AddOneQuestion.resx">
       <DependentUpon>AddOneQuestion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -97,8 +97,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ServerStartAndChoiceQuestion.resx">
-      <DependentUpon>ServerStartAndChoiceQuestion.cs</DependentUpon>
+    <EmbeddedResource Include="Form_Event\Form_InsertDeleteQuestion\DeleteMutiQuestion.resx">
+      <DependentUpon>DeleteMutiQuestion.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

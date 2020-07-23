@@ -13,10 +13,12 @@ namespace Server.ReadFile
         public static List<Question> LoadQuestionData(string path)
         {
             List<Question> listQuestion = new List<Question>();
+            
             if (String.IsNullOrEmpty(path))
             {
                 return null;
             }
+
             try
             {
                 DataSet dataSetQuestion = new DataSet();
@@ -32,10 +34,9 @@ namespace Server.ReadFile
                     string _a_Answer = dataRow["_a_Answer"].ToString();
                     string _b_Answer = dataRow["_b_Answer"].ToString();
                     string _c_Answer = dataRow["_c_Answer"].ToString();
-                    string _d_Answer = dataRow["_d_Answer"].ToString();
                     string RightAnswer = dataRow["RightAnswer"].ToString();
 
-                    Question question = new Question(ID,_contentQuestion,_a_Answer,_b_Answer,_c_Answer,_d_Answer,RightAnswer);
+                    Question question = new Question(ID,_contentQuestion,_a_Answer,_b_Answer,_c_Answer,RightAnswer);
 
                     listQuestion.Add(question);
                 }

@@ -33,12 +33,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.txtContentQuestion = new System.Windows.Forms.TextBox();
             this.txtAnswerA = new System.Windows.Forms.TextBox();
             this.txtAnswerB = new System.Windows.Forms.TextBox();
             this.txtAnswerC = new System.Windows.Forms.TextBox();
-            this.txtAnswerD = new System.Windows.Forms.TextBox();
             this.btnAddQuestion = new System.Windows.Forms.Button();
             this.comboBoxRightAnswer = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -92,16 +90,6 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "Câu C:";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(57, 315);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(51, 17);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Câu D:";
-            // 
             // txtContentQuestion
             // 
             this.txtContentQuestion.Location = new System.Drawing.Point(112, 54);
@@ -134,17 +122,9 @@
             this.txtAnswerC.Size = new System.Drawing.Size(239, 50);
             this.txtAnswerC.TabIndex = 9;
             // 
-            // txtAnswerD
-            // 
-            this.txtAnswerD.Location = new System.Drawing.Point(112, 314);
-            this.txtAnswerD.Multiline = true;
-            this.txtAnswerD.Name = "txtAnswerD";
-            this.txtAnswerD.Size = new System.Drawing.Size(239, 50);
-            this.txtAnswerD.TabIndex = 10;
-            // 
             // btnAddQuestion
             // 
-            this.btnAddQuestion.Location = new System.Drawing.Point(112, 431);
+            this.btnAddQuestion.Location = new System.Drawing.Point(113, 382);
             this.btnAddQuestion.Name = "btnAddQuestion";
             this.btnAddQuestion.Size = new System.Drawing.Size(239, 51);
             this.btnAddQuestion.TabIndex = 11;
@@ -155,7 +135,7 @@
             // comboBoxRightAnswer
             // 
             this.comboBoxRightAnswer.FormattingEnabled = true;
-            this.comboBoxRightAnswer.Location = new System.Drawing.Point(112, 387);
+            this.comboBoxRightAnswer.Location = new System.Drawing.Point(113, 331);
             this.comboBoxRightAnswer.Name = "comboBoxRightAnswer";
             this.comboBoxRightAnswer.Size = new System.Drawing.Size(239, 21);
             this.comboBoxRightAnswer.TabIndex = 12;
@@ -164,7 +144,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(34, 388);
+            this.label7.Location = new System.Drawing.Point(30, 331);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(77, 17);
             this.label7.TabIndex = 13;
@@ -174,16 +154,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(363, 495);
+            this.ClientSize = new System.Drawing.Size(363, 454);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.comboBoxRightAnswer);
             this.Controls.Add(this.btnAddQuestion);
-            this.Controls.Add(this.txtAnswerD);
             this.Controls.Add(this.txtAnswerC);
             this.Controls.Add(this.txtAnswerB);
             this.Controls.Add(this.txtAnswerA);
             this.Controls.Add(this.txtContentQuestion);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -203,12 +181,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtContentQuestion;
         private System.Windows.Forms.TextBox txtAnswerA;
         private System.Windows.Forms.TextBox txtAnswerB;
         private System.Windows.Forms.TextBox txtAnswerC;
-        private System.Windows.Forms.TextBox txtAnswerD;
         private System.Windows.Forms.Button btnAddQuestion;
         private System.Windows.Forms.ComboBox comboBoxRightAnswer;
         private System.Windows.Forms.Label label7;
