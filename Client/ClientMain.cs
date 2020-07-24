@@ -16,7 +16,7 @@ namespace Client
         List<PictureBox> listAnswerButton = new List<PictureBox>();
         #region Test content
         string[] dsAnswers = new string[] { "Bằng răng", "Bằng bờm", "Bằng guốc" };
-        int[] dsNumberAnswer = new int[] { 35, 50, 99 };
+        int[] dsNumberAnswer = new int[] { 10, 30, 60 };
         int timeAnswer = 15;
         #endregion
         #endregion
@@ -31,12 +31,11 @@ namespace Client
 
         private void ClientMain_Load(object sender, EventArgs e)
         {
-
             #region Draw the frame of the tnlpnQuestion and change backcolor of tblpnAnswer
             int tbWidth = tblpnQuestion.Width;
             int tbHeight = tblpnQuestion.Height;
 
-            int bankinhCircle = tbHeight * 15 / 100;
+            int bankinhCircle = tbHeight * 20 / 100;
 
             Bitmap bm = new Bitmap(tbWidth, tbHeight);
             Graphics g = Graphics.FromImage(bm);
@@ -62,11 +61,11 @@ namespace Client
             //Bottom
             gpKhung.AddLine(new Point(0, tbHeight), new Point(tbWidth - bankinhCircle, tbHeight));
             g.SmoothingMode = SmoothingMode.AntiAlias;
-            g.FillPath(Brushes.DarkTurquoise, gpKhung);
+            g.FillPath(Brushes.White, gpKhung);
 
             tblpnQuestion.BackgroundImage = bm;
 
-            tplpnAnswer.BackColor = Color.DarkTurquoise;
+            tplpnAnswer.BackColor = Color.Transparent;
             #endregion
 
             Draw_Question();
@@ -89,12 +88,12 @@ namespace Client
             Bitmap bmp = new Bitmap(pnQWidth, pnQHeight);
             Graphics g = Graphics.FromImage(bmp);
             g.Clear(Color.Transparent);
-            g.FillRectangle(Brushes.DarkTurquoise, rect);
+            g.FillRectangle(Brushes.White, rect);
             string text = @"Người ta có thể tính tuổi của một con ngựa một cách gần đúng nhất dù không biết ngày sinh là dựa vào bộ phận nào của ngựa?";
 
             g.DrawString(text, new Font("Arial", 14), Brushes.Black, rect);
             pnQuestion.BackgroundImage = bmp;
-            pnQuestion.BackColor = Color.DarkTurquoise;
+            pnQuestion.BackColor = Color.White;
         }
 
         /// <summary>
@@ -122,7 +121,11 @@ namespace Client
                 GraphicsPath gp = new GraphicsPath();
                 gp.Reset();
                 //Left
-                gp.AddLine(new Point(0, pbHEIGHT), new Point(0, 0));
+                Rectangle rect11 = new Rectangle(0, pbHEIGHT - (rCircle * 2), (rCircle * 2), (rCircle * 2));
+                gp.AddArc(rect11, 90, 90);
+                gp.AddLine(new Point(0, rCircle), new Point(0, pbHEIGHT - rCircle));
+                Rectangle rect21 = new Rectangle(0, 0, (rCircle * 2), (rCircle * 2));
+                gp.AddArc(rect21, 180, 90);
                 //Top
                 gp.AddLine(new Point(0, 0), new Point(pbWIDTH - rCircle, 0));
                 //Right
@@ -144,7 +147,7 @@ namespace Client
 
                 //Load bitmap in picturebox
                 item.Image = bmp;
-                item.BackColor = Color.DarkTurquoise;
+                item.BackColor = Color.White;
                 i++;
             }
         }
@@ -181,7 +184,11 @@ namespace Client
                 GraphicsPath gpKhung = new GraphicsPath();
                 gpKhung.Reset();
                 //Left
-                gpKhung.AddLine(new Point(0, pbHEIGHT), new Point(0, 0));
+                Rectangle rect11 = new Rectangle(0, pbHEIGHT - (rCircle * 2), (rCircle * 2), (rCircle * 2));
+                gpKhung.AddArc(rect11, 90, 90);
+                gpKhung.AddLine(new Point(0, rCircle), new Point(0, pbHEIGHT - rCircle));
+                Rectangle rect21 = new Rectangle(0, 0, (rCircle * 2), (rCircle * 2));
+                gpKhung.AddArc(rect21, 180, 90);
                 //Top
                 gpKhung.AddLine(new Point(0, 0), new Point(pbWIDTH - rCircle, 0));
                 //Right
@@ -201,7 +208,11 @@ namespace Client
                 GraphicsPath gp = new GraphicsPath();
                 gp.Reset();
                 //Left
-                gp.AddLine(new Point(0, pbHEIGHT), new Point(0, 0));
+                Rectangle rect1 = new Rectangle(0, pbHEIGHT - (rCircle * 2), (rCircle * 2), (rCircle * 2));
+                gp.AddArc(rect1, 90, 90);
+                gp.AddLine(new Point(0, rCircle), new Point(0, pbHEIGHT - rCircle));
+                Rectangle rect2 = new Rectangle(0, 0, (rCircle * 2), (rCircle * 2));
+                gp.AddArc(rect2, 180, 90);
                 //Top
                 gp.AddLine(new Point(0, 0), new Point((pbComplete * pbWIDTH / 100) - rCircle, 0));
                 //Right
@@ -226,6 +237,21 @@ namespace Client
                 else
                 {
                     g.FillPath(Brushes.Silver, gp);
+                }
+
+                if (rCircle * 2 > (pbComplete * pbWIDTH / 100))
+                {
+                    GraphicsPath gpKhungChe = new GraphicsPath();
+                    gpKhungChe.Reset();
+                    gpKhungChe.AddLine(new Point(-2, pbHEIGHT + 2), new Point(-2, -2));
+                    gpKhungChe.AddLine(new Point(-2, -2), new Point(rCircle, -2));
+                    Rectangle rectKCU = new Rectangle(0, 0, (rCircle * 2), (rCircle * 2));
+                    gpKhungChe.AddArc(rectKCU, 270, -90);
+                    gpKhungChe.AddLine(new Point(0, rCircle), new Point(0, pbHEIGHT - rCircle));
+                    Rectangle rectKCB = new Rectangle(0, pbHEIGHT - (rCircle * 2), (rCircle * 2), (rCircle * 2));
+                    gpKhungChe.AddArc(rectKCB, 180, -90);
+                    gpKhungChe.AddLine(new Point(rCircle, pbHEIGHT + 2), new Point(-2, pbHEIGHT + 2));
+                    g.FillPath(Brushes.White, gpKhungChe);
                 }
 
 

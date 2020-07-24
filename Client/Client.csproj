@@ -64,8 +64,13 @@
     <Compile Include="ClientName.Designer.cs">
       <DependentUpon>ClientName.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyRectangle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextboxRoundedCorner.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Trans.cs" />
     <EmbeddedResource Include="ClientCode.resx">
       <DependentUpon>ClientCode.cs</DependentUpon>
     </EmbeddedResource>

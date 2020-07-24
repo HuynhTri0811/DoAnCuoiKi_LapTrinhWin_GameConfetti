@@ -16,5 +16,10 @@ namespace Client
         {
             InitializeComponent();
         }
+
+        private void ClientCode_Load(object sender, EventArgs e)
+        {
+            textBox1.Focus();
+        }
     }
 }

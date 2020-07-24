@@ -68,6 +68,7 @@
             this.Controls.Add(this.label1);
             this.Name = "ClientCode";
             this.Text = "ClientCode";
+            this.Load += new System.EventHandler(this.ClientCode_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
