@@ -84,11 +84,4 @@
     <_c_Answer>Tên của bạn là gì ?</_c_Answer>
     <RightAnswer>B</RightAnswer>
   </Question>
-  <Question ID="13">
-    <_contentQuestion>a</_contentQuestion>
-    <_a_Answer>a</_a_Answer>
-    <_b_Answer>a</_b_Answer>
-    <_c_Answer>a</_c_Answer>
-    <RightAnswer>A</RightAnswer>
-  </Question>
 </Questions>

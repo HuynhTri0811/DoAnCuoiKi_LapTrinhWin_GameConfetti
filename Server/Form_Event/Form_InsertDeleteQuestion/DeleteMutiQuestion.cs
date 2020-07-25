@@ -17,12 +17,16 @@ namespace Server
     {
         #region Variable
         private string path = @"..\..\ReadFile\QuestionData.xml";
-        List<Question> ListQuestionData = new List<Question>();
+        List<Question> ListQuestionData;
+        Question questionChoice;
+
         #endregion
 
         #region InitializeComponent
-        public DeleteMutiQuestion()
+        public DeleteMutiQuestion(Question question)
         {
+            this.questionChoice = question;
+
             InitializeComponent();
             LoadListQuestionData();
 
@@ -47,7 +51,7 @@ namespace Server
             listviewQuestionData.Columns.Add("Câu B", 150);
             listviewQuestionData.Columns.Add("Câu C", 150);
             listviewQuestionData.Columns.Add("Câu đúng", 70);
-            
+
             ListQuestionData = ReadFile.ReadFile.LoadQuestionData(path);
             
             if (ListQuestionData == null)
@@ -96,17 +100,34 @@ namespace Server
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Warning);
 
+                return;
             }
 
             for (int i=0; i < listviewQuestionData.CheckedIndices.Count; i++)
             {
                 question = ListQuestionData.ElementAt(listviewQuestionData.CheckedIndices[i]);
 
+                if(questionChoice != null)
+                {
+                    if (question.ID == questionChoice.ID)
+                    {
+                        MessageBox.Show("Xóa câu hỏi có ID la " + listviewQuestionData.CheckedIndices[i].ToString() + "KHÔNG THÀNH CÔNG . Vì câu hỏi bạn chọn hiện đang có trên chi tiết câu hỏi",
+                                        "Thông báo",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Error);
+
+                        CheckDelete = false;
+                        continue;
+                    }
+                }
+
+                
+
                 if(!WriteFile.DeleteQuestion(path,question))
                 {
 
                     MessageBox.Show("Xóa câu hỏi có ID la "+ listviewQuestionData.CheckedIndices[i].ToString()+"KHÔNG THÀNH CÔNG",
-                                    "Thành công",
+                                    "Thông báo",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Error);
                     

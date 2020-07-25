@@ -34,8 +34,13 @@
             this.btnNextQuestion = new System.Windows.Forms.Button();
             this.pnaelStream = new System.Windows.Forms.Panel();
             this.Stream = new System.Windows.Forms.GroupBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnShowAnswer = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtPORT = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtIP = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtIDQuestion = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtRightQuestion = new System.Windows.Forms.TextBox();
@@ -48,17 +53,12 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.txtPORT = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtIP = new System.Windows.Forms.TextBox();
             this.listviewQuestionData = new System.Windows.Forms.ListView();
             this.btnAddQuestion = new System.Windows.Forms.Button();
             this.btnDeleteQuestion = new System.Windows.Forms.Button();
             this.Stream.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // listviewPlayerConnected
@@ -123,27 +123,6 @@
             this.Stream.TabStop = false;
             this.Stream.Text = "Stream";
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.txtIDQuestion);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.txtRightQuestion);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtAnswerC);
-            this.groupBox1.Controls.Add(this.txtAnswerB);
-            this.groupBox1.Controls.Add(this.txtAnswerA);
-            this.groupBox1.Controls.Add(this.txtContentQuesttion);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Location = new System.Drawing.Point(574, 16);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(300, 484);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Chi tiết câu hỏi";
-            // 
             // btnShowAnswer
             // 
             this.btnShowAnswer.Location = new System.Drawing.Point(280, 428);
@@ -152,115 +131,6 @@
             this.btnShowAnswer.TabIndex = 9;
             this.btnShowAnswer.Text = "Gửi câu trả lời ";
             this.btnShowAnswer.UseVisualStyleBackColor = true;
-            // 
-            // txtIDQuestion
-            // 
-            this.txtIDQuestion.Enabled = false;
-            this.txtIDQuestion.Location = new System.Drawing.Point(78, 444);
-            this.txtIDQuestion.Multiline = true;
-            this.txtIDQuestion.Name = "txtIDQuestion";
-            this.txtIDQuestion.Size = new System.Drawing.Size(195, 24);
-            this.txtIDQuestion.TabIndex = 12;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 447);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 13);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Mã Câu Hỏi :";
-            // 
-            // txtRightQuestion
-            // 
-            this.txtRightQuestion.Enabled = false;
-            this.txtRightQuestion.Location = new System.Drawing.Point(78, 406);
-            this.txtRightQuestion.Multiline = true;
-            this.txtRightQuestion.Name = "txtRightQuestion";
-            this.txtRightQuestion.Size = new System.Drawing.Size(195, 24);
-            this.txtRightQuestion.TabIndex = 10;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 409);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 13);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Câu Đúng :";
-            // 
-            // txtAnswerC
-            // 
-            this.txtAnswerC.Enabled = false;
-            this.txtAnswerC.Location = new System.Drawing.Point(78, 320);
-            this.txtAnswerC.Multiline = true;
-            this.txtAnswerC.Name = "txtAnswerC";
-            this.txtAnswerC.Size = new System.Drawing.Size(195, 71);
-            this.txtAnswerC.TabIndex = 8;
-            // 
-            // txtAnswerB
-            // 
-            this.txtAnswerB.Enabled = false;
-            this.txtAnswerB.Location = new System.Drawing.Point(78, 234);
-            this.txtAnswerB.Multiline = true;
-            this.txtAnswerB.Name = "txtAnswerB";
-            this.txtAnswerB.Size = new System.Drawing.Size(195, 71);
-            this.txtAnswerB.TabIndex = 7;
-            // 
-            // txtAnswerA
-            // 
-            this.txtAnswerA.Enabled = false;
-            this.txtAnswerA.Location = new System.Drawing.Point(78, 149);
-            this.txtAnswerA.Multiline = true;
-            this.txtAnswerA.Name = "txtAnswerA";
-            this.txtAnswerA.Size = new System.Drawing.Size(195, 71);
-            this.txtAnswerA.TabIndex = 6;
-            // 
-            // txtContentQuesttion
-            // 
-            this.txtContentQuesttion.Enabled = false;
-            this.txtContentQuesttion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContentQuesttion.Location = new System.Drawing.Point(78, 29);
-            this.txtContentQuesttion.Multiline = true;
-            this.txtContentQuesttion.Name = "txtContentQuesttion";
-            this.txtContentQuesttion.Size = new System.Drawing.Size(195, 111);
-            this.txtContentQuesttion.TabIndex = 0;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(30, 323);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(42, 13);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "Câu C :";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(30, 237);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(42, 13);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Câu B :";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(30, 152);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(42, 13);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Câu A :";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 32);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Nội dung :";
             // 
             // groupBox3
             // 
@@ -316,24 +186,152 @@
             this.txtIP.Text = "127.0.0.1";
             this.txtIP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtIDQuestion);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.txtRightQuestion);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.txtAnswerC);
+            this.groupBox1.Controls.Add(this.txtAnswerB);
+            this.groupBox1.Controls.Add(this.txtAnswerA);
+            this.groupBox1.Controls.Add(this.txtContentQuesttion);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Location = new System.Drawing.Point(574, 16);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(300, 524);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Chi tiết câu hỏi";
+            // 
+            // txtIDQuestion
+            // 
+            this.txtIDQuestion.Enabled = false;
+            this.txtIDQuestion.Location = new System.Drawing.Point(78, 484);
+            this.txtIDQuestion.Multiline = true;
+            this.txtIDQuestion.Name = "txtIDQuestion";
+            this.txtIDQuestion.Size = new System.Drawing.Size(195, 24);
+            this.txtIDQuestion.TabIndex = 12;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 490);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(69, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Mã Câu Hỏi :";
+            // 
+            // txtRightQuestion
+            // 
+            this.txtRightQuestion.Enabled = false;
+            this.txtRightQuestion.Location = new System.Drawing.Point(78, 444);
+            this.txtRightQuestion.Multiline = true;
+            this.txtRightQuestion.Name = "txtRightQuestion";
+            this.txtRightQuestion.Size = new System.Drawing.Size(195, 24);
+            this.txtRightQuestion.TabIndex = 10;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(11, 447);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 13);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Câu Đúng :";
+            // 
+            // txtAnswerC
+            // 
+            this.txtAnswerC.Enabled = false;
+            this.txtAnswerC.Location = new System.Drawing.Point(78, 367);
+            this.txtAnswerC.Multiline = true;
+            this.txtAnswerC.Name = "txtAnswerC";
+            this.txtAnswerC.Size = new System.Drawing.Size(195, 71);
+            this.txtAnswerC.TabIndex = 8;
+            // 
+            // txtAnswerB
+            // 
+            this.txtAnswerB.Enabled = false;
+            this.txtAnswerB.Location = new System.Drawing.Point(78, 275);
+            this.txtAnswerB.Multiline = true;
+            this.txtAnswerB.Name = "txtAnswerB";
+            this.txtAnswerB.Size = new System.Drawing.Size(195, 71);
+            this.txtAnswerB.TabIndex = 7;
+            // 
+            // txtAnswerA
+            // 
+            this.txtAnswerA.Enabled = false;
+            this.txtAnswerA.Location = new System.Drawing.Point(78, 188);
+            this.txtAnswerA.Multiline = true;
+            this.txtAnswerA.Name = "txtAnswerA";
+            this.txtAnswerA.Size = new System.Drawing.Size(195, 71);
+            this.txtAnswerA.TabIndex = 6;
+            // 
+            // txtContentQuesttion
+            // 
+            this.txtContentQuesttion.Enabled = false;
+            this.txtContentQuesttion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtContentQuesttion.Location = new System.Drawing.Point(78, 29);
+            this.txtContentQuesttion.Multiline = true;
+            this.txtContentQuesttion.Name = "txtContentQuesttion";
+            this.txtContentQuesttion.Size = new System.Drawing.Size(195, 153);
+            this.txtContentQuesttion.TabIndex = 0;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(30, 370);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(42, 13);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "Câu C :";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(30, 275);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(42, 13);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Câu B :";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(30, 188);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(42, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Câu A :";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(16, 32);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Nội dung :";
+            // 
             // listviewQuestionData
             // 
             this.listviewQuestionData.HideSelection = false;
             this.listviewQuestionData.Location = new System.Drawing.Point(880, 16);
             this.listviewQuestionData.Name = "listviewQuestionData";
-            this.listviewQuestionData.Size = new System.Drawing.Size(420, 524);
+            this.listviewQuestionData.Size = new System.Drawing.Size(420, 484);
             this.listviewQuestionData.TabIndex = 1;
             this.listviewQuestionData.UseCompatibleStateImageBehavior = false;
             this.listviewQuestionData.View = System.Windows.Forms.View.Details;
-            this.listviewQuestionData.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.listviewQuestionData_ItemCheck);
             this.listviewQuestionData.SelectedIndexChanged += new System.EventHandler(this.listviewQuestionData_SelectedIndexChanged);
-            this.listviewQuestionData.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listviewQuestionData_MouseClick);
             // 
             // btnAddQuestion
             // 
-            this.btnAddQuestion.Location = new System.Drawing.Point(583, 506);
+            this.btnAddQuestion.Location = new System.Drawing.Point(880, 506);
             this.btnAddQuestion.Name = "btnAddQuestion";
-            this.btnAddQuestion.Size = new System.Drawing.Size(130, 37);
+            this.btnAddQuestion.Size = new System.Drawing.Size(204, 37);
             this.btnAddQuestion.TabIndex = 2;
             this.btnAddQuestion.Text = "Thêm câu hỏi ";
             this.btnAddQuestion.UseVisualStyleBackColor = true;
@@ -341,9 +339,9 @@
             // 
             // btnDeleteQuestion
             // 
-            this.btnDeleteQuestion.Location = new System.Drawing.Point(728, 506);
+            this.btnDeleteQuestion.Location = new System.Drawing.Point(1113, 506);
             this.btnDeleteQuestion.Name = "btnDeleteQuestion";
-            this.btnDeleteQuestion.Size = new System.Drawing.Size(130, 37);
+            this.btnDeleteQuestion.Size = new System.Drawing.Size(187, 37);
             this.btnDeleteQuestion.TabIndex = 3;
             this.btnDeleteQuestion.Text = "Xóa câu hỏi ";
             this.btnDeleteQuestion.UseVisualStyleBackColor = true;
@@ -364,10 +362,10 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Stream.ResumeLayout(false);
             this.Stream.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
