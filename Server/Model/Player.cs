@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,6 +9,7 @@ namespace Server.Model
 {
     public class Player
     {
+        TcpClient tcpClient { get; set; }
 
         private int _countTrueQuestion;
         public int _iDPlayer { get; set; }
@@ -30,12 +32,14 @@ namespace Server.Model
             }
         }
 
-        public Player(int IDPlayler , string CodePlayer,string NamePlayer)
+        public Player(int IDPlayler , string CodePlayer,string NamePlayer , TcpClient tcpClient)
         {
             this._codePlayer = CodePlayer;
             this._namePlayer = NamePlayer;
             this._iDPlayer = IDPlayler;
+            this.tcpClient = tcpClient;
         }
-    
+        
+
     }
 }

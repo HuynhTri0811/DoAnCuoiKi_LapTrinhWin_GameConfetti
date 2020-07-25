@@ -12,6 +12,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -22,6 +23,9 @@ namespace Server
 
         #region Variable
 
+        private delegate void SafeCallDelegate(string text);
+
+        int count = 0;
         private string path = @"..\..\ReadFile\QuestionData.xml";
         
         List<Player> ListPlayersConnecting = new List<Player>();
@@ -42,6 +46,9 @@ namespace Server
         {
             InitializeComponent();
             LoadListQuestionData();
+            StartServer();
+            listviewPlayerConnected.Columns.Add("Họ tên người chơi", 100);
+            listviewPlayerConnected.Columns.Add("Số câu đúng", 70);
         }
 
         #endregion
@@ -116,22 +123,56 @@ namespace Server
 
             LoadListQuestionData();
         }
-        
+
+        private void serverConfetti_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Bạn có muốn kết thúc phần game hay không",
+                                        "Thông báo",
+                                        MessageBoxButtons.YesNo,
+                                        MessageBoxIcon.Question);
+
+            if (dialogResult == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (ServerSocket != null)
+                {
+                    ServerSocket.Stop();
+                }
+            }
+        }
+
+        private void serverConfetti_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+        }
+
         #endregion
 
         #region Function
-        
+
         private void StartServer()
         {
             try
             {
+                int PORT = int.Parse(txtPORT.Text);
                 IPAddress address = IPAddress.Parse(txtIP.Text);
-                ServerSocket = new TcpListener(IPAddress.Any, 5000);
+                
+                ServerSocket = new TcpListener(address, PORT);
             }
             catch
             {
-
+                MessageBox.Show("Lỗi . Không thể khởi động server ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+
+            labelConnect.Text = "Start server success"; 
+            ServerSocket.Start();
+            Thread thread = new Thread(clientConnectServer);
+            thread.Start();
+
         }
 
         private void LoadListPlayerConnect()
@@ -142,18 +183,18 @@ namespace Server
                 return;
             }
 
-            listviewPlayerConnected.Columns.Add("Họ tên người chơi", 100);
-            listviewPlayerConnected.Columns.Add("Số câu đúng", 70);
-
-            for (int i = 0; i < ListPlayersConnecting.Count; i++)
+            if (listviewPlayerConnected.InvokeRequired)
             {
-
-                string[] row = { ListPlayersConnecting.ElementAt(0)._namePlayer, "/" + "10" };
-
-                var listViewItem = new ListViewItem(row);
-
-                listviewPlayerConnected.Items.Add(listViewItem);
+                listviewPlayerConnected.Invoke((MethodInvoker)delegate ()
+                {
+                        string[] row = { ListPlayersConnecting.ElementAt(count)._namePlayer, "/" + "10" };
+                        ListViewItem item = new ListViewItem(row);
+                        listviewPlayerConnected.Items.Add(item);
+                        listviewPlayerConnected.EnsureVisible(listviewPlayerConnected.Items.Count - 1);
+                });
             }
+
+
 
 
         }
@@ -208,5 +249,57 @@ namespace Server
         }
         #endregion
 
+        #region Function_Thread
+
+        private void clientConnectServer()
+        {
+            byte[] bytes = new byte[1024];
+            try
+            {
+                while (true)
+                {
+                    MessageBox.Show(count.ToString()); // Đếm số lượng acc count
+                    
+                    TcpClient client = ServerSocket.AcceptTcpClient();
+                    
+                    string CodePlayer = "abc";
+
+                    NetworkStream ns = client.GetStream();
+                    
+                    int bytesRead = ns.Read(bytes, 0, bytes.Length); // Đọc tên người chơi
+                    
+                    string name =  Encoding.ASCII.GetString(bytes, 0, bytesRead);
+
+                    Player player = new Player(count + 1, CodePlayer, name, client); // Khởi tạo người chơi
+                    ListPlayersConnecting.Add(player); // Thêm người chơi vào List
+                    LoadListPlayerConnect();
+                    count++;
+                }
+            }
+            catch
+            {
+                return;
+            }
+                
+            
+        }
+
+        private void WriteTextSafe(string text)
+        {
+            if (listviewPlayerConnected.InvokeRequired)
+            {
+                var d = new SafeCallDelegate(WriteTextSafe);
+                listviewPlayerConnected.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                LoadListPlayerConnect();
+            }
+        }
+
+        
+
+
+        #endregion
     }
 }

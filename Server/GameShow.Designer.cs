@@ -56,6 +56,7 @@
             this.listviewQuestionData = new System.Windows.Forms.ListView();
             this.btnAddQuestion = new System.Windows.Forms.Button();
             this.btnDeleteQuestion = new System.Windows.Forms.Button();
+            this.labelConnect = new System.Windows.Forms.Label();
             this.Stream.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -108,6 +109,7 @@
             // 
             // Stream
             // 
+            this.Stream.Controls.Add(this.labelConnect);
             this.Stream.Controls.Add(this.btnShowAnswer);
             this.Stream.Controls.Add(this.groupBox3);
             this.Stream.Controls.Add(this.txtPORT);
@@ -347,6 +349,16 @@
             this.btnDeleteQuestion.UseVisualStyleBackColor = true;
             this.btnDeleteQuestion.Click += new System.EventHandler(this.btnDeleteQuestion_Click);
             // 
+            // labelConnect
+            // 
+            this.labelConnect.AutoSize = true;
+            this.labelConnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelConnect.Location = new System.Drawing.Point(408, 505);
+            this.labelConnect.Name = "labelConnect";
+            this.labelConnect.Size = new System.Drawing.Size(136, 20);
+            this.labelConnect.TabIndex = 10;
+            this.labelConnect.Text = "Don\'t Start Server";
+            // 
             // serverConfetti
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -359,6 +371,8 @@
             this.Controls.Add(this.Stream);
             this.Name = "serverConfetti";
             this.Text = "Server";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.serverConfetti_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.serverConfetti_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Stream.ResumeLayout(false);
             this.Stream.PerformLayout();
@@ -400,6 +414,7 @@
         private System.Windows.Forms.ListView listviewQuestionData;
         private System.Windows.Forms.Button btnAddQuestion;
         private System.Windows.Forms.Button btnDeleteQuestion;
+        private System.Windows.Forms.Label labelConnect;
     }
 }
 
