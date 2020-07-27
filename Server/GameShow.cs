@@ -193,7 +193,7 @@ namespace Server
         
         private void btnShowAnswer_Click(object sender, EventArgs e)
         {
-            if(SendQuestionButDontSendAnswer == true)
+            if(SendQuestionButDontSendAnswer == false)
             {
                 MessageBox.Show("Bạn chưa gửi câu hỏi để có thể gửi câu trả lời . Xin hãy gửi câu hỏi",
                                 "Thông báo",
