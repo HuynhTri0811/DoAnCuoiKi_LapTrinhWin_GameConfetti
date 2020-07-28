@@ -9,7 +9,7 @@ namespace Server.Model
 {
     public class Player
     {
-        TcpClient tcpClient { get; set; }
+        public Socket tcpClient { get; set; }
 
         private int _countTrueQuestion;
         public int _iDPlayer { get; set; }
@@ -32,12 +32,13 @@ namespace Server.Model
             }
         }
 
-        public Player(int IDPlayler , string CodePlayer,string NamePlayer , TcpClient tcpClient)
+        public Player(int IDPlayler , string CodePlayer,string NamePlayer , Socket tcpClient)
         {
             this._codePlayer = CodePlayer;
             this._namePlayer = NamePlayer;
             this._iDPlayer = IDPlayler;
             this.tcpClient = tcpClient;
+            this._countTrueQuestion = 0;
         }
         
 

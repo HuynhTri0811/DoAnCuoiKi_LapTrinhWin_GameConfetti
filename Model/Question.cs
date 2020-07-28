@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters;
 
 namespace Model
 {
+    [Serializable()]
     public class Question
     {
         private string _rightAnswer;
@@ -40,6 +43,15 @@ namespace Model
             this._b_Answer = B_Answer;
             this._c_Answer = C_Answer;
             this.RightAnswer = RightAnswer;
+        }
+        public Question(int ID, string ContentQuestion, string A_Answer, string B_Answer, string C_Answer)
+        {
+            this.ID = ID;
+            this._contentQuestion = ContentQuestion;
+            this._a_Answer = A_Answer;
+            this._b_Answer = B_Answer;
+            this._c_Answer = C_Answer;
+            this.RightAnswer = null;
         }
 
         public Question()

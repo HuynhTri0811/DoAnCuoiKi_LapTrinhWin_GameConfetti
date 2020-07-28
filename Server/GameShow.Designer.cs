@@ -34,6 +34,7 @@
             this.btnNextQuestion = new System.Windows.Forms.Button();
             this.pnaelStream = new System.Windows.Forms.Panel();
             this.Stream = new System.Windows.Forms.GroupBox();
+            this.labelConnect = new System.Windows.Forms.Label();
             this.btnShowAnswer = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtPORT = new System.Windows.Forms.TextBox();
@@ -56,7 +57,6 @@
             this.listviewQuestionData = new System.Windows.Forms.ListView();
             this.btnAddQuestion = new System.Windows.Forms.Button();
             this.btnDeleteQuestion = new System.Windows.Forms.Button();
-            this.labelConnect = new System.Windows.Forms.Label();
             this.Stream.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -98,6 +98,7 @@
             this.btnNextQuestion.TabIndex = 3;
             this.btnNextQuestion.Text = "Gửi câu hỏi ";
             this.btnNextQuestion.UseVisualStyleBackColor = true;
+            this.btnNextQuestion.Click += new System.EventHandler(this.btnNextQuestion_Click);
             // 
             // pnaelStream
             // 
@@ -125,6 +126,16 @@
             this.Stream.TabStop = false;
             this.Stream.Text = "Stream";
             // 
+            // labelConnect
+            // 
+            this.labelConnect.AutoSize = true;
+            this.labelConnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelConnect.Location = new System.Drawing.Point(408, 501);
+            this.labelConnect.Name = "labelConnect";
+            this.labelConnect.Size = new System.Drawing.Size(136, 20);
+            this.labelConnect.TabIndex = 10;
+            this.labelConnect.Text = "Don\'t Start Server";
+            // 
             // btnShowAnswer
             // 
             this.btnShowAnswer.Location = new System.Drawing.Point(280, 428);
@@ -133,6 +144,7 @@
             this.btnShowAnswer.TabIndex = 9;
             this.btnShowAnswer.Text = "Gửi câu trả lời ";
             this.btnShowAnswer.UseVisualStyleBackColor = true;
+            this.btnShowAnswer.Click += new System.EventHandler(this.btnShowAnswer_Click);
             // 
             // groupBox3
             // 
@@ -348,16 +360,6 @@
             this.btnDeleteQuestion.Text = "Xóa câu hỏi ";
             this.btnDeleteQuestion.UseVisualStyleBackColor = true;
             this.btnDeleteQuestion.Click += new System.EventHandler(this.btnDeleteQuestion_Click);
-            // 
-            // labelConnect
-            // 
-            this.labelConnect.AutoSize = true;
-            this.labelConnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelConnect.Location = new System.Drawing.Point(408, 505);
-            this.labelConnect.Name = "labelConnect";
-            this.labelConnect.Size = new System.Drawing.Size(136, 20);
-            this.labelConnect.TabIndex = 10;
-            this.labelConnect.Text = "Don\'t Start Server";
             // 
             // serverConfetti
             // 
