@@ -5,6 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,6 +19,10 @@ namespace Client
         private bool dragging = false;
         private Point dragCursorPoint;
         private Point dragFormPoint;
+
+        string iP;
+        string name_Client;
+        int port;
         #endregion
         public ClientName()
         {
@@ -107,11 +113,7 @@ namespace Client
         }
         #endregion
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            string text = txtNameClient.Text;
-            MessageBox.Show("Tên đã nhận: " + text);
-        }
+        
 
         private void ClientName_Load(object sender, EventArgs e)
         {
@@ -229,6 +231,19 @@ namespace Client
             g.DrawString(text, new Font("Arial", fontSize), Brushes.Black, new PointF((tbWidth / 2) - 26, (tbHeight / 2) - 8));
 
             picboxDangKy.Image = bm;
+        }
+
+        private void picboxDangKy_Click(object sender, EventArgs e)
+        {
+            name_Client = txtNameClient.Text;
+            MessageBox.Show("Tên đã nhận: " + name_Client);
+            iP = txtIPServer.Text;
+            port = int.Parse(txtPort.Text);
+            ClientMain clm = new ClientMain(iP, port, name_Client);
+
+            this.Hide();
+            clm.ShowDialog();
+            this.Close();
         }
     }
 }

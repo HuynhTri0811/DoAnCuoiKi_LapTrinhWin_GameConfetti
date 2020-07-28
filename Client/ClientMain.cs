@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
+using System.Net;
+using System.Net.Sockets;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Client
@@ -14,6 +19,12 @@ namespace Client
         private Point dragFormPoint;
 
         List<PictureBox> listAnswerButton = new List<PictureBox>();
+
+        IPEndPoint iP;
+        Socket client;
+        string name_Client;
+        int port;
+
         #region Test content
         string[] dsAnswers = new string[] { "Bằng răng", "Bằng bờm", "Bằng guốc" };
         int[] dsNumberAnswer = new int[] { 10, 30, 60 };
@@ -21,12 +32,16 @@ namespace Client
         #endregion
         #endregion
 
-        public ClientMain()
+        public ClientMain(string ip, int port_sv, string name)
         {
             InitializeComponent();
             listAnswerButton.Add(picboxAnswer1);
             listAnswerButton.Add(picboxAnswer2);
             listAnswerButton.Add(picboxAnswer3);
+
+            port = port_sv;
+            name_Client = name;
+            iP = new IPEndPoint(IPAddress.Parse(ip), port);
         }        
 
         private void ClientMain_Load(object sender, EventArgs e)
@@ -418,6 +433,114 @@ namespace Client
             this.picboxAnswer1.Click -= Answer_Click;
             this.picboxAnswer2.Click -= Answer_Click;
             this.picboxAnswer3.Click -= Answer_Click;
+        }
+
+        /// <summary>
+        /// Tạo chuỗi byte để gửi qua Socket
+        /// </summary>
+        /// <returns></returns>
+        byte[] Serialize_Client(object obj)
+        {
+            MemoryStream stream = new MemoryStream();
+            BinaryFormatter formatter = new BinaryFormatter();
+
+            formatter.Serialize(stream, obj);
+
+            return stream.ToArray();
+        }
+
+        /// <summary>
+        /// Nhận chuỗi byte để đọc thông tin
+        /// </summary>
+        /// <returns></returns>
+        object Deserialize_Client(byte[] data)
+        {
+            MemoryStream stream = new MemoryStream(data);
+            BinaryFormatter formatter = new BinaryFormatter();
+
+            return formatter.Deserialize(stream);
+        }
+
+        /// <summary>
+        /// Kết nối tới server
+        /// </summary>
+        void Connect_Server()
+        {
+            //Địa chỉ của server
+
+            client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
+            try
+            {
+                client.Connect(iP);
+                Send_Name();
+            }
+            catch
+            {
+                MessageBox.Show("Không thể kết nối đến server", "Lỗi!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            Thread listen = new Thread(Receive_Server);
+            listen.IsBackground = true;
+            listen.Start();
+        }
+
+        /// <summary>
+        /// Đóng kết nối
+        /// </summary>
+        void CloseConnect()
+        {
+            client.Close();
+        }
+
+        /// <summary>
+        /// Xử lý khi form đóng
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ClientMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            CloseConnect();
+        }
+
+        
+
+        /// <summary>
+        /// Gửi tên qua cho server
+        /// </summary>
+        void Send_Name()
+        {
+            client.Send(Serialize_Client("@@"));
+        }
+
+        /// <summary>
+        /// Gửi tin nhắn
+        /// </summary>
+        void Send_Server()
+        {
+            
+        }
+
+        /// <summary>
+        /// Nhận tin nhắn
+        /// </summary>
+        void Receive_Server()
+        {
+            try
+            {
+                while (true)
+                {
+                    //Tạo mảng byte nhận về thông tin 5MB
+                    byte[] data = new byte[1024 * 5000];
+                    client.Receive(data);
+
+                    string message = (string)Deserialize_Client(data);
+                }
+            }
+            catch
+            {
+                CloseConnect();
+            }
         }
     }
 }

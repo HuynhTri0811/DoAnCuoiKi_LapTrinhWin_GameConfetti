@@ -182,6 +182,7 @@
             this.Name = "ClientMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ClientMain";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ClientMain_FormClosed);
             this.Load += new System.EventHandler(this.ClientMain_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ClientMain_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ClientMain_MouseMove);
