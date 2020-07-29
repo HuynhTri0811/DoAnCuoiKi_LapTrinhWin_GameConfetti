@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.listviewPlayerConnected = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.lbCountListPlayer = new System.Windows.Forms.Label();
@@ -57,6 +58,7 @@
             this.listviewQuestionData = new System.Windows.Forms.ListView();
             this.btnAddQuestion = new System.Windows.Forms.Button();
             this.btnDeleteQuestion = new System.Windows.Forms.Button();
+            this.timerStop = new System.Windows.Forms.Timer(this.components);
             this.Stream.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -92,6 +94,7 @@
             // 
             // btnNextQuestion
             // 
+            this.btnNextQuestion.Enabled = false;
             this.btnNextQuestion.Location = new System.Drawing.Point(403, 428);
             this.btnNextQuestion.Name = "btnNextQuestion";
             this.btnNextQuestion.Size = new System.Drawing.Size(135, 36);
@@ -138,6 +141,7 @@
             // 
             // btnShowAnswer
             // 
+            this.btnShowAnswer.Enabled = false;
             this.btnShowAnswer.Location = new System.Drawing.Point(280, 428);
             this.btnShowAnswer.Name = "btnShowAnswer";
             this.btnShowAnswer.Size = new System.Drawing.Size(117, 36);
@@ -361,6 +365,11 @@
             this.btnDeleteQuestion.UseVisualStyleBackColor = true;
             this.btnDeleteQuestion.Click += new System.EventHandler(this.btnDeleteQuestion_Click);
             // 
+            // timerStop
+            // 
+            this.timerStop.Interval = 15000;
+            this.timerStop.Tick += new System.EventHandler(this.timerStop_Tick);
+            // 
             // serverConfetti
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -417,6 +426,7 @@
         private System.Windows.Forms.Button btnAddQuestion;
         private System.Windows.Forms.Button btnDeleteQuestion;
         private System.Windows.Forms.Label labelConnect;
+        private System.Windows.Forms.Timer timerStop;
     }
 }
 

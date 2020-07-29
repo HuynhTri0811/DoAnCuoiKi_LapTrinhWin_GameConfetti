@@ -115,6 +115,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="NOTE.txt" />
     <Content Include="ReadFile\QuestionData.xml" />
     <Content Include="MetroFramework.txt" />
     <Content Include="README.txt" />
