@@ -43,6 +43,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtIP = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.txtIDQuestion = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtRightQuestion = new System.Windows.Forms.TextBox();
@@ -59,6 +60,7 @@
             this.btnAddQuestion = new System.Windows.Forms.Button();
             this.btnDeleteQuestion = new System.Windows.Forms.Button();
             this.timerStop = new System.Windows.Forms.Timer(this.components);
+            this.txtCauHoiCount = new System.Windows.Forms.Label();
             this.Stream.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -206,6 +208,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtCauHoiCount);
+            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.txtIDQuestion);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtRightQuestion);
@@ -225,10 +229,20 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Chi tiết câu hỏi";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(6, 490);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(96, 20);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "Câu hỏi số : ";
+            // 
             // txtIDQuestion
             // 
             this.txtIDQuestion.Enabled = false;
-            this.txtIDQuestion.Location = new System.Drawing.Point(78, 484);
+            this.txtIDQuestion.Location = new System.Drawing.Point(78, 454);
             this.txtIDQuestion.Multiline = true;
             this.txtIDQuestion.Name = "txtIDQuestion";
             this.txtIDQuestion.Size = new System.Drawing.Size(195, 24);
@@ -237,7 +251,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 490);
+            this.label3.Location = new System.Drawing.Point(6, 455);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 13);
             this.label3.TabIndex = 11;
@@ -246,7 +260,7 @@
             // txtRightQuestion
             // 
             this.txtRightQuestion.Enabled = false;
-            this.txtRightQuestion.Location = new System.Drawing.Point(78, 444);
+            this.txtRightQuestion.Location = new System.Drawing.Point(78, 424);
             this.txtRightQuestion.Multiline = true;
             this.txtRightQuestion.Name = "txtRightQuestion";
             this.txtRightQuestion.Size = new System.Drawing.Size(195, 24);
@@ -255,7 +269,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 447);
+            this.label2.Location = new System.Drawing.Point(14, 424);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 13);
             this.label2.TabIndex = 9;
@@ -264,7 +278,7 @@
             // txtAnswerC
             // 
             this.txtAnswerC.Enabled = false;
-            this.txtAnswerC.Location = new System.Drawing.Point(78, 367);
+            this.txtAnswerC.Location = new System.Drawing.Point(78, 342);
             this.txtAnswerC.Multiline = true;
             this.txtAnswerC.Name = "txtAnswerC";
             this.txtAnswerC.Size = new System.Drawing.Size(195, 71);
@@ -273,7 +287,7 @@
             // txtAnswerB
             // 
             this.txtAnswerB.Enabled = false;
-            this.txtAnswerB.Location = new System.Drawing.Point(78, 275);
+            this.txtAnswerB.Location = new System.Drawing.Point(78, 265);
             this.txtAnswerB.Multiline = true;
             this.txtAnswerB.Name = "txtAnswerB";
             this.txtAnswerB.Size = new System.Drawing.Size(195, 71);
@@ -301,7 +315,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(30, 370);
+            this.label7.Location = new System.Drawing.Point(30, 345);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(42, 13);
             this.label7.TabIndex = 4;
@@ -310,7 +324,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(30, 275);
+            this.label6.Location = new System.Drawing.Point(33, 268);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(42, 13);
             this.label6.TabIndex = 3;
@@ -370,6 +384,16 @@
             this.timerStop.Interval = 15000;
             this.timerStop.Tick += new System.EventHandler(this.timerStop_Tick);
             // 
+            // txtCauHoiCount
+            // 
+            this.txtCauHoiCount.AutoSize = true;
+            this.txtCauHoiCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCauHoiCount.Location = new System.Drawing.Point(105, 490);
+            this.txtCauHoiCount.Name = "txtCauHoiCount";
+            this.txtCauHoiCount.Size = new System.Drawing.Size(18, 20);
+            this.txtCauHoiCount.TabIndex = 11;
+            this.txtCauHoiCount.Text = "1";
+            // 
             // serverConfetti
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -427,6 +451,8 @@
         private System.Windows.Forms.Button btnDeleteQuestion;
         private System.Windows.Forms.Label labelConnect;
         private System.Windows.Forms.Timer timerStop;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label txtCauHoiCount;
     }
 }
 

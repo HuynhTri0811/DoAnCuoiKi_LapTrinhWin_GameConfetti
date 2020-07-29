@@ -24,7 +24,6 @@ namespace Server
     {
 
         #region Variable
-
         private delegate void SafeCallDelegate(string text);
         delegate void SetTextCallback(string text);
         delegate void ListViewDelegate(ListView list, string name, string value);
@@ -35,7 +34,7 @@ namespace Server
 
         int count = 0;
 
-        static ASCIIEncoding encoding = new ASCIIEncoding();
+        static UTF8Encoding encoding = new UTF8Encoding();
 
         private string path = @"..\..\ReadFile\QuestionData.xml";
 
@@ -81,7 +80,6 @@ namespace Server
             lbCountListPlayerChange();
            
         }
-
         private void listviewQuestionData_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(SendQuestionButDontSendAnswer == true)
@@ -157,7 +155,6 @@ namespace Server
             txtRightQuestion.Text = QuestionChoice.RightAnswer;
             btnNextQuestion.Enabled = true;
         }
-
         private void btnAddQuestion_Click(object sender, EventArgs e)
         {
             AddOneQuestion addOneQuestion = new AddOneQuestion();
@@ -165,7 +162,6 @@ namespace Server
 
             LoadListQuestionData();
         }
-        
         private void btnDeleteQuestion_Click(object sender, EventArgs e)
         {
             DeleteMutiQuestion deleteMutiQuestion = new DeleteMutiQuestion(QuestionChoice);
@@ -173,7 +169,6 @@ namespace Server
 
             LoadListQuestionData();
         }
-
         private void serverConfetti_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Bạn có muốn kết thúc phần game hay không",
@@ -193,12 +188,10 @@ namespace Server
                 }
             }
         }
-
         private void serverConfetti_FormClosed(object sender, FormClosedEventArgs e)
         {
 
         }
-        
         private void btnShowAnswer_Click(object sender, EventArgs e)
         {
             if(SendQuestionButDontSendAnswer == false)
@@ -247,11 +240,11 @@ namespace Server
             CountAnswerB = 0;
             CountAnswerC = 0;
         }
-
         private void btnNextQuestion_Click(object sender, EventArgs e)
         {
             /* Kiem Tra */
-            if(ListQuestionsUsedTo.Count == 10)
+            #region Check
+            if (ListQuestionsUsedTo.Count == 10)
             {
                 MessageBox.Show("Đã đủ 10 câu hỏi . Xin không bấm gửi câu hỏi nữa",
                                 "Thông báo",
@@ -301,7 +294,6 @@ namespace Server
                 }
             }
 
-
             DialogResult dialogResult = MessageBox.Show("Bạn chắc sử dụng câu hỏi này để gửi ?",
                                                         "Thông báo",
                                                         MessageBoxButtons.YesNo,
@@ -310,8 +302,7 @@ namespace Server
             {
                 return;
             }
-
-
+            #endregion
             byte[] bytes = new byte[2048*500];
 
             Question tempQuestion = new Question(QuestionChoice.ID,
@@ -320,11 +311,11 @@ namespace Server
                                                  QuestionChoice._b_Answer,
                                                  QuestionChoice._c_Answer);
 
-
             foreach (Player player in ListPlayersConnecting)
             {
                 try
                 {
+
                     string stringQuestion ="qs"+"id"+
                                             tempQuestion.ID.ToString()+
                                             tempQuestion._contentQuestion+
@@ -344,8 +335,19 @@ namespace Server
             }
 
             ListQuestionsUsedTo.Add(QuestionChoice);
-            foreach(Player player1 in ListPlayersConnecting)
+            ChangeCountLabelSumQuestion(ListQuestionsUsedTo.Count.ToString());
+            
+            foreach (Player player1 in ListPlayersConnecting)
             {
+                if(!player1.tcpClient.Connected)
+                {
+                    MessageBox.Show("Không thể gửi cho người chơi có tên :" + player1._namePlayer,
+                                    "Thông báo",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                    continue;
+                }
+
                 Thread thread = new Thread(() => Receive(player1));
                 thread.Start();
             }
@@ -355,11 +357,9 @@ namespace Server
             timerStop.Start();
             
         }
-
         #endregion
 
         #region Function
-
         private void ChangeCountLabelPlayer(string text)
         {
             if (this.lbCountListPlayer.InvokeRequired)
@@ -378,7 +378,24 @@ namespace Server
 
             }
         }
+        private void ChangeCountLabelSumQuestion(string text)
+        {
+            if (this.txtCauHoiCount.InvokeRequired)
+            {
 
+                SetTextCallback d = new SetTextCallback(ChangeCountLabelSumQuestion);
+
+                this.Invoke(d, new object[] { text });
+
+            }
+            else
+
+            {
+
+                this.txtCauHoiCount.Text = ListQuestionsUsedTo.Count.ToString(); ;
+
+            }
+        }
         private void StartServer()
         {
             try
@@ -400,7 +417,6 @@ namespace Server
             thread.Start();
 
         }
-
         private void lbCountListPlayerChange()
         {
 
@@ -413,7 +429,6 @@ namespace Server
                 lbCountListPlayer.Text = ListPlayersConnecting.Count.ToString();
             }
         }
-        
         private void LoadListQuestionData()
         {
             /*
@@ -452,7 +467,6 @@ namespace Server
         #endregion
 
         #region Function_Thread
-
         public static void InvokeClearListViewItems(ListView listView)
         {
             if (listView.InvokeRequired)
@@ -464,7 +478,6 @@ namespace Server
                 listView.Items.Clear();
             }
         }
-
         public void LoadDanhSach()
         {
 
@@ -475,13 +488,11 @@ namespace Server
                 AddListViewData(listviewPlayerConnected, player._namePlayer, player.CountTrueQuestion.ToString());
             }
         }
-
         private void timerStop_Tick(object sender, EventArgs e)
         {
             btnShowAnswer.Enabled = true;
             timerStop.Stop();
         }
-
         private void clientConnectServer()
         {
             try
@@ -516,7 +527,6 @@ namespace Server
             }
                 
         }
-
         public void AddListViewData(ListView list, string name,string value)
         {
             if (list.InvokeRequired)
@@ -535,7 +545,6 @@ namespace Server
 
             }
         }
-
         private void Receive(Player client)
         {
             byte[] bytes = new byte[1024];
@@ -560,7 +569,6 @@ namespace Server
             }
             LoadDanhSach();
         }
-
         #endregion
 
         
