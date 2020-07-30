@@ -87,6 +87,11 @@ namespace Client
             #endregion
 
             timeChooseAnswer.Interval = 1000;
+            foreach(PictureBox item in listAnswerButton)
+            {
+                item.BackColor = Color.White;
+            }
+            pnQuestion.BackColor = Color.White;
             Connect_Server();
         }
 
@@ -463,7 +468,7 @@ namespace Client
         private void Answer_Click(object sender, EventArgs e)
         {
             PictureBox picbox = (PictureBox)sender;
-            int i = int.Parse(picbox.Name.Substring(picbox.Name.Length)) - 1;
+            int i = int.Parse(picbox.Name.Substring(picbox.Name.Length - 1));
             //Get picturebox dimension
             int pbWIDTH = picbox.Width;
             int pbHEIGHT = picbox.Height;
@@ -624,7 +629,7 @@ namespace Client
                 while (true)
                 {
                     //Tạo mảng byte nhận về thông tin 5MB
-                    byte[] data = new byte[1024 * 5000];
+                    byte[] data = new byte[1024 * 1000];
                     client.Receive(data);
 
                     string message = (string)Deserialize_Client(data);
