@@ -210,9 +210,8 @@ namespace Server
                             "B"+CountAnswerB.ToString() +
                             "C"+CountAnswerC.ToString() + 
                             QuestionChoice.RightAnswer;
-            bytes = encoding.GetBytes(answer);
+            bytes = Utils.ObjectToByteArray(answer);
 
-            MessageBox.Show(QuestionChoice.RightAnswer);
 
             foreach(Player player in ListPlayersConnecting)
             {
@@ -322,7 +321,7 @@ namespace Server
                                             "A@"+tempQuestion._a_Answer+
                                             "B@"+tempQuestion._b_Answer+
                                             "C@"+tempQuestion._c_Answer;
-                    bytes = encoding.GetBytes(stringQuestion);
+                    bytes = Utils.ObjectToByteArray(stringQuestion);
                     player.tcpClient.Send(bytes);
                 }
                 catch
@@ -500,33 +499,37 @@ namespace Server
                 while (true)
                 {
                     Socket client = ServerSocket.AcceptSocket();
-                    string CodePlayer = "abc";
-                    
-                    byte[] bytes = new byte[1024];
-                    client.Receive(bytes);
-                    
-                    string name = encoding.GetString(bytes);
-                    Player player = new Player(count + 1, CodePlayer, name, client); // Khởi tạo người chơi
-                    
-                    ListPlayersConnecting.Add(player); // Thêm người chơi vào List
-
-                    bytes = encoding.GetBytes("id"+player._iDPlayer.ToString());
-                    
-                    client.Send(bytes);
-                    
-                    LoadDanhSach();
-                    count++;
-                    this.ChangeCountLabelPlayer(count.ToString());
-                    
-
+                    Thread thread = new Thread(() => SetName(client));
+                    thread.Start();
                 }
             }
             catch
             {
                 return;
             }
-                
         }
+
+
+        private void SetName(Socket client)
+        {
+            string CodePlayer = "abc";
+            byte[] bytes = new byte[1024];
+            client.Receive(bytes);
+
+            string name = Utils.ByteArrayToObject(bytes);
+            Player player = new Player(count + 1, CodePlayer, name, client); // Khởi tạo người chơi
+
+            ListPlayersConnecting.Add(player); // Thêm người chơi vào List
+
+            bytes = Utils.ObjectToByteArray("id" + player._iDPlayer.ToString());
+
+            client.Send(bytes);
+
+            LoadDanhSach();
+            count++;
+            this.ChangeCountLabelPlayer(count.ToString());
+        }
+
         public void AddListViewData(ListView list, string name,string value)
         {
             if (list.InvokeRequired)
@@ -549,7 +552,7 @@ namespace Server
         {
             byte[] bytes = new byte[1024];
             client.tcpClient.Receive(bytes);
-            string answer = encoding.GetString(bytes).Substring(0,1);
+            string answer = Utils.ByteArrayToObject(bytes).Substring(0,1);
             if(answer == "A")
             {
                 CountAnswerA++;
@@ -562,7 +565,6 @@ namespace Server
             {
                 CountAnswerB++;
             }
-            MessageBox.Show(answer,"Thong bao"+client._iDPlayer.ToString());
             if(answer == QuestionChoice.RightAnswer)
             {
                 client.CountTrueQuestion++;
