@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -24,12 +25,14 @@ namespace Client
         Socket client;
         string name_Client;
         int port;
-
-        #region Test content
-        string[] dsAnswers = new string[] { "Bằng răng", "Bằng bờm", "Bằng guốc" };
-        int[] dsNumberAnswer = new int[] { 10, 30, 60 };
+        string answerChoose = "D";
+        int iD;
+        int correctAnswerNumber = 0;
+        string[] dsNumber = new string[] { "0", "0", "0", "A"};
+        Question question = new Question();
+        bool checkSendAnswer = false;
         int timeAnswer = 15;
-        #endregion
+        int numberOfRightAnswer = 0;
         #endregion
 
         public ClientMain(string ip, int port_sv, string name)
@@ -42,6 +45,7 @@ namespace Client
             port = port_sv;
             name_Client = name;
             iP = new IPEndPoint(IPAddress.Parse(ip), port);
+            Connect_Server();
         }        
 
         private void ClientMain_Load(object sender, EventArgs e)
@@ -83,15 +87,11 @@ namespace Client
             tplpnAnswer.BackColor = Color.Transparent;
             #endregion
 
-            Draw_Question();
-            Draw_Answer();
-
-            timeChooseAnswer.Start();
-            this.picboxAnswer1.Click += Answer_Click;
-            this.picboxAnswer2.Click += Answer_Click;
-            this.picboxAnswer3.Click += Answer_Click;
+            timeChooseAnswer.Interval = 1000;
+            Connect_Server();
         }
 
+        #region Draw question and answers
         /// <summary>
         /// Draw the Question on panel
         /// </summary>
@@ -104,7 +104,7 @@ namespace Client
             Graphics g = Graphics.FromImage(bmp);
             g.Clear(Color.Transparent);
             g.FillRectangle(Brushes.White, rect);
-            string text = @"Người ta có thể tính tuổi của một con ngựa một cách gần đúng nhất dù không biết ngày sinh là dựa vào bộ phận nào của ngựa?";
+            string text = @"" + question._contentQuestion;
 
             g.DrawString(text, new Font("Arial", 14), Brushes.Black, rect);
             pnQuestion.BackgroundImage = bmp;
@@ -114,71 +114,62 @@ namespace Client
         /// <summary>
         /// Draw the Answer on pictureBox
         /// </summary>
-        private void Draw_Answer()
+        private void Draw_Answer(string answer, PictureBox picbox)
         {
-            int i = 0;
-            foreach (PictureBox item in listAnswerButton)
-            {
-                //Get picturebox dimension
-                int pbWIDTH = item.Width;
-                int pbHEIGHT = item.Height;
+            //Get picturebox dimension
+            int pbWIDTH = picbox.Width;
+            int pbHEIGHT = picbox.Height;
 
-                //Rounded corner radius
-                int rCircle = pbHEIGHT * 25 / 100;
+            //Rounded corner radius
+            int rCircle = pbHEIGHT * 25 / 100;
 
-                Bitmap bmp = new Bitmap(pbWIDTH, pbHEIGHT);
-                Graphics g = Graphics.FromImage(bmp);
-                //Clear graphics
-                g.Clear(Color.Transparent);
+            Bitmap bmp = new Bitmap(pbWIDTH, pbHEIGHT);
+            Graphics g = Graphics.FromImage(bmp);
+            //Clear graphics
+            g.Clear(Color.Transparent);
 
 
-                #region Draw frame
-                GraphicsPath gp = new GraphicsPath();
-                gp.Reset();
-                //Left
-                Rectangle rect11 = new Rectangle(0, pbHEIGHT - (rCircle * 2), (rCircle * 2), (rCircle * 2));
-                gp.AddArc(rect11, 90, 90);
-                gp.AddLine(new Point(0, rCircle), new Point(0, pbHEIGHT - rCircle));
-                Rectangle rect21 = new Rectangle(0, 0, (rCircle * 2), (rCircle * 2));
-                gp.AddArc(rect21, 180, 90);
-                //Top
-                gp.AddLine(new Point(0, 0), new Point(pbWIDTH - rCircle, 0));
-                //Right
-                Rectangle rectRUK = new Rectangle(pbWIDTH - (rCircle * 2), 0, (rCircle * 2), (rCircle * 2));
-                gp.AddArc(rectRUK, 270, 90);
-                gp.AddLine(new Point(pbWIDTH, rCircle), new Point(pbWIDTH, pbHEIGHT - rCircle));
-                Rectangle rectRBK = new Rectangle(pbWIDTH - (rCircle * 2), pbHEIGHT - (rCircle * 2), (rCircle * 2), (rCircle * 2));
-                gp.AddArc(rectRBK, 0, 90);
-                //Bottom
-                gp.AddLine(new Point(0, pbHEIGHT), new Point(pbWIDTH - rCircle, pbHEIGHT));
-                g.SmoothingMode = SmoothingMode.AntiAlias;
-                g.FillPath(Brushes.Gainsboro, gp);
-                #endregion
+            #region Draw frame
+            GraphicsPath gp = new GraphicsPath();
+            gp.Reset();
+            //Left
+            Rectangle rect11 = new Rectangle(0, pbHEIGHT - (rCircle * 2), (rCircle * 2), (rCircle * 2));
+            gp.AddArc(rect11, 90, 90);
+            gp.AddLine(new Point(0, rCircle), new Point(0, pbHEIGHT - rCircle));
+            Rectangle rect21 = new Rectangle(0, 0, (rCircle * 2), (rCircle * 2));
+            gp.AddArc(rect21, 180, 90);
+            //Top
+            gp.AddLine(new Point(0, 0), new Point(pbWIDTH - rCircle, 0));
+            //Right
+            Rectangle rectRUK = new Rectangle(pbWIDTH - (rCircle * 2), 0, (rCircle * 2), (rCircle * 2));
+            gp.AddArc(rectRUK, 270, 90);
+            gp.AddLine(new Point(pbWIDTH, rCircle), new Point(pbWIDTH, pbHEIGHT - rCircle));
+            Rectangle rectRBK = new Rectangle(pbWIDTH - (rCircle * 2), pbHEIGHT - (rCircle * 2), (rCircle * 2), (rCircle * 2));
+            gp.AddArc(rectRBK, 0, 90);
+            //Bottom
+            gp.AddLine(new Point(0, pbHEIGHT), new Point(pbWIDTH - rCircle, pbHEIGHT));
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.FillPath(Brushes.Gainsboro, gp);
+            #endregion
 
-                //Draw the answer
-                string text = dsAnswers[i];
-                int sizeFont = 10;
-                g.DrawString(text, new Font("Arial", sizeFont), Brushes.Black, new PointF( 5, (pbHEIGHT / 2) - (sizeFont / 2)));
+            //Draw the answer
+            string text = answer;
+            int sizeFont = 10;
+            g.DrawString(text, new Font("Arial", sizeFont), Brushes.Black, new PointF(5, (pbHEIGHT / 2) - (sizeFont / 2)));
 
-                //Load bitmap in picturebox
-                item.Image = bmp;
-                item.BackColor = Color.White;
-                i++;
-            }
+            //Load bitmap in picturebox
+            picbox.Image = bmp;
+            picbox.BackColor = Color.White;
         }
 
         /// <summary>
         /// Draw the Correct Answer
         /// </summary>
-        private void Draw_AnswerTrue()
+        private void Draw_AnswerTrue(int sumNumberAnswer)
         {
-            int sumNumberAnswer = 0;
-            int pbComplete = 0;
             int i = 0;
-            foreach (int item in dsNumberAnswer)
-            {
-                sumNumberAnswer += item;
-            }
+            int pbComplete = 0;
+
             foreach (PictureBox item in listAnswerButton)
             {
                 //Get picturebox dimension
@@ -188,7 +179,7 @@ namespace Client
                 //Rounded corner radius
                 int rCircle = pbHEIGHT * 25 / 100;
 
-                pbComplete = (dsNumberAnswer[i] * 100) / sumNumberAnswer;
+                pbComplete = (int.Parse(dsNumber[i]) * 100) / sumNumberAnswer;
 
                 Bitmap bmp = new Bitmap(pbWIDTH, pbHEIGHT);
                 Graphics g = Graphics.FromImage(bmp);
@@ -241,18 +232,77 @@ namespace Client
                 g.SmoothingMode = SmoothingMode.AntiAlias;
 
                 //Choose color for the answer
-                if (i == 0)
+                if (item.Name.Substring(item.Name.Length) == "1")
                 {
-                    g.FillPath(Brushes.SpringGreen, gp);
+                    if(answerChoose == "A")
+                    {
+                        if (answerChoose == dsNumber[3])
+                        {
+                            g.FillPath(Brushes.SpringGreen, gp);
+                            numberOfRightAnswer++;
+                        }
+                        else
+                        {
+                            g.FillPath(Brushes.Crimson, gp);
+                        }
+                    }
+                    else if(dsNumber[3] == "A")
+                    {
+                        g.FillPath(Brushes.SpringGreen, gp);
+                    }
+                    else
+                    {
+                        g.FillPath(Brushes.Silver, gp);
+                    }
                 }
-                else if (i == 1)
+                else if (item.Name.Substring(item.Name.Length) == "2")
                 {
-                    g.FillPath(Brushes.Crimson, gp);
+                    if (answerChoose == "B")
+                    {
+                        if (answerChoose == dsNumber[3])
+                        {
+                            g.FillPath(Brushes.SpringGreen, gp);
+                            numberOfRightAnswer++;
+                        }
+                        else
+                        {
+                            g.FillPath(Brushes.Crimson, gp);
+                        }
+                    }
+                    else if (dsNumber[3] == "B")
+                    {
+                        g.FillPath(Brushes.SpringGreen, gp);
+                    }
+                    else
+                    {
+                        g.FillPath(Brushes.Silver, gp);
+                    }
                 }
                 else
                 {
-                    g.FillPath(Brushes.Silver, gp);
+                    if (answerChoose == "C")
+                    {
+                        if (answerChoose == dsNumber[3])
+                        {
+                            g.FillPath(Brushes.SpringGreen, gp);
+                            numberOfRightAnswer++;
+                        }
+                        else
+                        {
+                            g.FillPath(Brushes.Crimson, gp);
+                        }
+                    }
+                    else if (dsNumber[3] == "C")
+                    {
+                        g.FillPath(Brushes.SpringGreen, gp);
+                    }
+                    else
+                    {
+                        g.FillPath(Brushes.Silver, gp);
+                    }
                 }
+
+                
 
                 if (rCircle * 2 > (pbComplete * pbWIDTH / 100))
                 {
@@ -271,8 +321,20 @@ namespace Client
 
 
                 //Draw the answer and number player answer
-                string numberStr = dsNumberAnswer[i].ToString();
-                string text = dsAnswers[i];
+                string numberStr = dsNumber[i];
+                string text = "";
+                if (i == 0)
+                {
+                    text = question._a_Answer;
+                }
+                else if (i == 1)
+                {
+                    text = question._b_Answer;
+                }
+                else
+                {
+                    text = question._c_Answer;
+                }
                 int sizeFont = 10;
                 g.DrawString(numberStr, new Font("Arial", sizeFont), Brushes.Black, new PointF(pbWIDTH - 30, (pbHEIGHT / 2) - (sizeFont / 2)));
                 g.DrawString(text, new Font("Arial", sizeFont), Brushes.Black, new PointF( 5, (pbHEIGHT / 2) - (sizeFont / 2)));
@@ -284,6 +346,7 @@ namespace Client
                 i++;
             }
         }
+        #endregion
 
         #region Move Form
         private void ClientMain_MouseDown(object sender, MouseEventArgs e)
@@ -369,6 +432,7 @@ namespace Client
 
         #endregion
 
+        #region Time answer and handle click answer
         /// <summary>
         /// Time of answer the question
         /// </summary>
@@ -379,18 +443,28 @@ namespace Client
             if(timeAnswer < 1)
             {
                 lbTime.Text = "Hết giờ";
-                Draw_AnswerTrue();
-                timeChooseAnswer.Stop();
+                if(checkSendAnswer == false)
+                {
+                    Send_Server(answerChoose);
+                    answerChoose = "D";
+                }  
+                
+                timeChooseAnswer.Stop();                
                 return;
             }
             timeAnswer--;
             lbTime.Text = timeAnswer + " giây";
         }
 
+        /// <summary>
+        /// Click answer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Answer_Click(object sender, EventArgs e)
         {
             PictureBox picbox = (PictureBox)sender;
-            int i = int.Parse(picbox.Name.Substring(12)) - 1;
+            int i = int.Parse(picbox.Name.Substring(picbox.Name.Length)) - 1;
             //Get picturebox dimension
             int pbWIDTH = picbox.Width;
             int pbHEIGHT = picbox.Height;
@@ -423,18 +497,48 @@ namespace Client
             #endregion
 
             //Draw the answer
-            string text = dsAnswers[i];
+            string text = "";
+            if (picbox.Name.Substring(picbox.Name.Length - 1) == "1")
+            {
+                text = question._a_Answer;
+                answerChoose = "A";
+                Send_Server(answerChoose);
+                checkSendAnswer = true;
+                answerChoose = "D";
+            }
+            else if (picbox.Name.Substring(picbox.Name.Length - 1) == "2")
+            {
+                text = question._b_Answer;
+                answerChoose = "B";
+                Send_Server(answerChoose);
+                checkSendAnswer = true;
+                answerChoose = "D";
+            }
+            else
+            {
+                text = question._c_Answer;
+                answerChoose = "C";
+                Send_Server(answerChoose);
+                checkSendAnswer = true;
+                answerChoose = "D";
+            }
+
             int sizeFont = 10;
             g.DrawString(text, new Font("Arial", sizeFont), Brushes.Black, new PointF(5, (pbHEIGHT / 2) - (sizeFont / 2)));
 
             //Load bitmap in picturebox
             picbox.Image = bmp;
             picbox.BackColor = Color.DarkTurquoise;
-            this.picboxAnswer1.Click -= Answer_Click;
-            this.picboxAnswer2.Click -= Answer_Click;
-            this.picboxAnswer3.Click -= Answer_Click;
-        }
 
+            //Remove handle click after click a answer
+            foreach(PictureBox item in listAnswerButton)
+            {
+                item.Click -= Answer_Click;
+            }
+        }
+        #endregion
+
+        #region Connect, send and receive from Server
         /// <summary>
         /// Tạo chuỗi byte để gửi qua Socket
         /// </summary>
@@ -472,7 +576,7 @@ namespace Client
             try
             {
                 client.Connect(iP);
-                Send_Name();
+                Send_Server(name_Client);
             }
             catch
             {
@@ -503,22 +607,12 @@ namespace Client
             CloseConnect();
         }
 
-        
-
-        /// <summary>
-        /// Gửi tên qua cho server
-        /// </summary>
-        void Send_Name()
-        {
-            client.Send(Serialize_Client("@@"));
-        }
-
         /// <summary>
         /// Gửi tin nhắn
         /// </summary>
-        void Send_Server()
+        void Send_Server(string text)
         {
-            
+            client.Send(Serialize_Client(text));
         }
 
         /// <summary>
@@ -535,12 +629,99 @@ namespace Client
                     client.Receive(data);
 
                     string message = (string)Deserialize_Client(data);
+
+                    if(message.Substring(0,2) == "id")
+                    {
+                        iD = int.Parse(message.Substring(2));
+                    }
+                    else if(message.Substring(0,2) == "qs")
+                    {
+                        question = ParseQuestion(message.Substring(2));
+                        Draw_Question();
+                        Draw_Answer(question._a_Answer, listAnswerButton[0]);
+                        Draw_Answer(question._b_Answer, listAnswerButton[1]);
+                        Draw_Answer(question._c_Answer, listAnswerButton[2]);
+                        foreach(PictureBox item in listAnswerButton)
+                        {
+                            item.Click += Answer_Click;
+                        }
+                        timeAnswer = 15;
+                        checkSendAnswer = false;
+                        timeChooseAnswer.Start();
+                    }
+                    else if(message.Substring(0,2) == "as")
+                    {
+                        int start = 0;
+                        int end = 0;
+                        string text = message.Substring(2);
+
+                        start = text.IndexOf("A") + 1;
+                        end = text.IndexOf("B");
+                        dsNumber[0] = text.Substring(start, end - start);
+
+                        start = end + 1;
+                        end = text.IndexOf("C");
+                        dsNumber[1] = text.Substring(start, end - start);
+
+                        start = end + 1;
+                        end = text.Length - 1;
+                        dsNumber[2] = text.Substring(start, end - start);
+
+                        dsNumber[3] = text.Substring(text.Length - 1);
+
+                        int totalNumberPlayer = 0;
+                        for(int i=0; i <= 2; i++)
+                        {
+                            totalNumberPlayer += int.Parse(dsNumber[i]);
+                        }
+                        Draw_AnswerTrue(totalNumberPlayer);
+                        lbTime.Text = "";
+                    }
                 }
             }
             catch
             {
+                MessageBox.Show("Đã xảy ra sự cố khi kết nối server hoặc server đã đóng!", "Thông báo");
                 CloseConnect();
             }
         }
+
+        private Question ParseQuestion(string data)
+        {
+            Question qs = new Question();
+            int start = 0;
+            int end = 0;
+
+            for (int i = 2; i < data.IndexOf("A@"); i++)
+            {
+                string strsub = data.Substring(2, i - 1);
+                int numsub = 0;
+                int.TryParse(strsub, out numsub);
+                if (numsub == 0)
+                {
+                    start = i;
+                    qs.ID = int.Parse(data.Substring(2, i - 2));
+                    break;
+                }
+            }
+
+            end = data.IndexOf("A@");
+            qs._contentQuestion = data.Substring(start, end - start);
+
+            start = end + 2;
+            end = data.IndexOf("B@");
+            qs._a_Answer = data.Substring(start, end - start);
+
+            start = end + 2;
+            end = data.IndexOf("C@");
+            qs._b_Answer = data.Substring(start, end - start);
+
+            start = end + 2;
+            end = data.Length;
+            qs._c_Answer = data.Substring(start, end - start);
+
+            return qs;
+        }
+        #endregion
     }
 }
