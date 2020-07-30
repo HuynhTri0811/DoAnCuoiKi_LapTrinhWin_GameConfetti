@@ -60,7 +60,6 @@ namespace Server
         #endregion
 
         #region InitializeComponent
-
         public serverConfetti()
         {
             InitializeComponent();
@@ -69,7 +68,6 @@ namespace Server
             listviewPlayerConnected.Columns.Add("Họ tên người chơi", 100);
             listviewPlayerConnected.Columns.Add("Số câu đúng", 100);
         }
-
         #endregion
 
         #region Event
@@ -238,6 +236,28 @@ namespace Server
             CountAnswerA = 0;
             CountAnswerB = 0;
             CountAnswerC = 0;
+            string DanhSachNguoiChoiThang = "";
+            if(count == 10)
+            {
+                foreach(Player player in ListPlayersConnecting)
+                {
+                    if(player.CountTrueQuestion == 10)
+                    {
+                        DanhSachNguoiChoiThang += "@" + player._namePlayer;
+                    }
+                }
+                byte[] bytess = new byte[2048];
+                bytess = Utils.ObjectToByteArray(DanhSachNguoiChoiThang);
+                foreach (Player player in ListPlayersConnecting)
+                {
+                    if (player.CountTrueQuestion == 10)
+                    {
+                        player.tcpClient.Send(bytess);
+                    }
+                }
+            }
+
+
         }
         private void btnNextQuestion_Click(object sender, EventArgs e)
         {
@@ -508,8 +528,6 @@ namespace Server
                 return;
             }
         }
-
-
         private void SetName(Socket client)
         {
             string CodePlayer = "abc";
@@ -529,7 +547,6 @@ namespace Server
             count++;
             this.ChangeCountLabelPlayer(count.ToString());
         }
-
         public void AddListViewData(ListView list, string name,string value)
         {
             if (list.InvokeRequired)
@@ -572,8 +589,6 @@ namespace Server
             LoadDanhSach();
         }
         #endregion
-
-        
     }
 }
 

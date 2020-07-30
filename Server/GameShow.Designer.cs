@@ -43,6 +43,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtIP = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtCauHoiCount = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.txtIDQuestion = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -60,7 +61,6 @@
             this.btnAddQuestion = new System.Windows.Forms.Button();
             this.btnDeleteQuestion = new System.Windows.Forms.Button();
             this.timerStop = new System.Windows.Forms.Timer(this.components);
-            this.txtCauHoiCount = new System.Windows.Forms.Label();
             this.Stream.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -110,7 +110,7 @@
             this.pnaelStream.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.pnaelStream.Location = new System.Drawing.Point(6, 19);
             this.pnaelStream.Name = "pnaelStream";
-            this.pnaelStream.Size = new System.Drawing.Size(268, 453);
+            this.pnaelStream.Size = new System.Drawing.Size(268, 474);
             this.pnaelStream.TabIndex = 5;
             // 
             // Stream
@@ -228,6 +228,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Chi tiết câu hỏi";
+            // 
+            // txtCauHoiCount
+            // 
+            this.txtCauHoiCount.AutoSize = true;
+            this.txtCauHoiCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCauHoiCount.Location = new System.Drawing.Point(105, 490);
+            this.txtCauHoiCount.Name = "txtCauHoiCount";
+            this.txtCauHoiCount.Size = new System.Drawing.Size(18, 20);
+            this.txtCauHoiCount.TabIndex = 11;
+            this.txtCauHoiCount.Text = "1";
             // 
             // label8
             // 
@@ -383,16 +393,6 @@
             // 
             this.timerStop.Interval = 15000;
             this.timerStop.Tick += new System.EventHandler(this.timerStop_Tick);
-            // 
-            // txtCauHoiCount
-            // 
-            this.txtCauHoiCount.AutoSize = true;
-            this.txtCauHoiCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCauHoiCount.Location = new System.Drawing.Point(105, 490);
-            this.txtCauHoiCount.Name = "txtCauHoiCount";
-            this.txtCauHoiCount.Size = new System.Drawing.Size(18, 20);
-            this.txtCauHoiCount.TabIndex = 11;
-            this.txtCauHoiCount.Text = "1";
             // 
             // serverConfetti
             // 
