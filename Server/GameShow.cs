@@ -236,14 +236,14 @@ namespace Server
             CountAnswerA = 0;
             CountAnswerB = 0;
             CountAnswerC = 0;
-            string DanhSachNguoiChoiThang = "";
-            if(count == 10)
+            string DanhSachNguoiChoiThang = "kq";
+            if(ListQuestionsUsedTo.Count == 10)
             {
                 foreach(Player player in ListPlayersConnecting)
                 {
                     if(player.CountTrueQuestion == 10)
                     {
-                        DanhSachNguoiChoiThang += "@" + player._namePlayer;
+                        DanhSachNguoiChoiThang += player._namePlayer + "@";
                     }
                 }
                 byte[] bytess = new byte[2048];

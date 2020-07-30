@@ -92,11 +92,11 @@
     <RightAnswer>B</RightAnswer>
   </Question>
   <Question ID="14">
-      <_contentQuestion>Tên đầy đủ của virus corona là gì ?</_contentQuestion>
-      <_a_Answer>SARS-CoV-2</_a_Answer>
-      <_b_Answer>SARS-CoV-1</_b_Answer>
-      <_c_Answer>SARS-CoV-3</_c_Answer>
-      <RightAnswer>A</RightAnswer>
+    <_contentQuestion>Tên đầy đủ của virus corona là gì ?</_contentQuestion>
+    <_a_Answer>SARS-CoV-2</_a_Answer>
+    <_b_Answer>SARS-CoV-1</_b_Answer>
+    <_c_Answer>SARS-CoV-3</_c_Answer>
+    <RightAnswer>A</RightAnswer>
   </Question>
   <Question ID="15">
     <_contentQuestion>Nơi phát dịch đầu tiên của virus corona là ở đâu ?</_contentQuestion>
@@ -125,5 +125,12 @@
     <_b_Answer>10</_b_Answer>
     <_c_Answer>11 </_c_Answer>
     <RightAnswer>C</RightAnswer>
+  </Question>
+  <Question ID="19">
+    <_contentQuestion>2 + 2</_contentQuestion>
+    <_a_Answer>4</_a_Answer>
+    <_b_Answer>5</_b_Answer>
+    <_c_Answer>6</_c_Answer>
+    <RightAnswer>A</RightAnswer>
   </Question>
 </Questions>
