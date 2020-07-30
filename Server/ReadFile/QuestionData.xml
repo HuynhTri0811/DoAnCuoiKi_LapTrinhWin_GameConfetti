@@ -84,4 +84,46 @@
     <_c_Answer>Tên của bạn là gì ?</_c_Answer>
     <RightAnswer>C</RightAnswer>
   </Question>
+  <Question ID="13">
+    <_contentQuestion>Hiện tại chủng virus corona đang bùng phát . Chúng ta cần làm gì :</_contentQuestion>
+    <_a_Answer>Tụ tập nơi đông người</_a_Answer>
+    <_b_Answer>Đeo khẩu trang</_b_Answer>
+    <_c_Answer>Đi lại thoải mái</_c_Answer>
+    <RightAnswer>B</RightAnswer>
+  </Question>
+  <Question ID="14">
+      <_contentQuestion>Tên đầy đủ của virus corona là gì ?</_contentQuestion>
+      <_a_Answer>SARS-CoV-2</_a_Answer>
+      <_b_Answer>SARS-CoV-1</_b_Answer>
+      <_c_Answer>SARS-CoV-3</_c_Answer>
+      <RightAnswer>A</RightAnswer>
+  </Question>
+  <Question ID="15">
+    <_contentQuestion>Nơi phát dịch đầu tiên của virus corona là ở đâu ?</_contentQuestion>
+    <_a_Answer>Mỹ</_a_Answer>
+    <_b_Answer>Trung Quốc</_b_Answer>
+    <_c_Answer>Anh</_c_Answer>
+    <RightAnswer>B</RightAnswer>
+  </Question>
+  <Question ID="16">
+    <_contentQuestion>Bệnh nhân số 91 là người nước nào ?</_contentQuestion>
+    <_a_Answer>Tây Ban Nha</_a_Answer>
+    <_b_Answer>Ý</_b_Answer>
+    <_c_Answer>Anh</_c_Answer>
+    <RightAnswer>C</RightAnswer>
+  </Question>
+  <Question ID="17">
+    <_contentQuestion>Khi có các triệu chứng như ho , sốt , mỏi cơ thì nên làm gì ?</_contentQuestion>
+    <_a_Answer>Đi đến ngay bệnh viện gần nhât để xét nghiệm</_a_Answer>
+    <_b_Answer>Đi vòng vòng ngoài đường</_b_Answer>
+    <_c_Answer>Đi đến những nơi đông người</_c_Answer>
+    <RightAnswer>A</RightAnswer>
+  </Question>
+  <Question ID="18">
+    <_contentQuestion>Số nào là số nguyên tố ?</_contentQuestion>
+    <_a_Answer>12</_a_Answer>
+    <_b_Answer>10</_b_Answer>
+    <_c_Answer>11 </_c_Answer>
+    <RightAnswer>C</RightAnswer>
+  </Question>
 </Questions>
