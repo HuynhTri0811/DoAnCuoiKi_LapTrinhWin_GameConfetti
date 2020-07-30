@@ -45,7 +45,6 @@ namespace Client
             port = port_sv;
             name_Client = name;
             iP = new IPEndPoint(IPAddress.Parse(ip), port);
-            Connect_Server();
         }        
 
         private void ClientMain_Load(object sender, EventArgs e)
