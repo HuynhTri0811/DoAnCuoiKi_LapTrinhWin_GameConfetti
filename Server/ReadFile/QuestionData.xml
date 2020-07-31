@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Questions>
   <Question ID="1">
-    <_contentQuestion>1 + 1 = </_contentQuestion>
+    <_contentQuestion>Đáp án của 1 + 1 = </_contentQuestion>
     <_a_Answer>2</_a_Answer>
     <_b_Answer>3</_b_Answer>
     <_c_Answer>4</_c_Answer>
@@ -127,7 +127,7 @@
     <RightAnswer>C</RightAnswer>
   </Question>
   <Question ID="19">
-    <_contentQuestion>2 + 2</_contentQuestion>
+    <_contentQuestion>Đáp án của 2 + 2 :</_contentQuestion>
     <_a_Answer>4</_a_Answer>
     <_b_Answer>5</_b_Answer>
     <_c_Answer>6</_c_Answer>
