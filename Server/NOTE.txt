@@ -1,5 +1,1 @@
-﻿id			: id1
-question	: qs id1 abc A@a B@c C@c
-answer		: as A3 B2 C6 A
-
-as : @1@A
+﻿
