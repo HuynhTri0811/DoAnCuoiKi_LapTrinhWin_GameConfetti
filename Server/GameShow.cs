@@ -554,7 +554,7 @@ namespace Server
                             {
                                 playerConnecting.tcpClient = client;
 
-                                string reId = "reid" + playerConnecting._iDPlayer.ToString()+"qs"+ListQuestionsUsedTo.Count.ToString();
+                                string reId = "reid" + playerConnecting._iDPlayer.ToString()+"qs"+ListQuestionsUsedTo.Count.ToString()+"kq"+playerConnecting.CountTrueQuestion.ToString();
 
                                 bytes = Utils.ObjectToByteArray(reId);
                                 client.Send(bytes);
