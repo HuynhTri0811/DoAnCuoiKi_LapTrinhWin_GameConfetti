@@ -190,7 +190,7 @@ namespace Server
         {
 
         }
-        private void btnShowAnswer_Click(object sender, EventArgs e)
+        private void btnShowAnswer_Click(object sender, EventArgs e)    
         {
             if(SendQuestionButDontSendAnswer == false)
             {
@@ -208,22 +208,15 @@ namespace Server
                             "B"+CountAnswerB.ToString() +
                             "C"+CountAnswerC.ToString() + 
                             QuestionChoice.RightAnswer;
+            
             bytes = Utils.ObjectToByteArray(answer);
 
 
             foreach(Player player in ListPlayersConnecting)
             {
-                try
+                if (player.tcpClient.Connected)
                 {
-                    player.tcpClient.Send(bytes); 
-                    
-                }
-                catch
-                {
-                    MessageBox.Show("Không thể gửi câu trả lời cho người chơi có tên : " + player._namePlayer,
-                                    "Thông báo",
-                                    MessageBoxButtons.OK,
-                                    MessageBoxIcon.Error);
+                    player.tcpClient.Send(bytes);
                 }
             }
 
@@ -250,7 +243,7 @@ namespace Server
                 bytess = Utils.ObjectToByteArray(DanhSachNguoiChoiThang);
                 foreach (Player player in ListPlayersConnecting)
                 {
-                    if (player.CountTrueQuestion == 10)
+                    if (player.tcpClient.Connected)
                     {
                         player.tcpClient.Send(bytess);
                     }
@@ -360,10 +353,6 @@ namespace Server
             {
                 if(!player1.tcpClient.Connected)
                 {
-                    MessageBox.Show("Không thể gửi cho người chơi có tên :" + player1._namePlayer,
-                                    "Thông báo",
-                                    MessageBoxButtons.OK,
-                                    MessageBoxIcon.Error);
                     continue;
                 }
 
