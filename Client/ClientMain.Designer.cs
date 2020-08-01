@@ -56,7 +56,7 @@
             this.panel2.Controls.Add(this.tblpnQuestion);
             this.panel2.Location = new System.Drawing.Point(0, 51);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(580, 470);
+            this.panel2.Size = new System.Drawing.Size(600, 470);
             this.panel2.TabIndex = 1;
             // 
             // lbTime
@@ -80,7 +80,7 @@
             this.tblpnQuestion.RowCount = 2;
             this.tblpnQuestion.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblpnQuestion.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tblpnQuestion.Size = new System.Drawing.Size(556, 178);
+            this.tblpnQuestion.Size = new System.Drawing.Size(576, 178);
             this.tblpnQuestion.TabIndex = 0;
             // 
             // tplpnAnswer
@@ -96,15 +96,15 @@
             this.tplpnAnswer.Name = "tplpnAnswer";
             this.tplpnAnswer.RowCount = 1;
             this.tplpnAnswer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tplpnAnswer.Size = new System.Drawing.Size(550, 73);
+            this.tplpnAnswer.Size = new System.Drawing.Size(570, 83);
             this.tplpnAnswer.TabIndex = 0;
             // 
             // picboxAnswer3
             // 
             this.picboxAnswer3.BackColor = System.Drawing.Color.MidnightBlue;
-            this.picboxAnswer3.Location = new System.Drawing.Point(369, 3);
+            this.picboxAnswer3.Location = new System.Drawing.Point(383, 3);
             this.picboxAnswer3.Name = "picboxAnswer3";
-            this.picboxAnswer3.Size = new System.Drawing.Size(160, 60);
+            this.picboxAnswer3.Size = new System.Drawing.Size(180, 60);
             this.picboxAnswer3.TabIndex = 2;
             this.picboxAnswer3.TabStop = false;
             // 
@@ -112,9 +112,9 @@
             // 
             this.picboxAnswer2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.picboxAnswer2.BackColor = System.Drawing.Color.RoyalBlue;
-            this.picboxAnswer2.Location = new System.Drawing.Point(194, 3);
+            this.picboxAnswer2.Location = new System.Drawing.Point(195, 3);
             this.picboxAnswer2.Name = "picboxAnswer2";
-            this.picboxAnswer2.Size = new System.Drawing.Size(160, 60);
+            this.picboxAnswer2.Size = new System.Drawing.Size(180, 60);
             this.picboxAnswer2.TabIndex = 1;
             this.picboxAnswer2.TabStop = false;
             // 
@@ -122,9 +122,9 @@
             // 
             this.picboxAnswer1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.picboxAnswer1.BackColor = System.Drawing.Color.MediumOrchid;
-            this.picboxAnswer1.Location = new System.Drawing.Point(20, 3);
+            this.picboxAnswer1.Location = new System.Drawing.Point(7, 3);
             this.picboxAnswer1.Name = "picboxAnswer1";
-            this.picboxAnswer1.Size = new System.Drawing.Size(160, 60);
+            this.picboxAnswer1.Size = new System.Drawing.Size(180, 60);
             this.picboxAnswer1.TabIndex = 0;
             this.picboxAnswer1.TabStop = false;
             // 
@@ -132,15 +132,15 @@
             // 
             this.pnQuestion.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.pnQuestion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.pnQuestion.Location = new System.Drawing.Point(70, 16);
+            this.pnQuestion.Location = new System.Drawing.Point(63, 16);
             this.pnQuestion.Name = "pnQuestion";
-            this.pnQuestion.Size = new System.Drawing.Size(416, 70);
+            this.pnQuestion.Size = new System.Drawing.Size(450, 70);
             this.pnQuestion.TabIndex = 1;
             // 
             // btnExit
             // 
             this.btnExit.BackColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(535, 5);
+            this.btnExit.Location = new System.Drawing.Point(555, 5);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(40, 40);
             this.btnExit.TabIndex = 2;
@@ -161,6 +161,9 @@
             this.lbNameClient.Size = new System.Drawing.Size(163, 31);
             this.lbNameClient.TabIndex = 3;
             this.lbNameClient.Text = "Name Client";
+            this.lbNameClient.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ClientMain_MouseDown);
+            this.lbNameClient.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ClientMain_MouseMove);
+            this.lbNameClient.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ClientMain_MouseUp);
             // 
             // timeChooseAnswer
             // 
@@ -172,7 +175,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(580, 520);
+            this.ClientSize = new System.Drawing.Size(600, 520);
             this.Controls.Add(this.lbNameClient);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.panel2);
@@ -210,8 +213,8 @@
         private System.Windows.Forms.PictureBox picboxAnswer3;
         private System.Windows.Forms.PictureBox picboxAnswer2;
         private System.Windows.Forms.PictureBox picboxAnswer1;
-        private System.Windows.Forms.Timer timeChooseAnswer;
         private System.Windows.Forms.Label lbTime;
+        public System.Windows.Forms.Timer timeChooseAnswer;
     }
 }
 

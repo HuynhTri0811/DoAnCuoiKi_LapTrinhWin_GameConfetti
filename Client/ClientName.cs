@@ -236,14 +236,21 @@ namespace Client
         private void picboxDangKy_Click(object sender, EventArgs e)
         {
             name_Client = txtNameClient.Text;
-            MessageBox.Show("Tên đã nhận: " + name_Client);
-            iP = txtIPServer.Text;
-            port = int.Parse(txtPort.Text);
-            ClientMain clm = new ClientMain(iP, port, name_Client);
+            if(name_Client.IndexOf("@") != -1)
+            {
+                MessageBox.Show("Vui lòng không nhập ký tự @ vào tên của bạn!", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+            else if (MessageBox.Show("Tên đã nhập: " + name_Client, "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                iP = txtIPServer.Text;
+                port = int.Parse(txtPort.Text);
+                ClientMain clm = new ClientMain(iP, port, name_Client);
 
-            this.Hide();
-            clm.ShowDialog();
-            this.Close();
+                this.Hide();
+                clm.ShowDialog();
+                this.Close();
+            }            
         }
     }
 }

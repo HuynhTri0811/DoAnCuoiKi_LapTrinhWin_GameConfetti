@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
+using System.Timers;
 using System.Windows.Forms;
 
 namespace Client
@@ -27,7 +28,6 @@ namespace Client
         int port;
         string answerChoose = "D";
         int iD;
-        int correctAnswerNumber = 0;
         string[] dsNumber = new string[] { "0", "0", "0", "A"};
         Question question = new Question();
         bool checkSendAnswer = false;
@@ -49,6 +49,7 @@ namespace Client
 
         private void ClientMain_Load(object sender, EventArgs e)
         {
+            lbNameClient.Text = name_Client;
             #region Draw the frame of the tnlpnQuestion and change backcolor of tblpnAnswer
             int tbWidth = tblpnQuestion.Width;
             int tbHeight = tblpnQuestion.Height;
@@ -86,12 +87,12 @@ namespace Client
             tplpnAnswer.BackColor = Color.Transparent;
             #endregion
 
-            timeChooseAnswer.Interval = 1000;
             foreach(PictureBox item in listAnswerButton)
             {
                 item.BackColor = Color.White;
             }
             pnQuestion.BackColor = Color.White;
+            Draw_Question("Vui lòng đợi cho đến khi game bắt đầu!");
             Connect_Server();
         }
 
@@ -99,7 +100,7 @@ namespace Client
         /// <summary>
         /// Draw the Question on panel
         /// </summary>
-        private void Draw_Question()
+        private void Draw_Question(string strqs)
         {
             int pnQWidth = pnQuestion.Width;
             int pnQHeight = pnQuestion.Height;
@@ -108,11 +109,14 @@ namespace Client
             Graphics g = Graphics.FromImage(bmp);
             g.Clear(Color.Transparent);
             g.FillRectangle(Brushes.White, rect);
-            string text = @"" + question._contentQuestion;
+            strqs = @"" + strqs;
 
-            g.DrawString(text, new Font("Arial", 14), Brushes.Black, rect);
-            pnQuestion.BackgroundImage = bmp;
-            pnQuestion.BackColor = Color.White;
+            g.DrawString(strqs, new Font("Arial", 14), Brushes.Black, rect);
+            this.Invoke(new Action(() =>
+            {
+                pnQuestion.BackgroundImage = bmp;
+                pnQuestion.BackColor = Color.White;
+            }));            
         }
 
         /// <summary>
@@ -161,9 +165,12 @@ namespace Client
             int sizeFont = 10;
             g.DrawString(text, new Font("Arial", sizeFont), Brushes.Black, new PointF(5, (pbHEIGHT / 2) - (sizeFont / 2)));
 
-            //Load bitmap in picturebox
-            picbox.Image = bmp;
-            picbox.BackColor = Color.White;
+            this.Invoke(new Action(() =>
+            {
+                //Load bitmap in picturebox
+                picbox.Image = bmp;
+                picbox.BackColor = Color.White;
+            }));            
         }
 
         /// <summary>
@@ -174,181 +181,189 @@ namespace Client
             int i = 0;
             int pbComplete = 0;
 
-            foreach (PictureBox item in listAnswerButton)
+            this.Invoke(new Action(() =>
             {
-                //Get picturebox dimension
-                int pbWIDTH = item.Width;
-                int pbHEIGHT = item.Height;
-
-                //Rounded corner radius
-                int rCircle = pbHEIGHT * 25 / 100;
-
-                pbComplete = (int.Parse(dsNumber[i]) * 100) / sumNumberAnswer;
-
-                Bitmap bmp = new Bitmap(pbWIDTH, pbHEIGHT);
-                Graphics g = Graphics.FromImage(bmp);
-                //Clear graphics
-                g.Clear(Color.Transparent);
-
-                #region Draw frame
-                GraphicsPath gpKhung = new GraphicsPath();
-                gpKhung.Reset();
-                //Left
-                Rectangle rect11 = new Rectangle(0, pbHEIGHT - (rCircle * 2), (rCircle * 2), (rCircle * 2));
-                gpKhung.AddArc(rect11, 90, 90);
-                gpKhung.AddLine(new Point(0, rCircle), new Point(0, pbHEIGHT - rCircle));
-                Rectangle rect21 = new Rectangle(0, 0, (rCircle * 2), (rCircle * 2));
-                gpKhung.AddArc(rect21, 180, 90);
-                //Top
-                gpKhung.AddLine(new Point(0, 0), new Point(pbWIDTH - rCircle, 0));
-                //Right
-                Rectangle rectRUK = new Rectangle(pbWIDTH - (rCircle * 2), 0, (rCircle * 2), (rCircle * 2));
-                gpKhung.AddArc(rectRUK, 270, 90);
-                gpKhung.AddLine(new Point(pbWIDTH, rCircle), new Point(pbWIDTH, pbHEIGHT - rCircle));
-                Rectangle rectRBK = new Rectangle(pbWIDTH - (rCircle * 2), pbHEIGHT - (rCircle * 2), (rCircle * 2), (rCircle * 2));
-                gpKhung.AddArc(rectRBK, 0, 90);
-                //Bottom
-                gpKhung.AddLine(new Point(0, pbHEIGHT), new Point(pbWIDTH - rCircle, pbHEIGHT));
-                g.SmoothingMode = SmoothingMode.AntiAlias;
-                g.FillPath(Brushes.Gainsboro, gpKhung);
-                #endregion
-
-
-                #region Draw as a percentage inside
-                GraphicsPath gp = new GraphicsPath();
-                gp.Reset();
-                //Left
-                Rectangle rect1 = new Rectangle(0, pbHEIGHT - (rCircle * 2), (rCircle * 2), (rCircle * 2));
-                gp.AddArc(rect1, 90, 90);
-                gp.AddLine(new Point(0, rCircle), new Point(0, pbHEIGHT - rCircle));
-                Rectangle rect2 = new Rectangle(0, 0, (rCircle * 2), (rCircle * 2));
-                gp.AddArc(rect2, 180, 90);
-                //Top
-                gp.AddLine(new Point(0, 0), new Point((pbComplete * pbWIDTH / 100) - rCircle, 0));
-                //Right
-                Rectangle rectRU = new Rectangle((pbComplete * pbWIDTH / 100) - (rCircle * 2), 0, (rCircle * 2), (rCircle * 2));
-                gp.AddArc(rectRU, 270, 90);
-                gp.AddLine(new Point((pbComplete * pbWIDTH / 100), rCircle), new Point((pbComplete * pbWIDTH / 100), pbHEIGHT - rCircle));
-                Rectangle rectRB = new Rectangle((pbComplete * pbWIDTH / 100 - (rCircle * 2)), pbHEIGHT - (rCircle * 2), (rCircle * 2), (rCircle * 2));
-                gp.AddArc(rectRB, 0, 90);
-                //Bottom
-                gp.AddLine(new Point(0, pbHEIGHT), new Point((pbComplete * pbWIDTH / 100) - rCircle, pbHEIGHT));
-                g.SmoothingMode = SmoothingMode.AntiAlias;
-
-                //Choose color for the answer
-                if (item.Name.Substring(item.Name.Length) == "1")
+                foreach (PictureBox item in listAnswerButton)
                 {
-                    if(answerChoose == "A")
+                    //Get picturebox dimension
+                    int pbWIDTH = item.Width;
+                    int pbHEIGHT = item.Height;
+
+                    //Rounded corner radius
+                    int rCircle = pbHEIGHT * 25 / 100;
+
+                    if(sumNumberAnswer > 0)
                     {
-                        if (answerChoose == dsNumber[3])
+                        pbComplete = (int.Parse(dsNumber[i]) * 100) / sumNumberAnswer;
+                    }               
+
+                    Bitmap bmp = new Bitmap(pbWIDTH, pbHEIGHT);
+                    Graphics g = Graphics.FromImage(bmp);
+                    //Clear graphics
+                    g.Clear(Color.Transparent);
+
+                    #region Draw frame
+                    GraphicsPath gpKhung = new GraphicsPath();
+                    gpKhung.Reset();
+                    //Left
+                    Rectangle rect11 = new Rectangle(0, pbHEIGHT - (rCircle * 2), (rCircle * 2), (rCircle * 2));
+                    gpKhung.AddArc(rect11, 90, 90);
+                    gpKhung.AddLine(new Point(0, rCircle), new Point(0, pbHEIGHT - rCircle));
+                    Rectangle rect21 = new Rectangle(0, 0, (rCircle * 2), (rCircle * 2));
+                    gpKhung.AddArc(rect21, 180, 90);
+                    //Top
+                    gpKhung.AddLine(new Point(0, 0), new Point(pbWIDTH - rCircle, 0));
+                    //Right
+                    Rectangle rectRUK = new Rectangle(pbWIDTH - (rCircle * 2), 0, (rCircle * 2), (rCircle * 2));
+                    gpKhung.AddArc(rectRUK, 270, 90);
+                    gpKhung.AddLine(new Point(pbWIDTH, rCircle), new Point(pbWIDTH, pbHEIGHT - rCircle));
+                    Rectangle rectRBK = new Rectangle(pbWIDTH - (rCircle * 2), pbHEIGHT - (rCircle * 2), (rCircle * 2), (rCircle * 2));
+                    gpKhung.AddArc(rectRBK, 0, 90);
+                    //Bottom
+                    gpKhung.AddLine(new Point(0, pbHEIGHT), new Point(pbWIDTH - rCircle, pbHEIGHT));
+                    g.SmoothingMode = SmoothingMode.AntiAlias;
+                    g.FillPath(Brushes.Gainsboro, gpKhung);
+                    #endregion
+
+
+                    #region Draw as a percentage inside
+                    GraphicsPath gp = new GraphicsPath();
+                    gp.Reset();
+                    //Left
+                    Rectangle rect1 = new Rectangle(0, pbHEIGHT - (rCircle * 2), (rCircle * 2), (rCircle * 2));
+                    gp.AddArc(rect1, 90, 90);
+                    gp.AddLine(new Point(0, rCircle), new Point(0, pbHEIGHT - rCircle));
+                    Rectangle rect2 = new Rectangle(0, 0, (rCircle * 2), (rCircle * 2));
+                    gp.AddArc(rect2, 180, 90);
+                    //Top
+                    gp.AddLine(new Point(0, 0), new Point((pbComplete * pbWIDTH / 100) - rCircle, 0));
+                    //Right
+                    Rectangle rectRU = new Rectangle((pbComplete * pbWIDTH / 100) - (rCircle * 2), 0, (rCircle * 2), (rCircle * 2));
+                    gp.AddArc(rectRU, 270, 90);
+                    gp.AddLine(new Point((pbComplete * pbWIDTH / 100), rCircle), new Point((pbComplete * pbWIDTH / 100), pbHEIGHT - rCircle));
+                    Rectangle rectRB = new Rectangle((pbComplete * pbWIDTH / 100 - (rCircle * 2)), pbHEIGHT - (rCircle * 2), (rCircle * 2), (rCircle * 2));
+                    gp.AddArc(rectRB, 0, 90);
+                    //Bottom
+                    gp.AddLine(new Point(0, pbHEIGHT), new Point((pbComplete * pbWIDTH / 100) - rCircle, pbHEIGHT));
+                    g.SmoothingMode = SmoothingMode.AntiAlias;
+
+                    //Choose color for the answer
+                    if (item.Name == "picboxAnswer1")
+                    {
+                        if(answerChoose == "A")
+                        {
+                            if (answerChoose == dsNumber[3])
+                            {
+                                g.FillPath(Brushes.SpringGreen, gp);
+                                numberOfRightAnswer++;
+                            }
+                            else
+                            {
+                                g.FillPath(Brushes.Crimson, gp);
+                            }
+                        }
+                        else if(dsNumber[3] == "A")
                         {
                             g.FillPath(Brushes.SpringGreen, gp);
-                            numberOfRightAnswer++;
                         }
                         else
                         {
-                            g.FillPath(Brushes.Crimson, gp);
+                            g.FillPath(Brushes.Silver, gp);
                         }
                     }
-                    else if(dsNumber[3] == "A")
+                    else if (item.Name == "picboxAnswer2")
                     {
-                        g.FillPath(Brushes.SpringGreen, gp);
-                    }
-                    else
-                    {
-                        g.FillPath(Brushes.Silver, gp);
-                    }
-                }
-                else if (item.Name.Substring(item.Name.Length) == "2")
-                {
-                    if (answerChoose == "B")
-                    {
-                        if (answerChoose == dsNumber[3])
+                        if (answerChoose == "B")
+                        {
+                            if (answerChoose == dsNumber[3])
+                            {
+                                g.FillPath(Brushes.SpringGreen, gp);
+                                numberOfRightAnswer++;
+                            }
+                            else
+                            {
+                                g.FillPath(Brushes.Crimson, gp);
+                            }
+                        }
+                        else if (dsNumber[3] == "B")
                         {
                             g.FillPath(Brushes.SpringGreen, gp);
-                            numberOfRightAnswer++;
                         }
                         else
                         {
-                            g.FillPath(Brushes.Crimson, gp);
+                            g.FillPath(Brushes.Silver, gp);
                         }
-                    }
-                    else if (dsNumber[3] == "B")
-                    {
-                        g.FillPath(Brushes.SpringGreen, gp);
                     }
                     else
                     {
-                        g.FillPath(Brushes.Silver, gp);
-                    }
-                }
-                else
-                {
-                    if (answerChoose == "C")
-                    {
-                        if (answerChoose == dsNumber[3])
+                        if (answerChoose == "C")
+                        {
+                            if (answerChoose == dsNumber[3])
+                            {
+                                g.FillPath(Brushes.SpringGreen, gp);
+                                numberOfRightAnswer++;
+                            }
+                            else
+                            {
+                                g.FillPath(Brushes.Crimson, gp);
+                            }
+                        }
+                        else if (dsNumber[3] == "C")
                         {
                             g.FillPath(Brushes.SpringGreen, gp);
-                            numberOfRightAnswer++;
                         }
                         else
                         {
-                            g.FillPath(Brushes.Crimson, gp);
+                            g.FillPath(Brushes.Silver, gp);
                         }
                     }
-                    else if (dsNumber[3] == "C")
-                    {
-                        g.FillPath(Brushes.SpringGreen, gp);
-                    }
-                    else
-                    {
-                        g.FillPath(Brushes.Silver, gp);
-                    }
-                }
 
                 
 
-                if (rCircle * 2 > (pbComplete * pbWIDTH / 100))
-                {
-                    GraphicsPath gpKhungChe = new GraphicsPath();
-                    gpKhungChe.Reset();
-                    gpKhungChe.AddLine(new Point(-2, pbHEIGHT + 2), new Point(-2, -2));
-                    gpKhungChe.AddLine(new Point(-2, -2), new Point(rCircle, -2));
-                    Rectangle rectKCU = new Rectangle(0, 0, (rCircle * 2), (rCircle * 2));
-                    gpKhungChe.AddArc(rectKCU, 270, -90);
-                    gpKhungChe.AddLine(new Point(0, rCircle), new Point(0, pbHEIGHT - rCircle));
-                    Rectangle rectKCB = new Rectangle(0, pbHEIGHT - (rCircle * 2), (rCircle * 2), (rCircle * 2));
-                    gpKhungChe.AddArc(rectKCB, 180, -90);
-                    gpKhungChe.AddLine(new Point(rCircle, pbHEIGHT + 2), new Point(-2, pbHEIGHT + 2));
-                    g.FillPath(Brushes.White, gpKhungChe);
-                }
+                    if (rCircle * 2 > (pbComplete * pbWIDTH / 100))
+                    {
+                        GraphicsPath gpKhungChe = new GraphicsPath();
+                        gpKhungChe.Reset();
+                        gpKhungChe.AddLine(new Point(-2, pbHEIGHT + 2), new Point(-2, -2));
+                        gpKhungChe.AddLine(new Point(-2, -2), new Point(rCircle, -2));
+                        Rectangle rectKCU = new Rectangle(0, 0, (rCircle * 2), (rCircle * 2));
+                        gpKhungChe.AddArc(rectKCU, 270, -90);
+                        gpKhungChe.AddLine(new Point(0, rCircle), new Point(0, pbHEIGHT - rCircle));
+                        Rectangle rectKCB = new Rectangle(0, pbHEIGHT - (rCircle * 2), (rCircle * 2), (rCircle * 2));
+                        gpKhungChe.AddArc(rectKCB, 180, -90);
+                        gpKhungChe.AddLine(new Point(rCircle, pbHEIGHT + 2), new Point(-2, pbHEIGHT + 2));
+                        g.FillPath(Brushes.White, gpKhungChe);
+                    }
 
 
-                //Draw the answer and number player answer
-                string numberStr = dsNumber[i];
-                string text = "";
-                if (i == 0)
-                {
-                    text = question._a_Answer;
+                    //Draw the answer and number player answer
+                    string numberStr = dsNumber[i];
+                    string text = "";
+                    if (i == 0)
+                    {
+                        text = question._a_Answer;
+                    }
+                    else if (i == 1)
+                    {
+                        text = question._b_Answer;
+                    }
+                    else
+                    {
+                        text = question._c_Answer;
+                    }
+                    int sizeFont = 9;
+                    g.DrawString(numberStr, new Font("Arial", sizeFont), Brushes.Black, new PointF(pbWIDTH - 25, (pbHEIGHT / 2) - (sizeFont / 2)));
+                    g.DrawString(text, new Font("Arial", sizeFont), Brushes.Black, new PointF( 5, (pbHEIGHT / 2) - (sizeFont / 2)));
+                    #endregion
+                    
+                    //Load bitmap in picturebox
+                    item.Image = bmp;               
+                
+                    pbComplete = 0;
+                    i++;
                 }
-                else if (i == 1)
-                {
-                    text = question._b_Answer;
-                }
-                else
-                {
-                    text = question._c_Answer;
-                }
-                int sizeFont = 10;
-                g.DrawString(numberStr, new Font("Arial", sizeFont), Brushes.Black, new PointF(pbWIDTH - 30, (pbHEIGHT / 2) - (sizeFont / 2)));
-                g.DrawString(text, new Font("Arial", sizeFont), Brushes.Black, new PointF( 5, (pbHEIGHT / 2) - (sizeFont / 2)));
-                #endregion
-
-                //Load bitmap in picturebox
-                item.Image = bmp;
-                pbComplete = 0;
-                i++;
-            }
+                answerChoose = "D";
+            }));
         }
         #endregion
 
@@ -436,112 +451,6 @@ namespace Client
 
         #endregion
 
-        #region Time answer and handle click answer
-        /// <summary>
-        /// Time of answer the question
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void timeChooseAnswer_Tick(object sender, EventArgs e)
-        {
-            if(timeAnswer < 1)
-            {
-                lbTime.Text = "Hết giờ";
-                if(checkSendAnswer == false)
-                {
-                    Send_Server(answerChoose);
-                    answerChoose = "D";
-                }  
-                
-                timeChooseAnswer.Stop();                
-                return;
-            }
-            timeAnswer--;
-            lbTime.Text = timeAnswer + " giây";
-        }
-
-        /// <summary>
-        /// Click answer
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Answer_Click(object sender, EventArgs e)
-        {
-            PictureBox picbox = (PictureBox)sender;
-            int i = int.Parse(picbox.Name.Substring(picbox.Name.Length - 1));
-            //Get picturebox dimension
-            int pbWIDTH = picbox.Width;
-            int pbHEIGHT = picbox.Height;
-
-            //Rounded corner radius
-            int rCircle = pbHEIGHT * 25 / 100;
-
-            Bitmap bmp = new Bitmap(pbWIDTH, pbHEIGHT);
-            Graphics g = Graphics.FromImage(bmp);
-            //Clear graphics
-            g.Clear(Color.Transparent);
-
-            #region Draw frame
-            GraphicsPath gp = new GraphicsPath();
-            gp.Reset();
-            //Left
-            gp.AddLine(new Point(0, pbHEIGHT), new Point(0, 0));
-            //Top
-            gp.AddLine(new Point(0, 0), new Point(pbWIDTH - rCircle, 0));
-            //Right
-            Rectangle rectRUK = new Rectangle(pbWIDTH - (rCircle * 2), 0, (rCircle * 2), (rCircle * 2));
-            gp.AddArc(rectRUK, 270, 90);
-            gp.AddLine(new Point(pbWIDTH, rCircle), new Point(pbWIDTH, pbHEIGHT - rCircle));
-            Rectangle rectRBK = new Rectangle(pbWIDTH - (rCircle * 2), pbHEIGHT - (rCircle * 2), (rCircle * 2), (rCircle * 2));
-            gp.AddArc(rectRBK, 0, 90);
-            //Bottom
-            gp.AddLine(new Point(0, pbHEIGHT), new Point(pbWIDTH - rCircle, pbHEIGHT));
-            g.SmoothingMode = SmoothingMode.AntiAlias;
-            g.FillPath(Brushes.HotPink, gp);
-            #endregion
-
-            //Draw the answer
-            string text = "";
-            if (picbox.Name.Substring(picbox.Name.Length - 1) == "1")
-            {
-                text = question._a_Answer;
-                answerChoose = "A";
-                Send_Server(answerChoose);
-                checkSendAnswer = true;
-                answerChoose = "D";
-            }
-            else if (picbox.Name.Substring(picbox.Name.Length - 1) == "2")
-            {
-                text = question._b_Answer;
-                answerChoose = "B";
-                Send_Server(answerChoose);
-                checkSendAnswer = true;
-                answerChoose = "D";
-            }
-            else
-            {
-                text = question._c_Answer;
-                answerChoose = "C";
-                Send_Server(answerChoose);
-                checkSendAnswer = true;
-                answerChoose = "D";
-            }
-
-            int sizeFont = 10;
-            g.DrawString(text, new Font("Arial", sizeFont), Brushes.Black, new PointF(5, (pbHEIGHT / 2) - (sizeFont / 2)));
-
-            //Load bitmap in picturebox
-            picbox.Image = bmp;
-            picbox.BackColor = Color.DarkTurquoise;
-
-            //Remove handle click after click a answer
-            foreach(PictureBox item in listAnswerButton)
-            {
-                item.Click -= Answer_Click;
-            }
-        }
-        #endregion
-
         #region Connect, send and receive from Server
         /// <summary>
         /// Tạo chuỗi byte để gửi qua Socket
@@ -585,7 +494,7 @@ namespace Client
             catch
             {
                 MessageBox.Show("Không thể kết nối đến server", "Lỗi!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                this.Close();
             }
 
             Thread listen = new Thread(Receive_Server);
@@ -628,11 +537,20 @@ namespace Client
             {
                 while (true)
                 {
-                    //Tạo mảng byte nhận về thông tin 5MB
+                    //Tạo mảng byte nhận về thông tin 1MB
                     byte[] data = new byte[1024 * 1000];
-                    client.Receive(data);
+                    string message = "";
+                    try
+                    {
+                        client.Receive(data);
+                    }
+                    catch
+                    {
+                        message = "";
+                    }
+                    
 
-                    string message = (string)Deserialize_Client(data);
+                    message = (string)Deserialize_Client(data);
 
                     if(message.Substring(0,2) == "id")
                     {
@@ -641,17 +559,28 @@ namespace Client
                     else if(message.Substring(0,2) == "qs")
                     {
                         question = ParseQuestion(message.Substring(2));
-                        Draw_Question();
+
+                        Draw_Question(question._contentQuestion);
                         Draw_Answer(question._a_Answer, listAnswerButton[0]);
                         Draw_Answer(question._b_Answer, listAnswerButton[1]);
                         Draw_Answer(question._c_Answer, listAnswerButton[2]);
-                        foreach(PictureBox item in listAnswerButton)
-                        {
-                            item.Click += Answer_Click;
-                        }
+
                         timeAnswer = 15;
                         checkSendAnswer = false;
-                        timeChooseAnswer.Start();
+                        this.Invoke(new Action(() =>
+                        {
+                            foreach (PictureBox item in listAnswerButton)
+                            {
+                                item.Click += Answer_Click;
+                            }
+                            lbTime.Text = timeAnswer + " giây";
+                        }));                        
+
+                        ///bắt đầu tính giờ
+                        this.Invoke(new Action(() =>
+                        {
+                            timeChooseAnswer.Start();
+                        }));
                     }
                     else if(message.Substring(0,2) == "as")
                     {
@@ -678,8 +607,18 @@ namespace Client
                         {
                             totalNumberPlayer += int.Parse(dsNumber[i]);
                         }
+
                         Draw_AnswerTrue(totalNumberPlayer);
-                        lbTime.Text = "";
+
+                        this.Invoke(new Action(() =>
+                        {
+                            lbTime.Text = "";
+                        }));                        
+                    }
+                    else if(message.Substring(0, 2) == "kq")
+                    {
+                        string kq = message.Substring(2);
+                        MessageBox.Show("Danh sách người thắng: " + kq, "Thông báo", MessageBoxButtons.OK);
                     }
                 }
             }
@@ -725,6 +664,126 @@ namespace Client
             qs._c_Answer = data.Substring(start, end - start);
 
             return qs;
+        }
+        #endregion
+
+        #region Time answer and handle click answer
+        /// <summary>
+        /// Time of answer the question
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void timeChooseAnswer_Tick(object sender, EventArgs e)
+        {
+            if (timeAnswer <= 0)
+            {
+                lbTime.Text = "Hết giờ!";
+                timeChooseAnswer.Stop();                
+                foreach(PictureBox item in listAnswerButton)
+                {
+                    item.Click -= Answer_Click;
+                }
+                if (checkSendAnswer == false)
+                {
+                    answerChoose = "D";
+                    Send_Server(answerChoose);
+                }
+                else
+                {
+                    checkSendAnswer = false;
+                }
+            }
+            else
+            {
+                timeAnswer--;
+                lbTime.Text = timeAnswer + " giây";                                
+            }  
+        }
+
+        /// <summary>
+        /// Click answer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Answer_Click(object sender, EventArgs e)
+        {
+            this.Invoke(new Action(() =>
+            {
+                PictureBox picbox = (PictureBox)sender;
+                int i = int.Parse(picbox.Name.Substring(picbox.Name.Length - 1));
+                //Get picturebox dimension
+                int pbWIDTH = picbox.Width;
+                int pbHEIGHT = picbox.Height;
+
+                //Rounded corner radius
+                int rCircle = pbHEIGHT * 25 / 100;
+
+                Bitmap bmp = new Bitmap(pbWIDTH, pbHEIGHT);
+                Graphics g = Graphics.FromImage(bmp);
+                //Clear graphics
+                g.Clear(Color.Transparent);
+
+                #region Draw frame
+                GraphicsPath gp = new GraphicsPath();
+                gp.Reset();
+                //Left
+                Rectangle rect11 = new Rectangle(0, pbHEIGHT - (rCircle * 2), (rCircle * 2), (rCircle * 2));
+                gp.AddArc(rect11, 90, 90);
+                gp.AddLine(new Point(0, rCircle), new Point(0, pbHEIGHT - rCircle));
+                Rectangle rect21 = new Rectangle(0, 0, (rCircle * 2), (rCircle * 2));
+                gp.AddArc(rect21, 180, 90);
+                //Top
+                gp.AddLine(new Point(0, 0), new Point(pbWIDTH - rCircle, 0));
+                //Right
+                Rectangle rectRUK = new Rectangle(pbWIDTH - (rCircle * 2), 0, (rCircle * 2), (rCircle * 2));
+                gp.AddArc(rectRUK, 270, 90);
+                gp.AddLine(new Point(pbWIDTH, rCircle), new Point(pbWIDTH, pbHEIGHT - rCircle));
+                Rectangle rectRBK = new Rectangle(pbWIDTH - (rCircle * 2), pbHEIGHT - (rCircle * 2), (rCircle * 2), (rCircle * 2));
+                gp.AddArc(rectRBK, 0, 90);
+                //Bottom
+                gp.AddLine(new Point(0, pbHEIGHT), new Point(pbWIDTH - rCircle, pbHEIGHT));
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                g.FillPath(Brushes.HotPink, gp);
+                #endregion
+            
+                //Draw the answer
+                string text = "";
+                if (picbox.Name.Substring(picbox.Name.Length - 1) == "1")
+                {
+                    text = question._a_Answer;
+                    answerChoose = "A";
+                    Send_Server(answerChoose);
+                    checkSendAnswer = true;
+                }
+                else if (picbox.Name.Substring(picbox.Name.Length - 1) == "2")
+                {
+                    text = question._b_Answer;
+                    answerChoose = "B";
+                    Send_Server(answerChoose);
+                    checkSendAnswer = true;
+                }
+                else
+                {
+                    text = question._c_Answer;
+                    answerChoose = "C";
+                    Send_Server(answerChoose);
+                    checkSendAnswer = true;
+                }
+
+                int sizeFont = 10;
+                g.DrawString(text, new Font("Arial", sizeFont), Brushes.Black, new PointF(5, (pbHEIGHT / 2) - (sizeFont / 2)));
+            
+                //Load bitmap in picturebox
+                picbox.Image = bmp;
+                picbox.BackColor = Color.White;
+
+                //Remove handle click after click a answer
+                foreach (PictureBox item in listAnswerButton)
+                {
+                    item.Click -= Answer_Click;
+                }
+            }));
+            
         }
         #endregion
     }

@@ -1,136 +1,143 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Questions>
   <Question ID="1">
-    <_contentQuestion>1 + 1 = </_contentQuestion>
-    <_a_Answer>2</_a_Answer>
-    <_b_Answer>3</_b_Answer>
-    <_c_Answer>4</_c_Answer>
-    <RightAnswer>A</RightAnswer>
+    <_contentQuestion>Loài động vật nào còn tồn tại có tốc độ nhanh nhất thế giới?</_contentQuestion>
+    <_a_Answer>Báo</_a_Answer>
+    <_b_Answer>Chim cắt</_b_Answer>
+    <_c_Answer>Cá voi sát thủ</_c_Answer>
+    <RightAnswer>B</RightAnswer>
   </Question>
   <Question ID="2">
-    <_contentQuestion>Ngày Quốc khánh của nước Cộng hòa Xã hội Chủ nghĩa Việt Nam</_contentQuestion>
+    <_contentQuestion>Ngày Quốc khánh của nước Cộng hòa Xã hội Chủ nghĩa Việt Nam?</_contentQuestion>
     <_a_Answer>30 / 4</_a_Answer>
     <_b_Answer>5 / 9</_b_Answer>
     <_c_Answer>2 / 9</_c_Answer>
     <RightAnswer>C</RightAnswer>
   </Question>
   <Question ID="3">
-    <_contentQuestion>Diện tích của nước Cộng hòa Xã hội Chủ nghĩa Việt Nam (theo wikipedia ) : </_contentQuestion>
+    <_contentQuestion>Diện tích của nước Cộng hòa Xã hội Chủ nghĩa Việt Nam (theo wikipedia )? </_contentQuestion>
     <_a_Answer>391.212 km2</_a_Answer>
     <_b_Answer>361.212 km2</_b_Answer>
     <_c_Answer>331.212 km2</_c_Answer>
     <RightAnswer>C</RightAnswer>
   </Question>
   <Question ID="4">
-    <_contentQuestion>Nước Việt Nam có bao nhiêu dân tộc (theo wikipedia) :</_contentQuestion>
+    <_contentQuestion>Nước Việt Nam có bao nhiêu dân tộc (theo wikipedia)?</_contentQuestion>
     <_a_Answer>53 dân dộc</_a_Answer>
     <_b_Answer>54 dân tộc</_b_Answer>
     <_c_Answer>55 dân tộc</_c_Answer>
     <RightAnswer>B</RightAnswer>
   </Question>
   <Question ID="5">
-    <_contentQuestion>Hiện tại , ai là người giàu nhất thế giới (theo wikipedia):</_contentQuestion>
+    <_contentQuestion>Hiện tại , ai là người giàu nhất thế giới (theo wikipedia)?</_contentQuestion>
     <_a_Answer>Jeff Bezos</_a_Answer>
     <_b_Answer>Mark Zuckerberg</_b_Answer>
     <_c_Answer>Bill Gates</_c_Answer>
     <RightAnswer>A</RightAnswer>
   </Question>
   <Question ID="6">
-    <_contentQuestion>Hai trái bom nguyên tử của nước Mỹ thả xuống nước Nhật mang tên gì :</_contentQuestion>
-    <_a_Answer>Little Boy và Fat Man</_a_Answer>
-    <_b_Answer>Hiroshima và Nagasaki</_b_Answer>
-    <_c_Answer>Little Man và Fat Boy</_c_Answer>
+    <_contentQuestion>Hai trái bom nguyên tử của Mỹ thả xuống Nhật mang tên gì?</_contentQuestion>
+    <_a_Answer>Little Boy, Fat Man</_a_Answer>
+    <_b_Answer>Hiroshima, Nagasaki</_b_Answer>
+    <_c_Answer>Little Man, Fat Boy</_c_Answer>
     <RightAnswer>A</RightAnswer>
   </Question>
   <Question ID="7">
-    <_contentQuestion>Hai thành phố mà bị bom nguyên tử của nước Mỹ thả xuống nước Nhật mang tên gì :</_contentQuestion>
-    <_a_Answer>Tokyo và Kyoto</_a_Answer>
-    <_b_Answer>Hiroshima và Nagasaki</_b_Answer>
-    <_c_Answer>Kyoto và Nagasaki</_c_Answer>
-    <RightAnswer>A</RightAnswer>
+    <_contentQuestion>Hai thành phố của Nhật bị Mỹ thả bom nguyên tử tên là gì?</_contentQuestion>
+    <_a_Answer>Tokyo, Kyoto</_a_Answer>
+    <_b_Answer>Hiroshima, Nagasaki</_b_Answer>
+    <_c_Answer>Kyoto, Nagasaki</_c_Answer>
+    <RightAnswer>B</RightAnswer>
   </Question>
   <Question ID="8">
-    <_contentQuestion>Một nhiệm kì của Tổng Bí thư Đảng Cộng sản Việt Nam là bao nhiêu năm : </_contentQuestion>
-    <_a_Answer>3</_a_Answer>
-    <_b_Answer>4</_b_Answer>
-    <_c_Answer>5</_c_Answer>
+    <_contentQuestion>Đâu là một quốc gia cổ đại của cư dân Bách Việt, được xem là quốc hiệu đầu tiên của nước Việt?</_contentQuestion>
+    <_a_Answer>Xích Nam</_a_Answer>
+    <_b_Answer>Xích Việt</_b_Answer>
+    <_c_Answer>Xích Quỷ</_c_Answer>
     <RightAnswer>C</RightAnswer>
   </Question>
   <Question ID="9">
-    <_contentQuestion>Một nhiệm kì của Chủ tịch nước Cộng hòa xã hội chủ nghĩa Việt Nam là bao nhiêu năm :  </_contentQuestion>
-    <_a_Answer>3</_a_Answer>
-    <_b_Answer>4</_b_Answer>
-    <_c_Answer>5</_c_Answer>
-    <RightAnswer>C</RightAnswer>
-  </Question>
-  <Question ID="10">
-    <_contentQuestion>Ai hiện đang là Chủ tịch nước Cộng hòa xã hội chủ nghĩa Việt Nam :  </_contentQuestion>
-    <_a_Answer>Nguyễn Phú Trọng</_a_Answer>
-    <_b_Answer>Đặng Thị Ngọc Thịnh</_b_Answer>
-    <_c_Answer>Trần Đại Quang</_c_Answer>
+    <_contentQuestion>Châu lục nào được tạo thành bởi 2 mảng lục địa?</_contentQuestion>
+    <_a_Answer>Châu Mỹ</_a_Answer>
+    <_b_Answer>Châu Á</_b_Answer>
+    <_c_Answer>Chau Úc</_c_Answer>
     <RightAnswer>A</RightAnswer>
   </Question>
+  <Question ID="10">
+    <_contentQuestion>Mảng lục địa nào chứa 2 châu lục?</_contentQuestion>
+    <_a_Answer>Lục địa Phi-Âu</_a_Answer>
+    <_b_Answer>Lục địa Á-Phi</_b_Answer>
+    <_c_Answer>Lục địa Á-Âu</_c_Answer>
+    <RightAnswer>C</RightAnswer>
+  </Question>
   <Question ID="11">
-    <_contentQuestion>Ai hiện đang là Tổng Bí thư nước Cộng hòa xã hội chủ nghĩa Việt Nam :  </_contentQuestion>
+    <_contentQuestion>Tổng tư lệnh nước Cộng hòa xã hội chủ nghĩa Việt Nam là ai?</_contentQuestion>
     <_a_Answer>Nguyễn Phú Trọng</_a_Answer>
-    <_b_Answer>Đặng Thị Ngọc Thịnh</_b_Answer>
-    <_c_Answer>Trần Đại Quang</_c_Answer>
+    <_b_Answer>Tô Lâm</_b_Answer>
+    <_c_Answer>Ngô Xuân Lịch</_c_Answer>
     <RightAnswer>A</RightAnswer>
   </Question>
   <Question ID="12">
-    <_contentQuestion>"What is your name ?" . Nghĩa là gì :</_contentQuestion>
-    <_a_Answer>Tên của cha bạn là gì ?</_a_Answer>
-    <_b_Answer>Tên của mẹ ban là gì ?</_b_Answer>
-    <_c_Answer>Tên của bạn là gì ?</_c_Answer>
-    <RightAnswer>C</RightAnswer>
+    <_contentQuestion>Bộ trưởng bộ nào sau đây có nhiệm kỳ không xác định?</_contentQuestion>
+    <_a_Answer>Bộ Y Tế</_a_Answer>
+    <_b_Answer>Bộ Công An</_b_Answer>
+    <_c_Answer>Bộ Quốc Phòng</_c_Answer>
+    <RightAnswer>B</RightAnswer>
   </Question>
   <Question ID="13">
-    <_contentQuestion>Hiện tại chủng virus corona đang bùng phát . Chúng ta cần làm gì :</_contentQuestion>
-    <_a_Answer>Tụ tập nơi đông người</_a_Answer>
-    <_b_Answer>Đeo khẩu trang</_b_Answer>
-    <_c_Answer>Đi lại thoải mái</_c_Answer>
+    <_contentQuestion>Theo Ủy ban Quốc tế về Phân loại Virus (ICTV), virus Corona có tên gọi tắt chính thức là gì?</_contentQuestion>
+    <_a_Answer>2019-nCoV</_a_Answer>
+    <_b_Answer>SARS-CoV-2</_b_Answer>
+    <_c_Answer>COVID-19</_c_Answer>
     <RightAnswer>B</RightAnswer>
   </Question>
   <Question ID="14">
-    <_contentQuestion>Tên đầy đủ của virus corona là gì ?</_contentQuestion>
-    <_a_Answer>SARS-CoV-2</_a_Answer>
-    <_b_Answer>SARS-CoV-1</_b_Answer>
-    <_c_Answer>SARS-CoV-3</_c_Answer>
+    <_contentQuestion>Lý Thường Kiệt là danh tướng trong lịch sử Việt Nam, theo Thần phổ Lý Thường Kiệt ông tên thật là gì?</_contentQuestion>
+    <_a_Answer>Ngô Tuấn</_a_Answer>
+    <_b_Answer>Lý Tuấn</_b_Answer>
+    <_c_Answer>Quách Tuấn</_c_Answer>
     <RightAnswer>A</RightAnswer>
   </Question>
   <Question ID="15">
-    <_contentQuestion>Nơi phát dịch đầu tiên của virus corona là ở đâu ?</_contentQuestion>
-    <_a_Answer>Mỹ</_a_Answer>
-    <_b_Answer>Trung Quốc</_b_Answer>
-    <_c_Answer>Anh</_c_Answer>
+    <_contentQuestion>Đâu không phải là tên gọi cũ của Thăng Long?</_contentQuestion>
+    <_a_Answer>Cổ Loa</_a_Answer>
+    <_b_Answer>Thiên Trường</_b_Answer>
+    <_c_Answer>Đông Kinh</_c_Answer>
     <RightAnswer>B</RightAnswer>
   </Question>
   <Question ID="16">
-    <_contentQuestion>Bệnh nhân số 91 là người nước nào ?</_contentQuestion>
-    <_a_Answer>Tây Ban Nha</_a_Answer>
-    <_b_Answer>Ý</_b_Answer>
-    <_c_Answer>Anh</_c_Answer>
+    <_contentQuestion>Bộ tộc Aka là bộ tộc đặc biệt vì đàn ông cho con bú bằng chính tia sữa của mình, vậy bộ tộc này ở đâu?</_contentQuestion>
+    <_a_Answer>Bắc Phi</_a_Answer>
+    <_b_Answer>Nam phi</_b_Answer>
+    <_c_Answer>Trung Phi</_c_Answer>
     <RightAnswer>C</RightAnswer>
   </Question>
   <Question ID="17">
-    <_contentQuestion>Khi có các triệu chứng như ho , sốt , mỏi cơ thì nên làm gì ?</_contentQuestion>
-    <_a_Answer>Đi đến ngay bệnh viện</_a_Answer>
-    <_b_Answer>Đi vòng vòng ngoài đường</_b_Answer>
-    <_c_Answer>Đi đến những nơi đông người</_c_Answer>
+    <_contentQuestion>Con số nào không được dùng để đánh số thứ tự cho nồi cơm điệm của các hãng sản xuất?</_contentQuestion>
+    <_a_Answer>1509</_a_Answer>
+    <_b_Answer>13</_b_Answer>
+    <_c_Answer>1309</_c_Answer>
     <RightAnswer>A</RightAnswer>
   </Question>
   <Question ID="18">
-    <_contentQuestion>Số nào là số nguyên tố ?</_contentQuestion>
-    <_a_Answer>12</_a_Answer>
-    <_b_Answer>10</_b_Answer>
-    <_c_Answer>11 </_c_Answer>
+    <_contentQuestion>Số hoàn hảo N là số có tổng các ước của N (không kể N) bằng chính N, vậy số hoàn hỏa tiếp theo của 496 là?</_contentQuestion>
+    <_a_Answer>2048</_a_Answer>
+    <_b_Answer>4096</_b_Answer>
+    <_c_Answer>8128</_c_Answer>
     <RightAnswer>C</RightAnswer>
   </Question>
   <Question ID="19">
-    <_contentQuestion>2 + 2</_contentQuestion>
-    <_a_Answer>4</_a_Answer>
-    <_b_Answer>5</_b_Answer>
-    <_c_Answer>6</_c_Answer>
-    <RightAnswer>A</RightAnswer>
+    <_contentQuestion>Bộ phận nào sau đây từng tồn tại trên cơ thể người, nhưng đã bị tiến hóa "tiêu diệt"</_contentQuestion>
+    <_a_Answer>Lông</_a_Answer>
+    <_b_Answer>Xương cùn</_b_Answer>
+    <_c_Answer>Cơ Tai</_c_Answer>
+    <RightAnswer>C</RightAnswer>
+  </Question>
+  <Question ID="20">
+    <_contentQuestion>Hành tinh nào trong hệ mặt trời không mang tên của một vị thần?</_contentQuestion>
+    <_a_Answer>Mặt Trời</_a_Answer>
+    <_b_Answer>Sao Hỏa</_b_Answer>
+    <_c_Answer>Trái Đất</_c_Answer>
+    <RightAnswer>C</RightAnswer>
   </Question>
 </Questions>
