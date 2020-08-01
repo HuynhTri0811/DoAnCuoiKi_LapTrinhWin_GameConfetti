@@ -553,6 +553,12 @@ namespace Server
                             if (idName == playerConnecting._iDPlayer)
                             {
                                 playerConnecting.tcpClient = client;
+
+                                string reId = "reid" + playerConnecting._iDPlayer.ToString()+"qs"+ListQuestionsUsedTo.Count.ToString();
+
+                                bytes = Utils.ObjectToByteArray(reId);
+                                client.Send(bytes);
+
                                 return;
                             }
                             else
