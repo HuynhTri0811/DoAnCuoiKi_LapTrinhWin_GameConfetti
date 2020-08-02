@@ -339,10 +339,6 @@ namespace Server
                 }
                 catch
                 {
-                    MessageBox.Show("Không thể gửi câu hỏi cho người chơi có tên : " + player._namePlayer,
-                                    "Thông báo",
-                                    MessageBoxButtons.OK,
-                                    MessageBoxIcon.Error);
                 }
             }
 
@@ -524,18 +520,87 @@ namespace Server
             client.Receive(bytes);
 
             string name = Utils.ByteArrayToObject(bytes);
-            Player player = new Player(count + 1, CodePlayer, name, client); // Khởi tạo người chơi
+            foreach(Player playerConnecting in ListPlayersConnecting)
+            {
 
-            ListPlayersConnecting.Add(player); // Thêm người chơi vào List
+                /*
+                 * Kiểm tra player có tồn tại hay không 
+                 * Bước 1 . Gửi 1 yêu cầu cho client để xác nhận đã trùng tên
+                 * Bước 2 . Client gửi lại 1 mã chứa id
+                 * Bước 3 . Nếu mã đó đã tồn tại thì gán lại
+                 * Bước 4 . Nếu không tồn tại thì tạo ra player mới
+                 */
 
-            bytes = Utils.ObjectToByteArray("id" + player._iDPlayer.ToString());
+                string abc = "11asdxzcvda";
+                bytes = Utils.ObjectToByteArray(abc);
+                if(name == playerConnecting._namePlayer)
+                {
+                    try
+                    {
+                        playerConnecting.tcpClient.Send(bytes);
+                    }
+                    catch
+                    {
+                        bytes = Utils.ObjectToByteArray("ycid");
 
-            client.Send(bytes);
+                        client.Send(bytes);
 
-            LoadDanhSach();
-            count++;
-            this.ChangeCountLabelPlayer(count.ToString());
+                        client.Receive(bytes);
+
+                        try
+                        {
+                            int idName = int.Parse(Utils.ByteArrayToObject(bytes));
+                            if (idName == playerConnecting._iDPlayer)
+                            {
+                                playerConnecting.tcpClient = client;
+                                return;
+                            }
+                            else
+                            {
+                                CreateNewPlayer(count + 1, CodePlayer, name, client);
+                                return;
+                            }
+                        }
+                        catch
+                        {
+
+                        }
+                    }
+
+
+                    
+                }
+            }
+
+            CreateNewPlayer(count + 1, CodePlayer, name, client); // Khởi tạo người chơi
+
+
+
         }
+
+        public void CreateNewPlayer(int id,string _Coloder,string _name,Socket client)
+        {
+            try
+            {
+                byte[] bytes = new byte[1024];
+                Player player = new Player(id, _Coloder, _name, client);
+                ListPlayersConnecting.Add(player); // Thêm người chơi vào List
+
+                bytes = Utils.ObjectToByteArray("id" + player._iDPlayer.ToString());
+
+                client.Send(bytes);
+
+                LoadDanhSach();
+                count++;
+                this.ChangeCountLabelPlayer(count.ToString());
+            }
+            catch
+            {
+                MessageBox.Show("Không thế tạo người chơi mới .", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
         public void AddListViewData(ListView list, string name,string value)
         {
             if (list.InvokeRequired)
