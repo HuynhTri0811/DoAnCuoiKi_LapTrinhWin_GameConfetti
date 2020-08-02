@@ -573,11 +573,13 @@ namespace Client
                     else if(message.Substring(0,2) == "re")
                     {
                         iD = int.Parse(message.Substring(4, message.IndexOf("qs") - 4));
-                        numberQuestion = int.Parse(message.Substring(message.IndexOf("qs") + 2, (message.Length - (message.IndexOf("qs") + 2))));
+                        numberQuestion = int.Parse(message.Substring(message.IndexOf("qs") + 2, (message.IndexOf("kq") - (message.IndexOf("qs") + 2))));
+                        numberOfRightAnswer = int.Parse(message.Substring(message.IndexOf("kq") + 2, (message.Length - (message.IndexOf("kq") + 2))));
                         this.Invoke(new Action(() =>
                         {
                             lbIdPlayer.Text = iD.ToString();
                             lbNumberQuestion.Text = "Câu " + numberQuestion.ToString();
+                            lbNumberASTrue.Text = numberOfRightAnswer + "/10";
                         }));
                     }
                     else if(message.Substring(0,2) == "qs")
