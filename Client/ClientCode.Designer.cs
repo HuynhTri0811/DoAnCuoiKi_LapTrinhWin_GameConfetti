@@ -101,7 +101,7 @@
             this.txtCodeClient.PasswordChar = '\0';
             this.txtCodeClient.Size = new System.Drawing.Size(188, 34);
             this.txtCodeClient.TabIndex = 2;
-            this.txtCodeClient.Text = "Tên của bạn";
+            this.txtCodeClient.Text = "ID của bạn";
             this.txtCodeClient.textboxRadius = 15;
             this.txtCodeClient.UseSystemPasswordChar = false;
             // 

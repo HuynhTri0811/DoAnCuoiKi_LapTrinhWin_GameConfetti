@@ -41,6 +41,11 @@
             this.lbNameClient = new System.Windows.Forms.Label();
             this.tooltipShowTitle = new System.Windows.Forms.ToolTip(this.components);
             this.timeChooseAnswer = new System.Windows.Forms.Timer(this.components);
+            this.lbNumberQuestion = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lbNumberASTrue = new System.Windows.Forms.Label();
+            this.lbIdPlayer = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.tblpnQuestion.SuspendLayout();
             this.tplpnAnswer.SuspendLayout();
@@ -52,6 +57,11 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel2.Controls.Add(this.lbIdPlayer);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.lbNumberASTrue);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.lbNumberQuestion);
             this.panel2.Controls.Add(this.lbTime);
             this.panel2.Controls.Add(this.tblpnQuestion);
             this.panel2.Location = new System.Drawing.Point(0, 51);
@@ -63,7 +73,7 @@
             // 
             this.lbTime.AutoSize = true;
             this.lbTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTime.Location = new System.Drawing.Point(33, 261);
+            this.lbTime.Location = new System.Drawing.Point(464, 259);
             this.lbTime.Name = "lbTime";
             this.lbTime.Size = new System.Drawing.Size(61, 17);
             this.lbTime.TabIndex = 1;
@@ -170,6 +180,56 @@
             this.timeChooseAnswer.Interval = 1000;
             this.timeChooseAnswer.Tick += new System.EventHandler(this.timeChooseAnswer_Tick);
             // 
+            // lbNumberQuestion
+            // 
+            this.lbNumberQuestion.AutoSize = true;
+            this.lbNumberQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbNumberQuestion.Location = new System.Drawing.Point(72, 259);
+            this.lbNumberQuestion.Name = "lbNumberQuestion";
+            this.lbNumberQuestion.Size = new System.Drawing.Size(50, 17);
+            this.lbNumberQuestion.TabIndex = 2;
+            this.lbNumberQuestion.Text = "Câu 1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(3, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 17);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Câu đúng:";
+            // 
+            // lbNumberASTrue
+            // 
+            this.lbNumberASTrue.AutoSize = true;
+            this.lbNumberASTrue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbNumberASTrue.Location = new System.Drawing.Point(81, 10);
+            this.lbNumberASTrue.Name = "lbNumberASTrue";
+            this.lbNumberASTrue.Size = new System.Drawing.Size(40, 17);
+            this.lbNumberASTrue.TabIndex = 4;
+            this.lbNumberASTrue.Text = "0/10";
+            // 
+            // lbIdPlayer
+            // 
+            this.lbIdPlayer.AutoSize = true;
+            this.lbIdPlayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbIdPlayer.Location = new System.Drawing.Point(561, 10);
+            this.lbIdPlayer.Name = "lbIdPlayer";
+            this.lbIdPlayer.Size = new System.Drawing.Size(17, 17);
+            this.lbIdPlayer.TabIndex = 6;
+            this.lbIdPlayer.Text = "0";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(474, 10);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(91, 17);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "ID của bạn:";
+            // 
             // ClientMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -215,6 +275,11 @@
         private System.Windows.Forms.PictureBox picboxAnswer1;
         private System.Windows.Forms.Label lbTime;
         public System.Windows.Forms.Timer timeChooseAnswer;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbNumberQuestion;
+        private System.Windows.Forms.Label lbNumberASTrue;
+        private System.Windows.Forms.Label lbIdPlayer;
+        private System.Windows.Forms.Label label3;
     }
 }
 

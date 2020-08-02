@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Client.ClientMain;
 
 namespace Client
 {
@@ -17,11 +18,18 @@ namespace Client
         private bool dragging = false;
         private Point dragCursorPoint;
         private Point dragFormPoint;
+        public SetID send;
         #endregion
 
         public ClientCode()
         {
             InitializeComponent();
+        }
+
+        public ClientCode(SetID sender)
+        {
+            InitializeComponent();
+            this.send = sender;
         }
 
         private void ClientCode_Load(object sender, EventArgs e)
@@ -151,8 +159,30 @@ namespace Client
 
         private void picboxGui_Click(object sender, EventArgs e)
         {
-            string text = txtCodeClient.Text;
-            MessageBox.Show("Code đã nhận: " + text);
+            string id = txtCodeClient.Text;
+            int idSend = 0;
+            if(id != "")
+            {
+                if(id == "ID của bạn")
+                {
+                    MessageBox.Show("Bạn chưa nhập id!", "Thông báo", MessageBoxButtons.OK);
+                    return;
+                }
+                else
+                {
+                    int.TryParse(id, out idSend);
+                    if(idSend == 0)
+                    {
+                        MessageBox.Show("Vui lòng không nhập chữ!", "Thông báo", MessageBoxButtons.OK);
+                        return;
+                    }
+                    else
+                    {
+                        this.send(idSend);
+                        this.Close();
+                    }
+                }
+            } 
         }
 
         private void picboxGui_MouseHover(object sender, EventArgs e)

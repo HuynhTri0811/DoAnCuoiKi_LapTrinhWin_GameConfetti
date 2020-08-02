@@ -8,7 +8,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
-using System.Timers;
 using System.Windows.Forms;
 
 namespace Client
@@ -27,12 +26,14 @@ namespace Client
         string name_Client;
         int port;
         string answerChoose = "D";
-        int iD;
         string[] dsNumber = new string[] { "0", "0", "0", "A"};
         Question question = new Question();
         bool checkSendAnswer = false;
         int timeAnswer = 15;
         int numberOfRightAnswer = 0;
+        int numberQuestion = 0;
+        public delegate void SetID(int id);
+        int iD;
         #endregion
 
         public ClientMain(string ip, int port_sv, string name)
@@ -256,6 +257,7 @@ namespace Client
                             {
                                 g.FillPath(Brushes.SpringGreen, gp);
                                 numberOfRightAnswer++;
+                                lbNumberASTrue.Text = numberOfRightAnswer + "/10";
                             }
                             else
                             {
@@ -279,6 +281,7 @@ namespace Client
                             {
                                 g.FillPath(Brushes.SpringGreen, gp);
                                 numberOfRightAnswer++;
+                                lbNumberASTrue.Text = numberOfRightAnswer + "/10";
                             }
                             else
                             {
@@ -302,6 +305,7 @@ namespace Client
                             {
                                 g.FillPath(Brushes.SpringGreen, gp);
                                 numberOfRightAnswer++;
+                                lbNumberASTrue.Text = numberOfRightAnswer + "/10";
                             }
                             else
                             {
@@ -555,9 +559,24 @@ namespace Client
                     if(message.Substring(0,2) == "id")
                     {
                         iD = int.Parse(message.Substring(2));
+                        this.Invoke(new Action(() =>
+                        {
+                            lbIdPlayer.Text = iD.ToString();
+                        }));
+                    }
+                    else if (message.Substring(0,2) == "yc")
+                    {
+                        ClientCode clcode = new ClientCode(SetIDofPlayer);
+                        clcode.ShowDialog();
+                        Send_Server(iD.ToString());
                     }
                     else if(message.Substring(0,2) == "qs")
                     {
+                        numberQuestion++;
+                        this.Invoke(new Action(() =>
+                        {
+                            lbNumberQuestion.Text = "Câu " + numberQuestion;
+                        }));
                         question = ParseQuestion(message.Substring(2));
 
                         Draw_Question(question._contentQuestion);
@@ -786,5 +805,14 @@ namespace Client
             
         }
         #endregion
+
+        /// <summary>
+        /// Set id from ClientCode send
+        /// </summary>
+        /// <param name="id"></param>
+        public void SetIDofPlayer(int id)
+        {
+            iD = id;
+        }
     }
 }
