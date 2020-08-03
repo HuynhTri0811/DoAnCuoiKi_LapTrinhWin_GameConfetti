@@ -17,19 +17,21 @@ namespace Client
         private bool dragging = false;
         private Point dragCursorPoint;
         private Point dragFormPoint;
-        List<string> listresult = new List<string>();
+        List<PlayerResult> listresult = new List<PlayerResult>();
         string namePlayer = "";
+        int idPlayer;
         #endregion
         public ClientResult()
         {
             InitializeComponent();
         }
 
-        public ClientResult(List<string> lsResult, string name)
+        public ClientResult(List<PlayerResult> lsResult, string name, int id)
         {
             InitializeComponent();
             this.listresult = lsResult;
             this.namePlayer = name;
+            this.idPlayer = id;
         }
 
         private void LoadListView()
@@ -37,21 +39,25 @@ namespace Client
             if (listresult.Count == 0)
             {
                 ListViewItem item2 = new ListViewItem();
-                item2.Text = "";
+                item2.Text = "Không có ai chiến thắng trong trò chơi này!";
                 item2.Font = new Font(listView1.Font, FontStyle.Bold);
 
                 listView1.Items.Add(item2);
             }
-            foreach (string item in listresult)
+            foreach (PlayerResult item in listresult)
             {
-                if (item != namePlayer)
+                if (item.Name != namePlayer)
                 {
-                    listView1.Items.Add(item);
+                    listView1.Items.Add(item.Name);
+                }
+                else if(item.Id != idPlayer)
+                {
+                    listView1.Items.Add(item.Name);
                 }
                 else
                 {
                     ListViewItem item2 = new ListViewItem();
-                    item2.Text = item;
+                    item2.Text = item.Name;
                     item2.Font = new Font(listView1.Font, FontStyle.Bold);
 
                     listView1.Items.Add(item2);
