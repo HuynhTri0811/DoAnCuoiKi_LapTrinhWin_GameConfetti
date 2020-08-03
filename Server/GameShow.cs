@@ -278,7 +278,7 @@ namespace Server
                 {
                     if(player.CountTrueQuestion == 10)
                     {
-                        DanhSachNguoiChoiThang += player._namePlayer + "@";
+                        DanhSachNguoiChoiThang += player._namePlayer + "@"+player._iDPlayer.ToString()+"@";
                     }
                 }
 
@@ -509,6 +509,13 @@ namespace Server
 
             }
         }
+        private void StartServerUDP()
+        {
+            IPEndPoint ipep = new IPEndPoint(IPAddress.Any, 5000);
+
+        }
+
+
         #endregion
 
         #region Function_Thread
