@@ -64,6 +64,12 @@
     <Compile Include="ClientName.Designer.cs">
       <DependentUpon>ClientName.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClientResult.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientResult.Designer.cs">
+      <DependentUpon>ClientResult.cs</DependentUpon>
+    </Compile>
     <Compile Include="MyRectangle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,6 +85,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ClientName.resx">
       <DependentUpon>ClientName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientResult.resx">
+      <DependentUpon>ClientResult.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

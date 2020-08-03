@@ -46,9 +46,9 @@
             this.lbNameClient.ForeColor = System.Drawing.Color.White;
             this.lbNameClient.Location = new System.Drawing.Point(12, 9);
             this.lbNameClient.Name = "lbNameClient";
-            this.lbNameClient.Size = new System.Drawing.Size(248, 31);
+            this.lbNameClient.Size = new System.Drawing.Size(210, 31);
             this.lbNameClient.TabIndex = 6;
-            this.lbNameClient.Text = "Nhập code của bạn";
+            this.lbNameClient.Text = "Nhập id của bạn";
             this.lbNameClient.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ClientCode_MouseDown);
             this.lbNameClient.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ClientCode_MouseMove);
             this.lbNameClient.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ClientCode_MouseUp);

@@ -20,6 +20,7 @@ namespace Client
         private Point dragFormPoint;
 
         List<PictureBox> listAnswerButton = new List<PictureBox>();
+        List<string> listResultPlayer = new List<string>();
 
         IPEndPoint iP;
         Socket client;
@@ -649,7 +650,9 @@ namespace Client
                     else if(message.Substring(0, 2) == "kq")
                     {
                         string kq = message.Substring(2);
-                        MessageBox.Show("Danh sách người thắng: " + kq, "Thông báo", MessageBoxButtons.OK);
+                        ParseListResult(kq);
+                        ClientResult rs = new ClientResult(listResultPlayer, name_Client);
+                        rs.ShowDialog();
                     }
                 }
             }
@@ -817,6 +820,26 @@ namespace Client
             
         }
         #endregion
+
+        /// <summary>
+        /// Parse string to list
+        /// </summary>
+        /// <param name="lsresult"></param>
+        private void ParseListResult(string lsresult)
+        {
+            string str = lsresult;
+            int start = 0;
+            int end = 0;
+
+            while (end <= str.Length && str.Length > 1)
+            {
+                end = str.IndexOf("@");
+                string namePlayer = str.Substring(start, end);
+                listResultPlayer.Add(namePlayer);
+                str = str.Substring(end + 1);
+                end = 0;
+            }
+        }
 
         /// <summary>
         /// Set id from ClientCode send
