@@ -33,7 +33,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lbCountListPlayer = new System.Windows.Forms.Label();
             this.btnNextQuestion = new System.Windows.Forms.Button();
-            this.pnaelStream = new System.Windows.Forms.Panel();
             this.Stream = new System.Windows.Forms.GroupBox();
             this.labelConnect = new System.Windows.Forms.Label();
             this.btnShowAnswer = new System.Windows.Forms.Button();
@@ -61,9 +60,11 @@
             this.btnAddQuestion = new System.Windows.Forms.Button();
             this.btnDeleteQuestion = new System.Windows.Forms.Button();
             this.timerStop = new System.Windows.Forms.Timer(this.components);
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.Stream.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // listviewPlayerConnected
@@ -105,16 +106,9 @@
             this.btnNextQuestion.UseVisualStyleBackColor = true;
             this.btnNextQuestion.Click += new System.EventHandler(this.btnNextQuestion_Click);
             // 
-            // pnaelStream
-            // 
-            this.pnaelStream.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pnaelStream.Location = new System.Drawing.Point(6, 19);
-            this.pnaelStream.Name = "pnaelStream";
-            this.pnaelStream.Size = new System.Drawing.Size(268, 474);
-            this.pnaelStream.TabIndex = 5;
-            // 
             // Stream
             // 
+            this.Stream.Controls.Add(this.pictureBox2);
             this.Stream.Controls.Add(this.labelConnect);
             this.Stream.Controls.Add(this.btnShowAnswer);
             this.Stream.Controls.Add(this.groupBox3);
@@ -122,7 +116,6 @@
             this.Stream.Controls.Add(this.label10);
             this.Stream.Controls.Add(this.label9);
             this.Stream.Controls.Add(this.txtIP);
-            this.Stream.Controls.Add(this.pnaelStream);
             this.Stream.Controls.Add(this.btnNextQuestion);
             this.Stream.Location = new System.Drawing.Point(12, 12);
             this.Stream.Name = "Stream";
@@ -394,6 +387,14 @@
             this.timerStop.Interval = 15000;
             this.timerStop.Tick += new System.EventHandler(this.timerStop_Tick);
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(10, 19);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(264, 469);
+            this.pictureBox2.TabIndex = 12;
+            this.pictureBox2.TabStop = false;
+            // 
             // serverConfetti
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -415,6 +416,7 @@
             this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -425,7 +427,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbCountListPlayer;
         private System.Windows.Forms.Button btnNextQuestion;
-        private System.Windows.Forms.Panel pnaelStream;
         private System.Windows.Forms.GroupBox Stream;
         private System.Windows.Forms.TextBox txtPORT;
         private System.Windows.Forms.Label label10;
@@ -453,6 +454,7 @@
         private System.Windows.Forms.Timer timerStop;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label txtCauHoiCount;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
 

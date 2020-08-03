@@ -17,12 +17,15 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AForge.Video;
+using AForge.Video.DirectShow;
+
+
 
 namespace Server
 {
     public partial class serverConfetti : Form
     {
-
         #region Variable
         private delegate void SafeCallDelegate(string text);
         delegate void SetTextCallback(string text);
@@ -34,28 +37,28 @@ namespace Server
 
         int count = 0;
 
-        static UTF8Encoding encoding = new UTF8Encoding();
-
         private string path = @"..\..\ReadFile\QuestionData.xml";
 
-        NetworkStream networkStream = null;
-
-        List<Player> ListPlayersConnecting = new List<Player>(); // Danh sách người chơi đã connect
+        private List<Player> ListPlayersConnecting = new List<Player>(); // Danh sách người chơi đã connect
         
         List<Question> ListQuestionData = new List<Question>();
         
-        Question QuestionChoice = null;
+        private Question QuestionChoice = null;
 
         TcpListener ServerSocket = null;
 
-        List<Question> ListQuestionsUsedTo = new List<Question>(); // Danh sách câu hỏi đã từng sử dụng
+        private List<Question> ListQuestionsUsedTo = new List<Question>(); // Danh sách câu hỏi đã từng sử dụng
 
         bool SendQuestionButDontSendAnswer = false;
 
-        private int CountAnswerA = 0;
-        private int CountAnswerB = 0;
-        private int CountAnswerC = 0;
 
+        /* người chơi cần biết số người chọn câu A , câu B , câu C */
+        private int CountAnswerA = 0; // Dùng để đếm số người chọn câu A
+        private int CountAnswerB = 0; // Dùng để đếm số người chọn câu B
+        private int CountAnswerC = 0; // Dùng để đếm số người chọn câu C
+
+        private FilterInfoCollection camera;
+        private VideoCaptureDevice cam;
 
         #endregion
 
@@ -76,8 +79,29 @@ namespace Server
 
             LoadDanhSach();
             lbCountListPlayerChange();
-           
+            camera = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+            LoadCam();
         }
+
+        private void LoadCam()
+        {
+            if(cam !=null && cam.IsRunning)
+            {
+                cam.Stop();
+            }
+
+            cam = new VideoCaptureDevice(camera[0].MonikerString);
+            cam.NewFrame += Cam_NewFrame;
+            cam.Start();
+        }
+
+        private void Cam_NewFrame(object sender, NewFrameEventArgs eventArgs)
+        {
+            Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
+            Bitmap resized = new Bitmap(bitmap, new Size(246, 469));
+            pictureBox2.Image = resized;
+        }
+
         private void listviewQuestionData_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(SendQuestionButDontSendAnswer == true)
@@ -96,7 +120,9 @@ namespace Server
                                 "Thông báo",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
+                    
                     kiemtralaplaikhithaydoicauhoi = 1;
+                    
                     return;
                 }
                 if(kiemtralaplaikhithaydoicauhoi == 0)
@@ -105,7 +131,9 @@ namespace Server
                                 "Thông báo",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
+                    
                     kiemtralaplaikhithaydoicauhoi++;
+                    
                     return;
                 }
             }
@@ -151,6 +179,7 @@ namespace Server
             txtAnswerB.Text = QuestionChoice._b_Answer;
             txtAnswerC.Text = QuestionChoice._c_Answer;
             txtRightQuestion.Text = QuestionChoice.RightAnswer;
+
             btnNextQuestion.Enabled = true;
         }
         private void btnAddQuestion_Click(object sender, EventArgs e)
@@ -183,6 +212,7 @@ namespace Server
                 if (ServerSocket != null)
                 {
                     ServerSocket.Stop();
+                    cam.Stop();
                 }
             }
         }
@@ -226,21 +256,34 @@ namespace Server
 
             btnShowAnswer.Enabled = false;
             btnNextQuestion.Enabled = true;
+            
             CountAnswerA = 0;
             CountAnswerB = 0;
             CountAnswerC = 0;
-            string DanhSachNguoiChoiThang = "kq";
+            
+            /*
+             * Gửi danh sách tên người chơi nào thắng cuộc cho toàn bộ người chơi 
+             * Client nhận 1 chuỗi string chứ thông tin 
+             * string : kqTen@Ten@
+             * Example : có 2 tên người chơi có tên Abc và abc1 thắng cuộc =>> kqAbc@abc1@
+             */
+
             if(ListQuestionsUsedTo.Count == 10)
             {
-                foreach(Player player in ListPlayersConnecting)
+
+                string DanhSachNguoiChoiThang = "kq";
+                byte[] bytess = new byte[2048];
+                
+                foreach (Player player in ListPlayersConnecting)
                 {
                     if(player.CountTrueQuestion == 10)
                     {
                         DanhSachNguoiChoiThang += player._namePlayer + "@";
                     }
                 }
-                byte[] bytess = new byte[2048];
+
                 bytess = Utils.ObjectToByteArray(DanhSachNguoiChoiThang);
+                
                 foreach (Player player in ListPlayersConnecting)
                 {
                     if (player.tcpClient.Connected)
@@ -249,8 +292,6 @@ namespace Server
                     }
                 }
             }
-
-
         }
         private void btnNextQuestion_Click(object sender, EventArgs e)
         {
