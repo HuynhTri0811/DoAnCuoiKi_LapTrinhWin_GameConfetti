@@ -91,12 +91,10 @@ namespace Server
         {
             try
             {
-
                 if (cam != null && cam.IsRunning)
                 {
                     cam.Stop();
                 }
-
                 cam = new VideoCaptureDevice(camera[0].MonikerString);
                 cam.NewFrame += Cam_NewFrame;
                 cam.Start();
@@ -224,7 +222,10 @@ namespace Server
                 if (ServerSocket != null)
                 {
                     ServerSocket.Stop();
-                    cam.Stop();
+                    if(cam != null)
+                    {
+                        cam.Stop();
+                    }
                 }
             }
         }
@@ -470,7 +471,7 @@ namespace Server
 
             try
             {
-                StartServerUDP();
+                //StartServerUDP();
             }
             catch
             {
