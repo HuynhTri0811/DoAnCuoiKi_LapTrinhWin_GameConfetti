@@ -20,7 +20,7 @@ namespace Client
         private Point dragFormPoint;
 
         List<PictureBox> listAnswerButton = new List<PictureBox>();
-        List<string> listResultPlayer = new List<string>();
+        List<PlayerResult> listResultPlayer = new List<PlayerResult>();
 
         IPEndPoint iP;
         Socket client;
@@ -651,7 +651,7 @@ namespace Client
                     {
                         string kq = message.Substring(2);
                         ParseListResult(kq);
-                        ClientResult rs = new ClientResult(listResultPlayer, name_Client);
+                        ClientResult rs = new ClientResult(listResultPlayer, name_Client, iD);
                         rs.ShowDialog();
                     }
                 }
@@ -834,8 +834,13 @@ namespace Client
             while (end <= str.Length && str.Length > 1)
             {
                 end = str.IndexOf("@");
-                string namePlayer = str.Substring(start, end);
-                listResultPlayer.Add(namePlayer);
+                PlayerResult plrs = new PlayerResult();
+                plrs.Name = str.Substring(start, end);
+                str = str.Substring(end + 1);
+                end = str.IndexOf("@");
+                plrs.Id = int.Parse(str.Substring(start, end));
+
+                listResultPlayer.Add(plrs);
                 str = str.Substring(end + 1);
                 end = 0;
             }
