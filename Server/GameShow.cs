@@ -45,7 +45,9 @@ namespace Server
         
         private Question QuestionChoice = null;
 
-        TcpListener ServerSocket = null;
+        private TcpListener ServerSocket = null;
+
+        private UdpClient udpClient = null;
 
         private List<Question> ListQuestionsUsedTo = new List<Question>(); // Danh sách câu hỏi đã từng sử dụng
 
@@ -59,6 +61,8 @@ namespace Server
 
         private FilterInfoCollection camera;
         private VideoCaptureDevice cam;
+
+        public UdpClient UdpClient { get; private set; }
 
         #endregion
 
@@ -85,14 +89,22 @@ namespace Server
 
         private void LoadCam()
         {
-            if(cam !=null && cam.IsRunning)
+            try
             {
-                cam.Stop();
-            }
 
-            cam = new VideoCaptureDevice(camera[0].MonikerString);
-            cam.NewFrame += Cam_NewFrame;
-            cam.Start();
+                if (cam != null && cam.IsRunning)
+                {
+                    cam.Stop();
+                }
+
+                cam = new VideoCaptureDevice(camera[0].MonikerString);
+                cam.NewFrame += Cam_NewFrame;
+                cam.Start();
+            }
+            catch
+            {
+                return;
+            }
         }
 
         private void Cam_NewFrame(object sender, NewFrameEventArgs eventArgs)
@@ -456,11 +468,22 @@ namespace Server
                 return;
             }
 
+            try
+            {
+                StartServerUDP();
+            }
+            catch
+            {
+                MessageBox.Show("Lỗi . Không thể khởi động server webcam", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
             labelConnect.Text = "Start server success"; 
             ServerSocket.Start();
             Thread thread = new Thread(clientConnectServer);
             thread.Start();
-
+            
         }
         private void lbCountListPlayerChange()
         {
@@ -511,8 +534,12 @@ namespace Server
         }
         private void StartServerUDP()
         {
+            int recv;
+            byte[] data = new byte[1024];
             IPEndPoint ipep = new IPEndPoint(IPAddress.Any, 5000);
-
+            Socket newsock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            newsock.Bind(ipep);
+            UdpClient = new UdpClient(5000);
         }
 
 
@@ -560,6 +587,20 @@ namespace Server
             {
                 return;
             }
+        }
+        private void clientConnectServerUDP()
+        {
+            //int recv;
+            //byte[] data = new byte[1024];
+            //Console.WriteLine("Dang cho Client ket noi den...");
+            //IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
+            //EndPoint Remote = (EndPoint)(sender);
+            ////recv = newsock.ReceiveFrom(data, ref Remote);
+            //Console.WriteLine("Thong diep duoc nhan tu {0}:", Remote.ToString());
+            //Console.WriteLine(Encoding.ASCII.GetString(data, 0, recv));
+            //string welcome = "Hello Client";
+            //data = Encoding.ASCII.GetBytes(welcome);
+            ////.SendTo(data, data.Length, SocketFlags.None, Remote);
         }
         private void SetName(Socket client)
         {
